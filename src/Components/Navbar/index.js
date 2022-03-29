@@ -18,9 +18,9 @@ export default function Navbar({ setLocale }) {
           })}
         </Ul>
         <ButtonDiv>
-          <button onClick={() => setLocale(LOCALES.SPANISH)}>Español</button>
+          <button onClick={() => setLocale(LOCALES.SPANISH)}><img src={"es"}></img></button>
           <br />
-          <button onClick={() => setLocale(LOCALES.ENGLISH)}>English</button>
+          <button onClick={() => setLocale(LOCALES.ENGLISH)}><img src={"en"}></img></button>
         </ButtonDiv>
       </Nav>
     </>
