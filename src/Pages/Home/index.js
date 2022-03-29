@@ -1,6 +1,7 @@
 import { Maindiv } from "./styles";
 import translate from "../../i18n/translate";
 
+/** Home */
 export default function Home() {
   return (
     <Maindiv>
