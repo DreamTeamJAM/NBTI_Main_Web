@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 
+/** Navbar Styles */
 export const Nav = styled.nav`
     width: 100vw;
     top: 0;

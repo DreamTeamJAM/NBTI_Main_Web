@@ -2,6 +2,7 @@ import { ButtonDiv, Nav, NavTitle, StyledLink, Ul } from "./styles";
 import { NavItems } from "../../Utils/navItems";
 import { LOCALES } from "i18n";
 
+/** Navbar Component */
 export default function Navbar({ setLocale }) {
   return (
     <>

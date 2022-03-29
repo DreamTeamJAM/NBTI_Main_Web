@@ -8,9 +8,11 @@ import Home from 'Pages/Home';
 function App() {
   const [locale, setLocale] = useState(LOCALES.ENGLISH);
   return (
+    /** Provider to changes languages */
     <I18Provider locale={locale}>
       <Navbar setLocale={setLocale}/>
 
+      {/* ROUTES */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="*" element={<h1>Error 404</h1>} />
