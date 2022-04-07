@@ -7,7 +7,7 @@ export const Nav = styled.nav`
     top: 0;
     margin: 0;
     padding: 0;
-    background-color: #16161a;
+    background-color: #ffff;
     height: 4em;
     display: flex;
     justify-content: space-around;
@@ -15,7 +15,7 @@ export const Nav = styled.nav`
 `
 
 export const NavTitle = styled.h1`
-    color: #fff;
+    color: #000;
     font-weight: 400;
     font-size: 2em;
     font-family: 'Times New Roman', Times, serif;
@@ -27,7 +27,7 @@ export const StyledLink = styled(Link)`
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   letter-spacing: 1px;
   margin: 0px 13px 0px 13px;
-  color: #fff;
+  color: #000;
   transition: all .3s ease-in-out;
 
   &:focus,
@@ -55,4 +55,20 @@ export const ButtonDiv = styled.div`
   button {
     margin: 0px 3px 0px 3px;
   }
+`
+
+export const LanguageIcon = styled.img`
+  width: 30px;
+  
+  &:hover {
+    -webkit-filter: drop-shadow(2px 2px 2px #181eb3);
+  filter: drop-shadow(2px 3px 0px #181eb3);
+      
+  }
+`
+
+export const Button = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
 `
