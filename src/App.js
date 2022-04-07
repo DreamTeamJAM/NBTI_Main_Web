@@ -4,6 +4,7 @@ import { I18Provider } from './i18n';
 import { useState } from 'react';
 import { Route, Routes } from "react-router-dom";
 import Home from 'Pages/Home';
+import CvForm from 'Components/CvForm';
 
 function App() {
   const [locale, setLocale] = useState(LOCALES.ENGLISH);
@@ -15,6 +16,7 @@ function App() {
       {/* ROUTES */}
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/cvform" element={<CvForm />} />
         <Route path="*" element={<h1>Error 404</h1>} />
       </Routes>
     </I18Provider>
