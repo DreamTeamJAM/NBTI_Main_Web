@@ -1,20 +1,22 @@
 export const docDefinition = ({
-    nombre,
+    name,
     email,
-    apellido,
-    segundoapellido,
-    nacionalidad,
-    telefono,
-    dia,
-    mes,
-    año,
-    genero,
+    firstSurname,
+    secondSurname,
+    nationality,
+    phone,
+    birthDate,
+    gender,
+    address,
+
     num,
     calle,
     cod_postal,
     ciudad,
     pais,
-    mi,
+
+    aboutMe,
+
     trabajo1,
     empresa,
     day,
@@ -55,13 +57,9 @@ export const docDefinition = ({
     interskills1,
     interskills2,
     drive,
-    hobbie,
-    hobbie2,
-    hobbie3,
-    hobbie4,
-    enterprise,
-    lugar,
-    resumen,
+
+    hobbies,
+    volunteering,
   }) => {
     const nbti = {
       content: [
@@ -77,19 +75,19 @@ export const docDefinition = ({
               width: 120,
             },
             {
-              text: `${nombre} ${apellido} ${segundoapellido}  
+              text: `${name} ${firstSurname} ${secondSurname}  
               
-              Nationality:   ${nacionalidad}
+              Nationality:   ${nationality}
               
-              Telefono: ${telefono}
+              Telefono: ${phone}
               
-              Date of birth: ${dia}/${mes}/${año}
+              Date of birth: ${birthDate}
               
-              Gender: ${genero}
+              Gender: ${ gender}
               
               Email address: ${email}
   
-            Addres: ${num},${calle},${cod_postal} ${ciudad}(${pais})
+            Addres:${address} ${num},${calle},${cod_postal} ${ciudad}(${pais})
               `,
               style: "header",
             },
@@ -108,7 +106,7 @@ export const docDefinition = ({
           style: "subheader",
         },
         {
-          text: `${mi}
+          text: `${aboutMe}
           
           `,
           style: ["quote", "font"],
@@ -236,16 +234,7 @@ export const docDefinition = ({
   
         {
           ul: [
-            `${hobbie}
-            `,
-  
-            `${hobbie2}
-            `,
-  
-            `${hobbie3}
-            `,
-  
-            `${hobbie4}
+            `${hobbies}
             
             
             `,
@@ -256,9 +245,7 @@ export const docDefinition = ({
           style: "subheader",
         },
         {
-          text: `${enterprise}
-                 ${lugar}
-                 ${resumen}
+          text: `${volunteering}
                  
           `,
   

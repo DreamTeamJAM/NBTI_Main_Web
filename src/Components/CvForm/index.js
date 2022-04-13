@@ -5,7 +5,12 @@ import translate from "i18n/translate";
 import React, { useEffect, useState } from "react";
 import { drivingLicense } from "Utils/drivingLicenses";
 import { languages } from "Utils/languages";
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+import { docDefinition } from "Templates/Pass_content";
 
+
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 function CvForm() {
   const [languagesObtined, setLanguagesObtined] = React.useState([]);
 
@@ -59,10 +64,64 @@ function CvForm() {
       drivingLicense: "",
       hobbies: "",
       volunteering: [],
+
+
+  num:"8",
+  calle:"La Habana",
+  cod_postal:"41701",
+  ciudad:"Sevilla",
+  pais:"España",
+  
+  trabajo1:"Apicultor",
+  empresa:"Apinazar",
+  day:"20",
+  month:"05",
+  year:"2016",
+  day2:"10",
+  month2:"09",
+  year2:"2022",
+  city:"Dos Hermanas",
+  country:"España",
+  tema:"Limpiador",
+  tema2:"Movedor de cajas",
+  tema3:"Raspador",
+
+  education:"Desarrollo de Aplicaciones Multiplataforma",
+  colegio:"Maria Auxiliadora salesianas de Nervion",
+  days:"17",
+  months:"09",
+  years:"2020",
+  days2:"20",
+  months2:"05",
+  years2:"2022",
+  citys:"Sevilla",
+  countrys:"España",
+  estudio:"Informatica",
+  bueno:"Java",
+  bueno2:"React",
+  bueno3:"Android",
+
+  idioma:"Español",
+  idioma2:"Francés",
+  lenguaje:"Inglés",
+  listening:"B1",
+  reading:"B1",
+  writting:"B1",
+  produc:"B1",
+  interac:"B1",
+
+  skills:"Microsoft Office, Microsoft Word, Microsoft Excel, Outlook, Facebook, Google / Graphics Design Adobe Photoshop Sketchup / Canva and GIMP / Social Media/Social Network",
+  interskills:"Trabajador",
+  interskills1:"Paciente",
+  interskills2:"Responsable",
+  
+  
+  
     },
     //validate,
     onSubmit: (values) => {
       console.log("values", values);
+      pdfMake.createPdf(docDefinition({ ...values })).open();
 
       /* fetch("http://192.168.1.74:8080/nbtiCV", values.text, {
         method: "POST",
