@@ -56,8 +56,8 @@ export const docDefinition = ({
     interskills,
     interskills1,
     interskills2,
-    drive,
-
+    
+    drivingLicense,
     hobbies,
     volunteering,
   }) => {
@@ -234,8 +234,7 @@ export const docDefinition = ({
       },
         {
           ul: [
-            `
-            ${interskills}
+            `${interskills}
             `,
   
             `${interskills1}
@@ -251,13 +250,14 @@ export const docDefinition = ({
           text: "DRIVING LICENCE                                                                                                         ",
         style: "subheader",
       },
-        {
-          text: `
-          Driving Licence: ${drive}
-                
-          `,
-  
-          style: ["quote", "font"],
+        
+          {
+            style: ["quote", "font"],
+            text:[
+             
+              {text: 'Driving Licence: ', italics: false, fontSize: 14}, ` ${drivingLicense}
+            `,
+          ] 
         },
         {
           text: "HOBBIES AND INTERESTS                                                                                          ",
@@ -266,8 +266,7 @@ export const docDefinition = ({
   
         {
           ul: [
-            `
-            ${hobbies}
+            `${hobbies}
             
             
             `,
