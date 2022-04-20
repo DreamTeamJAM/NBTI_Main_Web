@@ -19,7 +19,12 @@ export const eng = {
         'address': 'Address',
         'aboutMe' : 'About me',
         'drivingLicense': 'Driving License',
-        'hobbies': 'Hobbies'
-
+        'hobbies': 'Hobbies',
+        'Company Name':"Company Name",
+        'Address':"Address",
+        'city':"city",
+        'Contact Person':"Contact Person",  
+        'Telephone Number':"Telephone Number", 
+        'Email':"Email",
     }
 }

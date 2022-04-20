@@ -20,5 +20,11 @@ export const esp = {
         'aboutMe': 'Sobre mi',
         'drivingLicense' : 'Carnet de conducir',
         'hobbies': 'Hobbies',
+        'Company Name':"Nombre Compañia",
+        'Address':"Dirección",
+        'city ':"Ciudad",
+        'Contact Person':"Persona de Contacto",  
+        'Telephone Number':"Numero de Telefono", 
+        'Email':"Email",
     }
 }
