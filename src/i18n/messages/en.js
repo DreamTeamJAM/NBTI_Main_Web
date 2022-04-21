@@ -27,6 +27,14 @@ export const eng = {
         'Telephone Number':"Telephone Number", 
         'Email':"Email",
         "region":"Region",
+        "Land Lord": "Land Lord",
+        "Postal Code": "Postal Code",
+        "Telephone Number": "Telephone Number",
+        "Rent Per Month": "Rent Per Month",
+        "Deposit": "Deposit",
+        "Food Included": "Food Included",
+        "Yes":"Yes",
+        "No": "No",
         
     }
 }

@@ -15,4 +15,9 @@ export const NavItems = [
         title: 'Enterprise',
         url: '/enterprise'
     },
+    {
+        id : 3,
+        title: 'Hosting',
+        url: '/hosting'
+    },
 ]
