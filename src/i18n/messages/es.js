@@ -26,5 +26,6 @@ export const esp = {
         'Contact Person':"Persona de Contacto",  
         'Telephone Number':"Numero de Telefono", 
         'Email':"Email",
+        "region":"Región",
     }
 }

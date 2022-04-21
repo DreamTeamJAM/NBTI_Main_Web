@@ -26,5 +26,7 @@ export const eng = {
         'Contact Person':"Contact Person",  
         'Telephone Number':"Telephone Number", 
         'Email':"Email",
+        "region":"Region",
+        
     }
 }

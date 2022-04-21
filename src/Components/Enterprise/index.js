@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
 import { Container } from "GlobalStyles";
 import translate from "i18n/translate";
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import { languages } from "Utils/languages";
 
 function Enterprise() {
@@ -16,13 +16,13 @@ function Enterprise() {
     }
 
     if (!values.lastname) {
-     errors.lastname = "Requerido";
-   } else if (values.lastname.length < 5) {
+      errors.lastname = "Requerido";
+    } else if (values.lastname.length < 5) {
       errors.lastname = "Apellido demasiado corto";
     }
 
-   if (!values.email) {
-     errors.email = "Requerido";
+    if (!values.email) {
+      errors.email = "Requerido";
     }
 
     return errors;
@@ -38,19 +38,17 @@ function Enterprise() {
 
   const formik = useFormik({
     initialValues: {
-      
-      companyname:"",
-      address:"",
-      city :"",
-      contactperson:"",  
-      telephonenumber:"", 
-      email:"",
+      companyname: "",
+      address: "",
+      city: "",
+      contactperson: "",
+      telephonenumber: "",
+      email: "",
+      region:"",
     },
     //validate,
     onSubmit: (values) => {
       console.log("values", values);
-      
-
     },
   });
 
@@ -63,18 +61,9 @@ function Enterprise() {
           <p>{formik.errors.name}</p>
         ) : null}
         <br />
-
-        <label>{translate("Address")}: </label>
-        <input type="text" {...formik.getFieldProps("address")} />
-        {formik.touched.name && formik.errors.name ? (
-          <p>{formik.errors.name}</p>
-        ) : null}
-        <br />
         <select
           name="slector"
-          onChange={(event) =>
-            formik.setFieldValue("city", event.target.value)
-          }
+          onChange={(event) => formik.setFieldValue("city", event.target.value)}
         >
           <option value="" label="Select a city" />
           {languagesObtined.map((language, index) => (
@@ -82,14 +71,25 @@ function Enterprise() {
           ))}
         </select>
         <br />
+        <label>{translate("Address")}: </label>
+        <input type="text" {...formik.getFieldProps("address")} />
+        {formik.touched.name && formik.errors.name ? (
+          <p>{formik.errors.name}</p>
+        ) : null}
+        <br />
+        <label>{translate("Region")}: </label>
+        <input type="text" {...formik.getFieldProps("region")} />
+        {formik.touched.name && formik.errors.name ? (
+          <p>{formik.errors.name}</p>
+        ) : null}
+        
+        <br />
         <label>{translate("Contact Person")}: </label>
         <input type="text" {...formik.getFieldProps("contactperson")} />
         {formik.touched.name && formik.errors.name ? (
           <p>{formik.errors.name}</p>
         ) : null}
         <br />
-
-        
 
         <label>{translate("Telephone Number")}: </label>
         <input type="text" {...formik.getFieldProps("telephonenumber")} />
