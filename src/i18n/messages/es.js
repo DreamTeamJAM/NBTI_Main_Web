@@ -27,5 +27,13 @@ export const esp = {
         'Telephone Number':"Numero de Telefono", 
         'Email':"Email",
         "region":"Región",
+        "Land Lord": "Propietario de la casa",
+        "Postal Code": "Código Postal",
+        "Telephone Number": "Número Teléfono",
+        "Rent Per Month": "Renta Por Mes",
+        "Deposit": "Deposito",
+        "Food Included": "Comida Incluida",
+        "Yes":"Si",
+        "No": "No",
     }
 }

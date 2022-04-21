@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from 'Pages/Home';
 import CvForm from 'Components/CvForm';
 import Enterprise from 'Components/Enterprise';
+import Hosting from 'Components/Hosting';
 
 function App() {
   const [locale, setLocale] = useState(LOCALES.ENGLISH);
@@ -19,6 +20,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/cvform" element={<CvForm />} />
         <Route path="/enterprise" element={<Enterprise />} />
+        <Route path="/hosting" element={<Hosting />} />
         <Route path="*" element={<h1>Error 404</h1>} />
       </Routes>
     </I18Provider>
