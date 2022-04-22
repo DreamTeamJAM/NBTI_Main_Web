@@ -9,7 +9,6 @@ import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import { docDefinition } from "Templates/Pass_content";
 
-
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 function CvForm() {
   const [languagesObtined, setLanguagesObtined] = React.useState([]);
@@ -65,58 +64,48 @@ function CvForm() {
       hobbies: "",
       volunteering: [],
 
+      num: "8",
+      calle: "La Habana",
+      cod_postal: "41701",
+      ciudad: "Sevilla",
+      pais: "España",
 
-  num:"8",
-  calle:"La Habana",
-  cod_postal:"41701",
-  ciudad:"Sevilla",
-  pais:"España",
-  
-  trabajo1:"Apicultor",
-  empresa:"Apinazar",
-  day:"20",
-  month:"05",
-  year:"2016",
-  day2:"10",
-  month2:"09",
-  year2:"2022",
-  city:"Dos Hermanas",
-  country:"España",
-  tema:"Limpiador",
-  tema2:"Movedor de cajas",
-  tema3:"Raspador",
+      trabajo1: "Apicultor",
+      empresa: "Apinazar",
+      day: "20",
+      month: "05",
+      year: "2016",
+      day2: "10",
+      month2: "09",
+      year2: "2022",
+      city: "Dos Hermanas",
+      country: "España",
+      tema: "Limpiador",
+      tema2: "Movedor de cajas",
+      tema3: "Raspador",
 
-  education:"Desarrollo de Aplicaciones Multiplataforma",
-  colegio:"Maria Auxiliadora salesianas de Nervion",
-  days:"17",
-  months:"09",
-  years:"2020",
-  days2:"20",
-  months2:"05",
-  years2:"2022",
-  citys:"Sevilla",
-  countrys:"España",
-  estudio:"Informatica",
-  bueno:"Java",
-  bueno2:"React",
-  bueno3:"Android",
+      Title: "Desarrollo de Aplicaciones Multiplataforma",
+      startDate: "17/10/2001",
+      EndDate: "17/10/2001",
+      Country: "España",
+      City: "Sevilla",
+      Center: "Maria Auxiliadora salesianas de Nervion",
+      FieldsofStudy: "Java, React, Android",
 
-  idioma:"Español",
-  idioma2:"Francés",
-  lenguaje:"Inglés",
-  listening:"B1",
-  reading:"B1",
-  writting:"B1",
-  produc:"B1",
-  interac:"B1",
+      idioma: "Español",
+      idioma2: "Francés",
+      lenguaje: "Inglés",
+      listening: "B1",
+      reading: "B1",
+      writting: "B1",
+      produc: "B1",
+      interac: "B1",
 
-  skills:"Microsoft Office, Microsoft Word, Microsoft Excel, Outlook, Facebook, Google / Graphics Design Adobe Photoshop Sketchup / Canva and GIMP / Social Media/Social Network",
-  interskills:"Trabajador",
-  interskills1:"Paciente",
-  interskills2:"Responsable",
-  
-  
-  
+      skills:
+        "Microsoft Office, Microsoft Word, Microsoft Excel, Outlook, Facebook, Google / Graphics Design Adobe Photoshop Sketchup / Canva and GIMP / Social Media/Social Network",
+      interskills: "Trabajador",
+      interskills1: "Paciente",
+      interskills2: "Responsable",
     },
     //validate,
     onSubmit: (values) => {
@@ -205,7 +194,7 @@ function CvForm() {
           <label for="male">{translate("male")}</label>
         </div>
         <div>
-        <input
+          <input
             type="radio"
             id="female"
             name="gender"
@@ -217,7 +206,7 @@ function CvForm() {
           <label for="female">{translate("female")}</label>
         </div>
         <div>
-        <input
+          <input
             type="radio"
             id="other"
             name="gender"
@@ -276,6 +265,75 @@ function CvForm() {
         ) : null}
         <br />
 
+        <label>{translate("Vocational Training")}:</label>
+        <br />
+
+        <label>{translate("Title")}:</label>
+        <input type="text" {...formik.getFieldProps("title")} />
+        {formik.touched.name && formik.errors.name ? (
+          <p>{formik.errors.name}</p>
+        ) : null}
+        <br />
+
+        <label>{translate("Start Date")}:</label>
+        <input
+          type="date"
+          max="2022-01-01"
+          onChange={(event) =>
+            formik.setFieldValue("startDate", event.target.value)
+          }
+        />
+        {formik.touched.name && formik.errors.name ? (
+          <p>{formik.errors.name}</p>
+        ) : null}
+        <br />
+
+        <label>{translate("End Date")}:</label>
+        <input
+          type="date"
+          max="2022-01-01"
+          onChange={(event) =>
+            formik.setFieldValue("EndDate", event.target.value)
+          }
+        />
+        {formik.touched.name && formik.errors.name ? (
+          <p>{formik.errors.name}</p>
+        ) : null}
+        <br />
+        <select
+          name="slector"
+          onChange={(event) =>
+            formik.setFieldValue("Country", event.target.value)
+          }
+        >
+          <option value="" label="Select a Country" />
+          {languagesObtined.map((language, index) => (
+            <option key={index} value={language.value} label={language.value} />
+          ))}
+        </select>
+        <br />
+
+        <label>{translate("City")}:</label>
+        <input type="text" {...formik.getFieldProps("City")} />
+        {formik.touched.name && formik.errors.name ? (
+          <p>{formik.errors.name}</p>
+        ) : null}
+        <br />
+
+        <label>{translate("Center")}:</label>
+        <input type="text" {...formik.getFieldProps("Center")} />
+        {formik.touched.name && formik.errors.name ? (
+          <p>{formik.errors.name}</p>
+        ) : null}
+        <br />
+
+        <label>{translate("Fields of Study")}:</label>
+        <br />
+        <textarea type="text" {...formik.getFieldProps("FieldsofStudy")} />
+        {formik.touched.name && formik.errors.name ? (
+          <p>{formik.errors.name}</p>
+        ) : null}
+        <br />
         <button type="submit">{translate("submit")}</button>
       </form>
     </Container>

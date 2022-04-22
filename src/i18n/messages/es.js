@@ -35,5 +35,12 @@ export const esp = {
         "Food Included": "Comida Incluida",
         "Yes":"Si",
         "No": "No",
+        "Vocational Training":"Formación Profesional",
+        "Title": "Título",
+        "Start Date": "Fecha de Inicio",
+        "End Date": "Fecha Final",
+        "City": "Ciudad",
+        "Center": "Centro de Estudio",
+        "Fields of Study": "Campos de estudio",
     }
 }
