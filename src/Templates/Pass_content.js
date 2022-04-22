@@ -30,20 +30,15 @@ export const docDefinition = ({
     tema,
     tema2,
     tema3,
-    education,
-    colegio,
-    days,
-    months,
-    years,
-    days2,
-    months2,
-    years2,
-    citys,
-    countrys,
-    estudio,
-    bueno,
-    bueno2,
-    bueno3,
+
+    Title,
+startDate,
+EndDate,
+Country,
+City,
+Center,
+FieldsofStudy,
+
     idioma,
     idioma2,
     lenguaje,
@@ -157,26 +152,25 @@ export const docDefinition = ({
         {
           style: ["quote", "font"],
           text:[ `
-          ${education}.
+          ${Title}.
           `,
-          `${colegio} [${days}/${months}/${years} - ${days2}/${months2}/${years2}]
+          `${Center} [${startDate} - ${EndDate}]
          
           `,
-          {text: 'City:', italics: false, fontSize: 14}, ` ${citys},
+          {text: 'City:', italics: false, fontSize: 14}, ` ${City},
           `,
-          {text: 'Country:', italics: false, fontSize: 14}, ` ${countrys}
+          {text: 'Country:', italics: false, fontSize: 14}, ` ${Country}
           `,
-          {text: 'Field(s) of study:', italics: false, fontSize: 14}, ` ${estudio},
+          {text: 'Field(s) of study:', italics: false, fontSize: 14}, ` 
           `,
            
+
         ]
           
         },
         {
           ul: [
-            `${bueno}`,
-            `${bueno2}`,
-            `${bueno3}
+            `${FieldsofStudy}
             
             `,
           ],

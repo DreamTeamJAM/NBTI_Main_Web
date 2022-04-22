@@ -35,6 +35,13 @@ export const eng = {
         "Food Included": "Food Included",
         "Yes":"Yes",
         "No": "No",
-        
+        "Vocational Training":"Vocational training",
+        "Title": "Title",
+        "Start Date": "Start Date",
+        "End Date": "End Date",
+        "City": "City",
+        "Center": "Center",
+        "Fields of Study": "Fields of Study",
+
     }
 }
