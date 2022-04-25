@@ -5,12 +5,14 @@ import { useState } from 'react';
 import { Route, Routes } from "react-router-dom";
 import Home from 'Pages/Home';
 import CvForm from 'Components/CvForm';
+import UpperNavbar from 'Components/UpperNavbar';
 
 function App() {
   const [locale, setLocale] = useState(LOCALES.ENGLISH);
   return (
     /** Provider to changes languages */
     <I18Provider locale={locale}>
+      <UpperNavbar />
       <Navbar setLocale={setLocale}/>
 
       {/* ROUTES */}

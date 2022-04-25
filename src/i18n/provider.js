@@ -5,7 +5,7 @@ import { LOCALES } from "./locale";
 import messages from "./messages";
 
 /** This Provider print out text in each language */
-const Provider = ({ children, locale = LOCALES.ENGLISH }) => (
+const Provider = ({ children, locale = sessionStorage.getItem('language') === 'es' ? LOCALES.SPANISH : LOCALES.ENGLISH }) => (
   <IntlProvider
     locale={locale}
     textComponent={Fragment}

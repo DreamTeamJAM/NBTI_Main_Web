@@ -10,4 +10,9 @@ export const NavItems = [
         title: 'CvForm',
         url: '/cvform'
     },
+    {
+        id : 3,
+        title: 'aboutus',
+        url: '/cvform'
+    }
 ]

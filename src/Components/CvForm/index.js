@@ -105,7 +105,7 @@ function CvForm() {
             formik.setFieldValue("nationality", event.target.value)
           }
         >
-          <option value="" label="Select a color" />
+          <option value="" label="Select a country" />
           {languagesObtined.map((language, index) => (
             <option key={index} value={language.value} label={language.value} />
           ))}

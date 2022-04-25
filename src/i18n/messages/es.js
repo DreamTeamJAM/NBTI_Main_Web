@@ -5,6 +5,8 @@ export const esp = {
         'hello': 'Hola Mundo',
         'edit': 'Esto es un test con variables {path}',
         'home': 'Inicio',
+        'CvForm': 'CvForm',
+        'aboutus': 'Sobre Nosotros',
         'submit': 'Enviar',
         'name': 'Nombre',
         'firstSurname': 'Primer Apellido',
