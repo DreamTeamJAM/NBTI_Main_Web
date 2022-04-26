@@ -1,13 +1,15 @@
+import Carousel from "Components/Carousel3D";
+import CarouselParallax from "Components/CarouselParallax";
 import { Maindiv } from "./styles";
-import translate from "../../i18n/translate";
 
 /** Home */
 export default function Home() {
+  /* var items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] */
+
   return (
     <Maindiv>
-      {translate("hello")} <hr></hr>
-      {translate("edit", { path: <code>Juan</code> })}
-      <hr></hr>
+      <CarouselParallax />
+      {/* <Carousel items={items} active={0}/> */}
     </Maindiv>
   );
 }

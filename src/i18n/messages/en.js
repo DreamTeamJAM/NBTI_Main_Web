@@ -5,6 +5,8 @@ export const eng = {
         'hello': 'Hello World',
         'edit': 'This is a test with variables {path}',
         'home': 'Home',
+        'CvForm': 'CvForm',
+        'aboutus': 'About Us',
         'submit': 'Submit',
         'name': 'Name',
         'firstSurname': 'First Surname',
