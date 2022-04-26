@@ -20,7 +20,7 @@ function App() {
       {/* ROUTES */}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/cvform" element={<CvForm />} />
+        <Route path="/students" element={<CvForm />} />
         <Route path="/enterprise" element={<Enterprise />} />
         <Route path="/hosting" element={<Hosting />} />
         <Route path="*" element={<h1>Error 404</h1>} />

@@ -9,16 +9,25 @@ export const UpperNavbarContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+
 `
 
 export const UpperNavbarItems = styled(Link)`
     color: #fff;
-    margin: 2em;
     text-decoration: none;
-    font-size: 0.8em;
+    font-size: 0.9em;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     letter-spacing: 0.1em ;
     transition: all .3s ease-in-out;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    width: auto;
+    padding: 2em;
+    justify-content: center;
+    
+
 
     :hover {
         background-color: #fff;
