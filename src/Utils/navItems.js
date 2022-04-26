@@ -7,22 +7,17 @@ export const NavItems = [
   },
   {
     id: 2,
-    title: "CvForm",
-    url: "/cvform",
+    title: "student",
+    url: "/students",
   },
   {
     id: 3,
-    title: "aboutus",
-    url: "/cvform",
-  },
-  {
-    id: 4,
-    title: "Enterprise",
+    title: "enterprise",
     url: "/enterprise",
   },
   {
-    id: 5,
-    title: "Hosting",
+    id: 4,
+    title: "hosting",
     url: "/hosting",
   },
 ];

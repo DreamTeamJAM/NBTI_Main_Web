@@ -1,11 +1,9 @@
-import { Button, ButtonDiv, LanguageIcon, Nav, NavTitleImg } from "./styles";
-import { NavItems } from "../../Utils/navItems";
+import { ButtonDiv, LanguageSelect, Nav, NavTitleImg } from "./styles";
 import { LOCALES } from "i18n";
-import translate from "../../i18n/translate";
-import SpanishFlag from "assets/images/SpanishFlag.png";
-import UkFlag from "assets/images/UkFlag.png";
 import NbtiLogo from "assets/images/logo_horizontal.jpg";
 import { HiOutlineMenu } from "react-icons/hi";
+import { Button } from "GlobalStyles";
+import translate from "i18n/translate";
 
 /** Navbar Component */
 export default function Navbar({ setLocale }) {
@@ -19,7 +17,7 @@ export default function Navbar({ setLocale }) {
     <>
       <Nav>
         <ButtonDiv>
-          <select name="language" onChange={handleChangeLanguage}>
+          <LanguageSelect name="language" onChange={handleChangeLanguage}>
             {sessionStorage.getItem("language") === LOCALES.SPANISH ? (
               <>
                 <option value={LOCALES.SPANISH} label="ES" selected></option>
@@ -31,10 +29,12 @@ export default function Navbar({ setLocale }) {
                 <option value={LOCALES.ENGLISH} label="EN" selected></option>
               </>
             )}
-          </select>
+          </LanguageSelect>
         </ButtonDiv>
         <NavTitleImg src={NbtiLogo} alt="NBTI Logo" />
-        <HiOutlineMenu size={30} />
+        <Button>
+          {translate('access')}
+        </Button>
       </Nav>
     </>
   );

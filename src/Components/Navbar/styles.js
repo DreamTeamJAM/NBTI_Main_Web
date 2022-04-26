@@ -1,14 +1,13 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 /** Navbar Styles */
 export const Nav = styled.nav`
   width: 100vw;
+  height: 100px;
   top: 0;
   margin: 0;
   padding: 0;
   background-color: #ffff;
-  height: 80px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -42,3 +41,16 @@ export const Button = styled.button`
   border: none;
   cursor: pointer;
 `;
+
+export const LanguageSelect = styled.select`
+  width: 50px;
+  height: 40px;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: #fff;
+  list-style: none;
+  text-align: center;
+  border: 2px solid black;
+  
+
+`
