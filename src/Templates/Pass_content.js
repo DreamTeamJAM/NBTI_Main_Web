@@ -31,13 +31,13 @@ export const docDefinition = ({
     tema2,
     tema3,
 
-    Title,
+    title,
 startDate,
-EndDate,
-Country,
-City,
-Center,
-FieldsofStudy,
+endDate,
+countrys,
+citys,
+center,
+fieldsOfStudy,
 
     idioma,
     idioma2,
@@ -125,7 +125,7 @@ FieldsofStudy,
           `,
           
   
-          `${empresa} [${day}/${month}/${year} - ${day2}/${month2}/${year2}]
+          `${empresa} [${day}/${month}/${year}]  [${day2}/${month2}/${year2}]
           
           `,
           {text: 'City: ', italics: false, fontSize: 14}, ` ${city}
@@ -152,14 +152,14 @@ FieldsofStudy,
         {
           style: ["quote", "font"],
           text:[ `
-          ${Title}.
+          ${title}.
           `,
-          `${Center} [${startDate} - ${EndDate}]
+          `${center} [${startDate}] [${endDate}]
          
           `,
-          {text: 'City:', italics: false, fontSize: 14}, ` ${City},
+          {text: 'City:', italics: false, fontSize: 14}, ` ${citys},
           `,
-          {text: 'Country:', italics: false, fontSize: 14}, ` ${Country}
+          {text: 'Country:', italics: false, fontSize: 14}, ` ${countrys}
           `,
           {text: 'Field(s) of study:', italics: false, fontSize: 14}, ` 
           `,
@@ -170,7 +170,7 @@ FieldsofStudy,
         },
         {
           ul: [
-            `${FieldsofStudy}
+            `${fieldsOfStudy}
             
             `,
           ],
