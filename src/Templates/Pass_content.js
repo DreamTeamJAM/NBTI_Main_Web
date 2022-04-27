@@ -16,28 +16,20 @@ export const docDefinition = ({
     pais,
 
     aboutMe,
-
-    trabajo1,
-    empresa,
-    day,
-    month,
-    year,
-    day2,
-    month2,
-    year2,
-    city,
-    country,
-    tema,
-    tema2,
-    tema3,
-
+    titleWork,
+    startDateWork,
+    endDateWork,
+    countryWork,
+    cityWork,
+    companyWork,
+    tasksWork,
     title,
-startDate,
-endDate,
-countrys,
-citys,
-center,
-fieldsOfStudy,
+    startDate,
+    endDate,
+    countrys,
+    citys,
+    center,
+    fieldsOfStudy,
 
     idioma,
     idioma2,
@@ -121,26 +113,23 @@ fieldsOfStudy,
           style: ["quote", "font"],
           text:[
              `
-             ${trabajo1}.
+             ${titleWork}.
           `,
           
   
-          `${empresa} [${day}/${month}/${year}]  [${day2}/${month2}/${year2}]
+          `${companyWork} [${startDateWork}]  [${endDateWork}]
           
           `,
-          {text: 'City: ', italics: false, fontSize: 14}, ` ${city}
+          {text: 'City: ', italics: false, fontSize: 14}, ` ${cityWork}
           `,
-          {text: 'Country: ', italics: false, fontSize: 14}, ` ${country},
+          {text: 'Country: ', italics: false, fontSize: 14}, ` ${countryWork},
           `,
-  
-  
+
           ]
         },
         {
           ul: [
-            `${tema}`,
-            `${tema2}`,
-            `${tema3}
+            `${tasksWork}
             
             `,
           ],
