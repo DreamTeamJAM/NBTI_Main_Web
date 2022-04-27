@@ -1,13 +1,14 @@
 import axios from "axios";
-import { Field, useFormik } from "formik";
+import { useFormik } from "formik";
 import { Container } from "GlobalStyles";
 import translate from "i18n/translate";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { drivingLicense } from "Utils/drivingLicenses";
 import { languages } from "Utils/languages";
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import { docDefinition } from "Templates/Pass_content";
+import { Formik, Field, Form, ErrorMessage, FieldArray } from "formik";
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 function CvForm() {
@@ -54,8 +55,6 @@ function CvForm() {
       email: "",
       address: "",
       aboutMe: "",
-      workExperience: [],
-      education: [],
       motherTonges: [],
       otherLanguages: [],
       digitalSkills: "",
@@ -69,28 +68,6 @@ function CvForm() {
       cod_postal: "41701",
       ciudad: "Sevilla",
       pais: "España",
-
-      trabajo1: "Apicultor",
-      empresa: "Apinazar",
-      day: "20",
-      month: "05",
-      year: "2016",
-      day2: "10",
-      month2: "09",
-      year2: "2022",
-      city: "Dos Hermanas",
-      country: "España",
-      tema: "Limpiador",
-      tema2: "Movedor de cajas",
-      tema3: "Raspador",
-
-      Title: "Desarrollo de Aplicaciones Multiplataforma",
-      startDate: "17/10/2001",
-      EndDate: "17/10/2001",
-      Country: "España",
-      City: "Sevilla",
-      Center: "Maria Auxiliadora salesianas de Nervion",
-      FieldsofStudy: "Java, React, Android",
 
       idioma: "Español",
       idioma2: "Francés",
@@ -107,6 +84,7 @@ function CvForm() {
       interskills1: "Paciente",
       interskills2: "Responsable",
     },
+
     //validate,
     onSubmit: (values) => {
       console.log("values", values);
@@ -122,6 +100,30 @@ function CvForm() {
       }).then((res) => console.log(res.json())); */
     },
   });
+  const initialValues = {
+    training: [
+      {
+        title: "",
+        startDate: "",
+        endDate: "",
+        countrys: "",
+        citys: "",
+        center: "",
+        fieldsOfStudy: "",
+      },
+    ],
+    work: [
+      {
+        titleWork: "",
+        startDateWork: "",
+        endDateWork: "",
+        countryWork: "",
+        cityWork: "",
+        companyWork: "",
+        tasksWork: "",
+      },
+    ],
+  };
 
   return (
     <Container style={{ marginTop: "2em" }}>
@@ -132,21 +134,18 @@ function CvForm() {
           <p>{formik.errors.name}</p>
         ) : null}
         <br />
-
         <label>{translate("firstSurname")}:</label>
         <input type="text" {...formik.getFieldProps("firstSurname")} />
         {formik.touched.name && formik.errors.name ? (
           <p>{formik.errors.name}</p>
         ) : null}
         <br />
-
         <label>{translate("secondSurname")}:</label>
         <input type="text" {...formik.getFieldProps("secondSurname")} />
         {formik.touched.name && formik.errors.name ? (
           <p>{formik.errors.name}</p>
         ) : null}
         <br />
-
         <select
           name="slector"
           onChange={(event) =>
@@ -159,14 +158,12 @@ function CvForm() {
           ))}
         </select>
         <br />
-
         <label>{translate("phone")}:</label>
         <input type="text" {...formik.getFieldProps("phone")} />
         {formik.touched.name && formik.errors.name ? (
           <p>{formik.errors.name}</p>
         ) : null}
         <br />
-
         <label>{translate("birthDate")}:</label>
         <input
           type="date"
@@ -179,7 +176,6 @@ function CvForm() {
           <p>{formik.errors.name}</p>
         ) : null}
         <br />
-
         <label>{translate("gender")}:</label>
         <div>
           <input
@@ -221,21 +217,18 @@ function CvForm() {
           <p>{formik.errors.name}</p>
         ) : null}
         <br />
-
         <label>{translate("email")}:</label>
         <input type="email" {...formik.getFieldProps("email")} />
         {formik.touched.name && formik.errors.name ? (
           <p>{formik.errors.name}</p>
         ) : null}
         <br />
-
         <label>{translate("address")}:</label>
         <input type="text" {...formik.getFieldProps("address")} />
         {formik.touched.name && formik.errors.name ? (
           <p>{formik.errors.name}</p>
         ) : null}
         <br />
-
         <label>{translate("aboutMe")}:</label>
         <br />
         <textarea type="text" {...formik.getFieldProps("aboutMe")} />
@@ -243,7 +236,6 @@ function CvForm() {
           <p>{formik.errors.name}</p>
         ) : null}
         <br />
-
         <select
           name="drivingLicense"
           onChange={(event) =>
@@ -256,7 +248,6 @@ function CvForm() {
           ))}
         </select>
         <br />
-
         <label>{translate("hobbies")}:</label>
         <br />
         <textarea type="text" {...formik.getFieldProps("hobbies")} />
@@ -264,76 +255,320 @@ function CvForm() {
           <p>{formik.errors.name}</p>
         ) : null}
         <br />
+        <br />
+        <label>{translate("workExperience")}:</label>
+        <br />
+        <div>
+          <Formik
+            initialValues={initialValues}
+            onSubmit={async (values) => {
+              await new Promise((r) => setTimeout(r, 500));
+              alert(JSON.stringify(values, null, 2));
+            }}
+          >
+            {({ values }) => (
+              <Form>
+                <FieldArray name="work">
+                  {({ insert, remove, push }) => (
+                    <div>
+                      {values.work.length > 0 &&
+                        values.work.map((work, index) => (
+                          <div className="row" key={index}>
+                            <div className="col">
+                              <label>{translate("title")}:</label>
+                              <input
+                                type="text"
+                                {...formik.getFieldProps(
+                                  `work.${index}.titleWork`
+                                )}
+                              />
+                              {formik.touched.name && formik.errors.name ? (
+                                <p>{formik.errors.name}</p>
+                              ) : null}
+                              <br />
 
-        <label>{translate("Vocational Training")}:</label>
-        <br />
+                              <label>{translate("startDate")}:</label>
+                              <input
+                                type="date"
+                                max="2022-01-01"
+                                onChange={(event) =>
+                                  formik.setFieldValue(
+                                    `work.${index}.startDateWork`,
+                                    event.target.value
+                                  )
+                                }
+                              />
+                              {formik.touched.name && formik.errors.name ? (
+                                <p>{formik.errors.name}</p>
+                              ) : null}
+                              <br />
 
-        <label>{translate("Title")}:</label>
-        <input type="text" {...formik.getFieldProps("title")} />
-        {formik.touched.name && formik.errors.name ? (
-          <p>{formik.errors.name}</p>
-        ) : null}
-        <br />
+                              <label>{translate("endDate")}:</label>
+                              <input
+                                type="date"
+                                max="2022-01-01"
+                                onChange={(event) =>
+                                  formik.setFieldValue(
+                                    `work.${index}.endDateWork`,
+                                    event.target.value
+                                  )
+                                }
+                              />
+                              {formik.touched.name && formik.errors.name ? (
+                                <p>{formik.errors.name}</p>
+                              ) : null}
+                              <br />
+                              <select
+                                name="slector"
+                                onChange={(event) =>
+                                  formik.setFieldValue(
+                                    `work.${index}.countryscountryWork`,
+                                    event.target.value
+                                  )
+                                }
+                              >
+                                <option value="" label="Select a Country" />
+                                {languagesObtined.map((language, index) => (
+                                  <option
+                                    key={index}
+                                    value={language.value}
+                                    label={language.value}
+                                  />
+                                ))}
+                              </select>
+                              <br />
 
-        <label>{translate("Start Date")}:</label>
-        <input
-          type="date"
-          max="2022-01-01"
-          onChange={(event) =>
-            formik.setFieldValue("startDate", event.target.value)
-          }
-        />
-        {formik.touched.name && formik.errors.name ? (
-          <p>{formik.errors.name}</p>
-        ) : null}
-        <br />
+                              <label>{translate("city")}:</label>
+                              <input
+                                type="text"
+                                {...formik.getFieldProps(
+                                  `work.${index}.cityWork`
+                                )}
+                              />
+                              {formik.touched.name && formik.errors.name ? (
+                                <p>{formik.errors.name}</p>
+                              ) : null}
+                              <br />
 
-        <label>{translate("End Date")}:</label>
-        <input
-          type="date"
-          max="2022-01-01"
-          onChange={(event) =>
-            formik.setFieldValue("EndDate", event.target.value)
-          }
-        />
-        {formik.touched.name && formik.errors.name ? (
-          <p>{formik.errors.name}</p>
-        ) : null}
-        <br />
-        <select
-          name="slector"
-          onChange={(event) =>
-            formik.setFieldValue("Country", event.target.value)
-          }
-        >
-          <option value="" label="Select a Country" />
-          {languagesObtined.map((language, index) => (
-            <option key={index} value={language.value} label={language.value} />
-          ))}
-        </select>
-        <br />
+                              <label>{translate("companyName")}:</label>
+                              <input
+                                type="text"
+                                {...formik.getFieldProps(
+                                  `work.${index}.companyWork`
+                                )}
+                              />
+                              {formik.touched.name && formik.errors.name ? (
+                                <p>{formik.errors.name}</p>
+                              ) : null}
+                              <br />
 
-        <label>{translate("City")}:</label>
-        <input type="text" {...formik.getFieldProps("City")} />
-        {formik.touched.name && formik.errors.name ? (
-          <p>{formik.errors.name}</p>
-        ) : null}
-        <br />
+                              <label>{translate("tasks")}:</label>
+                              <br />
+                              <textarea
+                                type="text"
+                                {...formik.getFieldProps(
+                                  `work.${index}.tasksWork`
+                                )}
+                              />
+                              {formik.touched.name && formik.errors.name ? (
+                                <p>{formik.errors.name}</p>
+                              ) : null}
+                              <br />
+                            </div>
 
-        <label>{translate("Center")}:</label>
-        <input type="text" {...formik.getFieldProps("Center")} />
-        {formik.touched.name && formik.errors.name ? (
-          <p>{formik.errors.name}</p>
-        ) : null}
+                            <div className="col">
+                              <button
+                                type="button"
+                                className="secondary"
+                                onClick={() => remove(index)}
+                              >
+                               {translate("close")}
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                      <button
+                        type="button"
+                        className="secondary"
+                        onClick={() =>
+                          push({
+                            titleWork: "",
+                            startDateWork: "",
+                            endDateWork: "",
+                            countryWork: "",
+                            cityWork: "",
+                            companyWork: "",
+                            tasksWork: "",
+                          })
+                        }
+                      >
+                        {translate("add")}
+                      </button>
+                    </div>
+                  )}
+                </FieldArray>
+              </Form>
+            )}
+          </Formik>
+        </div>
         <br />
+        <label>{translate("vocationalTraining")}:</label>
+        <br />
+        <div>
+          <Formik
+            initialValues={initialValues}
+            onSubmit={async (values) => {
+              await new Promise((r) => setTimeout(r, 500));
+              alert(JSON.stringify(values, null, 2));
+            }}
+          >
+            {({ values }) => (
+              <Form>
+                <FieldArray name="training">
+                  {({ insert, remove, push }) => (
+                    <div>
+                      {values.training.length > 0 &&
+                        values.training.map((training, index) => (
+                          <div className="row" key={index}>
+                            <div className="col">
+                              <label htmlFor={`training.${index}.title`}>
+                                {translate("title")}:
+                              </label>
+                              <input
+                                type="text"
+                                {...formik.getFieldProps(
+                                  `training.${index}.title`
+                                )}
+                              />
+                              {formik.touched.name && formik.errors.name ? (
+                                <p>{formik.errors.name}</p>
+                              ) : null}
+                              <br />
 
-        <label>{translate("Fields of Study")}:</label>
-        <br />
-        <textarea type="text" {...formik.getFieldProps("FieldsofStudy")} />
-        {formik.touched.name && formik.errors.name ? (
-          <p>{formik.errors.name}</p>
-        ) : null}
-        <br />
+                              <label>{translate("startDate")}:</label>
+                              <input
+                                type="date"
+                                max="2022-01-01"
+                                onChange={(event) =>
+                                  formik.setFieldValue(
+                                    `training.${index}.startDate`,
+                                    event.target.value
+                                  )
+                                }
+                              />
+                              {formik.touched.name && formik.errors.name ? (
+                                <p>{formik.errors.name}</p>
+                              ) : null}
+                              <br />
+
+                              <label>{translate("endDate")}:</label>
+                              <input
+                                type="date"
+                                max="2022-01-01"
+                                onChange={(event) =>
+                                  formik.setFieldValue(
+                                    `training.${index}.endDate`,
+                                    event.target.value
+                                  )
+                                }
+                              />
+                              {formik.touched.name && formik.errors.name ? (
+                                <p>{formik.errors.name}</p>
+                              ) : null}
+                              <br />
+                              <select
+                                name="slector"
+                                onChange={(event) =>
+                                  formik.setFieldValue(
+                                    `training.${index}.countrys`,
+                                    event.target.value
+                                  )
+                                }
+                              >
+                                <option value="" label="Select a Country" />
+                                {languagesObtined.map((language, index) => (
+                                  <option
+                                    key={index}
+                                    value={language.value}
+                                    label={language.value}
+                                  />
+                                ))}
+                              </select>
+                              <br />
+
+                              <label>{translate("city")}:</label>
+                              <input
+                                type="text"
+                                {...formik.getFieldProps(
+                                  `training.${index}.citys`
+                                )}
+                              />
+                              {formik.touched.name && formik.errors.name ? (
+                                <p>{formik.errors.name}</p>
+                              ) : null}
+                              <br />
+
+                              <label>{translate("center")}:</label>
+                              <input
+                                type="text"
+                                {...formik.getFieldProps(
+                                  `training.${index}.center`
+                                )}
+                              />
+                              {formik.touched.name && formik.errors.name ? (
+                                <p>{formik.errors.name}</p>
+                              ) : null}
+                              <br />
+
+                              <label>{translate("fieldsOfStudy")}:</label>
+                              <br />
+                              <textarea
+                                type="text"
+                                {...formik.getFieldProps(
+                                  `training.${index}.fieldsOfStudy`
+                                )}
+                              />
+                              {formik.touched.name && formik.errors.name ? (
+                                <p>{formik.errors.name}</p>
+                              ) : null}
+                              <br />
+                            </div>
+
+                            <div className="col">
+                              <button
+                                type="button"
+                                className="secondary"
+                                onClick={() => remove(index)}
+                              >
+                                {translate("close")}
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                      <button
+                        type="button"
+                        className="secondary"
+                        onClick={() =>
+                          push({
+                            title: "",
+                            startDate: "",
+                            endDate: "",
+                            countrys: "",
+                            citys: "",
+                            center: "",
+                            fieldsOfStudy: "",
+                          })
+                        }
+                      >
+                       {translate("add")}
+                      </button>
+                    </div>
+                  )}
+                </FieldArray>
+              </Form>
+            )}
+          </Formik>
+        </div>
         <button type="submit">{translate("submit")}</button>
       </form>
     </Container>

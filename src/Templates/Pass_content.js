@@ -16,28 +16,20 @@ export const docDefinition = ({
     pais,
 
     aboutMe,
-
-    trabajo1,
-    empresa,
-    day,
-    month,
-    year,
-    day2,
-    month2,
-    year2,
-    city,
-    country,
-    tema,
-    tema2,
-    tema3,
-
-    Title,
-startDate,
-EndDate,
-Country,
-City,
-Center,
-FieldsofStudy,
+    titleWork,
+    startDateWork,
+    endDateWork,
+    countryWork,
+    cityWork,
+    companyWork,
+    tasksWork,
+    title,
+    startDate,
+    endDate,
+    countrys,
+    citys,
+    center,
+    fieldsOfStudy,
 
     idioma,
     idioma2,
@@ -121,26 +113,23 @@ FieldsofStudy,
           style: ["quote", "font"],
           text:[
              `
-             ${trabajo1}.
+             ${titleWork}.
           `,
           
   
-          `${empresa} [${day}/${month}/${year} - ${day2}/${month2}/${year2}]
+          `${companyWork} [${startDateWork}]  [${endDateWork}]
           
           `,
-          {text: 'City: ', italics: false, fontSize: 14}, ` ${city}
+          {text: 'City: ', italics: false, fontSize: 14}, ` ${cityWork}
           `,
-          {text: 'Country: ', italics: false, fontSize: 14}, ` ${country},
+          {text: 'Country: ', italics: false, fontSize: 14}, ` ${countryWork},
           `,
-  
-  
+
           ]
         },
         {
           ul: [
-            `${tema}`,
-            `${tema2}`,
-            `${tema3}
+            `${tasksWork}
             
             `,
           ],
@@ -152,14 +141,14 @@ FieldsofStudy,
         {
           style: ["quote", "font"],
           text:[ `
-          ${Title}.
+          ${title}.
           `,
-          `${Center} [${startDate} - ${EndDate}]
+          `${center} [${startDate}] [${endDate}]
          
           `,
-          {text: 'City:', italics: false, fontSize: 14}, ` ${City},
+          {text: 'City:', italics: false, fontSize: 14}, ` ${citys},
           `,
-          {text: 'Country:', italics: false, fontSize: 14}, ` ${Country}
+          {text: 'Country:', italics: false, fontSize: 14}, ` ${countrys}
           `,
           {text: 'Field(s) of study:', italics: false, fontSize: 14}, ` 
           `,
@@ -170,7 +159,7 @@ FieldsofStudy,
         },
         {
           ul: [
-            `${FieldsofStudy}
+            `${fieldsOfStudy}
             
             `,
           ],
