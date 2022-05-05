@@ -48,5 +48,7 @@ export const esp = {
         'tasks':'Tareas',
         'close':'Cerrar',
         'add':'Añadir',
+        'required':'Requerido',
+        'tooShort': 'demasiado corto',
     }
 }

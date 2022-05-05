@@ -15,21 +15,60 @@ function CvForm() {
   const [languagesObtined, setLanguagesObtined] = React.useState([]);
 
   const validate = (values) => {
+  //Faltan las traducciones de los errores.
     const errors = {};
     if (!values.name) {
-      errors.name = "Requerido";
+      errors.name = translate('required');
     } else if (values.name.length < 5) {
-      errors.name = "Nombre demasiado corto";
+      errors.name = translate('tooShort');
     }
 
-    if (!values.lastname) {
-      errors.lastname = "Requerido";
-    } else if (values.lastname.length < 5) {
-      errors.lastname = "Apellido demasiado corto";
+    if (!values.firstSurname) {
+      errors.firstSurname = translate('required');
+    } else if (values.firstSurname.length < 5) {
+      errors.firstSurname = translate('tooShort');
+    }
+
+    if (!values.secondSurname) {
+      errors.secondSurname = translate('required');
+    } else if (values.secondSurname.length < 5) {
+      errors.secondSurname = translate('tooShort');
     }
 
     if (!values.email) {
-      errors.email = "Requerido";
+      errors.email = translate('required');
+    }
+
+    if (!values.phone) {
+      errors.phone = translate('required');
+    } else if (values.phone.length < 6) {
+      errors.phone = translate('tooShort');
+    }
+
+    if (!values.birthDate) {
+      errors.birthDate = translate('required');
+    }
+
+    if (!values.gender) {
+      errors.gender = translate('required');
+    }
+    //quizas se pueda validar mejor con algun regex
+    if (!values.address) {
+      errors.address = translate('required');
+    } else if (values.address.length < 6) {
+      errors.address = translate('tooShort');
+    }
+
+    if (!values.aboutMe) {
+      errors.aboutMe = translate('required');
+    } else if (values.aboutMe.length < 10) {
+      errors.aboutMe = translate('tooShort');
+    }
+
+    if (!values.hobbies) {
+      errors.hobbies = translate('required');
+    } else if (values.hobbies.length < 10) {
+      errors.hobbies = translate('tooShort');
     }
 
     return errors;
@@ -85,7 +124,7 @@ function CvForm() {
       interskills2: "Responsable",
     },
 
-    //validate,
+    validate,
     onSubmit: (values) => {
       console.log("values", values);
       pdfMake.createPdf(docDefinition({ ...values })).open();
@@ -136,14 +175,14 @@ function CvForm() {
         <br />
         <label>{translate("firstSurname")}:</label>
         <input type="text" {...formik.getFieldProps("firstSurname")} />
-        {formik.touched.name && formik.errors.name ? (
-          <p>{formik.errors.name}</p>
+        {formik.touched.firstSurname && formik.errors.firstSurname ? (
+          <p>{formik.errors.firstSurname}</p>
         ) : null}
         <br />
         <label>{translate("secondSurname")}:</label>
         <input type="text" {...formik.getFieldProps("secondSurname")} />
-        {formik.touched.name && formik.errors.name ? (
-          <p>{formik.errors.name}</p>
+        {formik.touched.secondSurname && formik.errors.secondSurname ? (
+          <p>{formik.errors.secondSurname}</p>
         ) : null}
         <br />
         <select
@@ -160,8 +199,8 @@ function CvForm() {
         <br />
         <label>{translate("phone")}:</label>
         <input type="text" {...formik.getFieldProps("phone")} />
-        {formik.touched.name && formik.errors.name ? (
-          <p>{formik.errors.name}</p>
+        {formik.touched.phone && formik.errors.phone ? (
+          <p>{formik.errors.phone}</p>
         ) : null}
         <br />
         <label>{translate("birthDate")}:</label>
@@ -172,8 +211,8 @@ function CvForm() {
             formik.setFieldValue("birthDate", event.target.value)
           }
         />
-        {formik.touched.name && formik.errors.name ? (
-          <p>{formik.errors.name}</p>
+        {formik.touched.birthDate && formik.errors.birthDate ? (
+          <p>{formik.errors.birthDate}</p>
         ) : null}
         <br />
         <label>{translate("gender")}:</label>
@@ -213,27 +252,27 @@ function CvForm() {
           />
           <label for="other">{translate("other")}</label>
         </div>
-        {formik.touched.name && formik.errors.name ? (
-          <p>{formik.errors.name}</p>
+        {formik.touched.gender && formik.errors.gender ? (
+          <p>{formik.errors.gender}</p>
         ) : null}
         <br />
         <label>{translate("email")}:</label>
         <input type="email" {...formik.getFieldProps("email")} />
-        {formik.touched.name && formik.errors.name ? (
-          <p>{formik.errors.name}</p>
+        {formik.touched.email && formik.errors.email ? (
+          <p>{formik.errors.email}</p>
         ) : null}
         <br />
         <label>{translate("address")}:</label>
         <input type="text" {...formik.getFieldProps("address")} />
-        {formik.touched.name && formik.errors.name ? (
-          <p>{formik.errors.name}</p>
+        {formik.touched.address && formik.errors.address ? (
+          <p>{formik.errors.address}</p>
         ) : null}
         <br />
         <label>{translate("aboutMe")}:</label>
         <br />
         <textarea type="text" {...formik.getFieldProps("aboutMe")} />
-        {formik.touched.name && formik.errors.name ? (
-          <p>{formik.errors.name}</p>
+        {formik.touched.aboutMe && formik.errors.aboutMe ? (
+          <p>{formik.errors.aboutMe}</p>
         ) : null}
         <br />
         <select
@@ -251,8 +290,8 @@ function CvForm() {
         <label>{translate("hobbies")}:</label>
         <br />
         <textarea type="text" {...formik.getFieldProps("hobbies")} />
-        {formik.touched.name && formik.errors.name ? (
-          <p>{formik.errors.name}</p>
+        {formik.touched.hobbies && formik.errors.hobbies ? (
+          <p>{formik.errors.hobbies}</p>
         ) : null}
         <br />
         <br />
