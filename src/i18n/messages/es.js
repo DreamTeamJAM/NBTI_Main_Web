@@ -68,5 +68,7 @@ export const esp = {
         'Bengali': 'Bengalí',
         'German': 'Alemán',
         'Italian': 'Italiano',
+        'required':'Requerido',
+        'tooShort': 'demasiado corto',
     }
 }
