@@ -48,8 +48,6 @@ export const eng = {
         'tasks':'Tasks',
         'close':'close',
         'add':'Add',
-        'required':'Required',
-        'tooShort': 'too short',
-
+        
     }
 }
