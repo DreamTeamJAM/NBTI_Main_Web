@@ -5,10 +5,12 @@ import translate from "i18n/translate";
 import React, { useEffect } from "react";
 import { drivingLicense } from "Utils/drivingLicenses";
 import { languages } from "Utils/languages";
+import { lvllanguage } from "Utils/lvllanguage";
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import { docDefinition } from "Templates/Pass_content";
 import { Formik, Field, Form, ErrorMessage, FieldArray } from "formik";
+import Tags from "Components/tags";
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 function CvForm() {
@@ -94,10 +96,11 @@ function CvForm() {
       email: "",
       address: "",
       aboutMe: "",
-      motherTonges: [],
-      otherLanguages: [],
+      tags: [],
+
       digitalSkills: "",
       comunicationSkills: "",
+
       drivingLicense: "",
       hobbies: "",
       volunteering: [],
@@ -107,15 +110,6 @@ function CvForm() {
       cod_postal: "41701",
       ciudad: "Sevilla",
       pais: "España",
-
-      idioma: "Español",
-      idioma2: "Francés",
-      lenguaje: "Inglés",
-      listening: "B1",
-      reading: "B1",
-      writting: "B1",
-      produc: "B1",
-      interac: "B1",
 
       skills:
         "Microsoft Office, Microsoft Word, Microsoft Excel, Outlook, Facebook, Google / Graphics Design Adobe Photoshop Sketchup / Canva and GIMP / Social Media/Social Network",
@@ -160,6 +154,21 @@ function CvForm() {
         cityWork: "",
         companyWork: "",
         tasksWork: "",
+      },
+    ],
+    motherTongues: [
+      {
+        tongue: "",
+      },
+    ],
+    otherLanguages: [
+      {
+        language: "",
+        listening: "",
+        reading: "",
+        writting: "",
+        produc: "",
+        interac: "",
       },
     ],
   };
@@ -361,7 +370,7 @@ function CvForm() {
                                 name="slector"
                                 onChange={(event) =>
                                   formik.setFieldValue(
-                                    `work.${index}.countryscountryWork`,
+                                    `work.${index}.countryWork`,
                                     event.target.value
                                   )
                                 }
@@ -421,7 +430,7 @@ function CvForm() {
                                 className="secondary"
                                 onClick={() => remove(index)}
                               >
-                               {translate("close")}
+                                {translate("close")}
                               </button>
                             </div>
                           </div>
@@ -599,7 +608,7 @@ function CvForm() {
                           })
                         }
                       >
-                       {translate("add")}
+                        {translate("add")}
                       </button>
                     </div>
                   )}
@@ -608,6 +617,184 @@ function CvForm() {
             )}
           </Formik>
         </div>
+        <br />
+        <label>{translate("motherTongue")}</label>
+        <br />
+
+        
+        <Tags></Tags>
+
+        <br />
+        <label>{translate("otherlanguage")}</label>
+        <br />
+        <div>
+          <Formik
+            initialValues={initialValues}
+            onSubmit={async (values) => {
+              await new Promise((r) => setTimeout(r, 500));
+              alert(JSON.stringify(values, null, 2));
+            }}
+          >
+            {({ values }) => (
+              <Form>
+                <FieldArray name="otherLanguages">
+                  {({ insert, remove, push }) => (
+                    <div>
+                      {values.otherLanguages.length > 0 &&
+                        values.otherLanguages.map((otherLanguages, index) => (
+                          <div className="row" key={index}>
+                            <div className="col">
+                              <br />
+                              <br />
+                              <label>{translate("language")}:</label>
+                              <br />
+                              <select
+                                name="slector"
+                                onChange={(event) =>
+                                  formik.setFieldValue(
+                                    `otherLanguages.${index}.language`,
+                                    event.target.value
+                                  )
+                                }
+                              >
+                                <option value="" label="Select a Place" />
+                                {languagesObtined.map((language, index) => (
+                                  <option
+                                    key={index}
+                                    value={language.value}
+                                    label={language.value}
+                                  />
+                                ))}
+                              </select>
+                              <br />
+
+                              <br />
+                              <label>{translate("listening")}:</label>
+                              <br />
+                              <select
+                                name="lvllanguage"
+                                onChange={(event) =>
+                                  formik.setFieldValue(
+                                    `otherLanguages.${index}.listening`,
+                                    event.target.value
+                                  )
+                                }
+                              >
+                                <option value="" label="Select your level" />
+                                {lvllanguage.map((lvl, index) => (
+                                  <option key={index} value={lvl} label={lvl} />
+                                ))}
+                              </select>
+                              <br />
+                              <br />
+                              <label>{translate("reading")}:</label>
+                              <br />
+                              <select
+                                name="lvllanguage"
+                                onChange={(event) =>
+                                  formik.setFieldValue(
+                                    `otherLanguages.${index}.reading`,
+                                    event.target.value
+                                  )
+                                }
+                              >
+                                <option value="" label="Select your level" />
+                                {lvllanguage.map((lvl, index) => (
+                                  <option key={index} value={lvl} label={lvl} />
+                                ))}
+                              </select>
+                              <br />
+                              <br />
+                              <label>{translate("writting")}:</label>
+                              <br />
+                              <select
+                                name="lvllanguage"
+                                onChange={(event) =>
+                                  formik.setFieldValue(
+                                    `otherLanguages.${index}.writting`,
+                                    event.target.value
+                                  )
+                                }
+                              >
+                                <option value="" label="Select your level" />
+                                {lvllanguage.map((lvl, index) => (
+                                  <option key={index} value={lvl} label={lvl} />
+                                ))}
+                              </select>
+                              <br />
+                              <br />
+                              <label>{translate("produc")}:</label>
+                              <br />
+                              <select
+                                name="lvllanguage"
+                                onChange={(event) =>
+                                  formik.setFieldValue(
+                                    `otherLanguages.${index}.produc`,
+                                    event.target.value
+                                  )
+                                }
+                              >
+                                <option value="" label="Select your level" />
+                                {lvllanguage.map((lvl, index) => (
+                                  <option key={index} value={lvl} label={lvl} />
+                                ))}
+                              </select>
+                              <br />
+                              <br />
+                              <label>{translate("interac")}:</label>
+                              <br />
+                              <select
+                                name="lvllanguage"
+                                onChange={(event) =>
+                                  formik.setFieldValue(
+                                    `otherLanguages.${index}.interac`,
+                                    event.target.value
+                                  )
+                                }
+                              >
+                                <option value="" label="Select your level" />
+                                {lvllanguage.map((lvl, index) => (
+                                  <option key={index} value={lvl} label={lvl} />
+                                ))}
+                              </select>
+                              <br />
+                            </div>
+
+                            <div className="col">
+                              <button
+                                type="button"
+                                className="secondary"
+                                onClick={() => remove(index)}
+                              >
+                                {translate("close")}
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                      <button
+                        type="button"
+                        className="secondary"
+                        onClick={() =>
+                          push({
+                            language: "",
+                            listening: "",
+                            reading: "",
+                            writting: "",
+                            produc: "",
+                            interac: "",
+                          })
+                        }
+                      >
+                        {translate("add")}
+                      </button>
+                    </div>
+                  )}
+                </FieldArray>
+              </Form>
+            )}
+          </Formik>
+        </div>
+
         <button type="submit">{translate("submit")}</button>
       </form>
     </Container>
