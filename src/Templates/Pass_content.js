@@ -39,6 +39,7 @@ export const docDefinition = ({
     writting,
     produc,
     interac,
+
     skills,
     interskills,
     interskills1,
