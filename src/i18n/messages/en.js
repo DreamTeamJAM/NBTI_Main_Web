@@ -68,5 +68,7 @@ export const eng = {
         'Bengali': 'Bengali',
         'German': 'German',
         'Italian': 'Italian',
+        'required':'Required',
+        'tooShort': 'Too short',
     }
 }
