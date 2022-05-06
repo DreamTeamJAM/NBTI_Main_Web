@@ -17,60 +17,60 @@ function CvForm() {
   const [languagesObtined, setLanguagesObtined] = React.useState([]);
 
   const validate = (values) => {
-  //Faltan las traducciones de los errores.
+    //Faltan las traducciones de los errores.
     const errors = {};
     if (!values.name) {
-      errors.name = translate('required');
+      errors.name = translate("required");
     } else if (values.name.length < 5) {
-      errors.name = translate('tooShort');
+      errors.name = translate("tooShort");
     }
 
     if (!values.firstSurname) {
-      errors.firstSurname = translate('required');
+      errors.firstSurname = translate("required");
     } else if (values.firstSurname.length < 5) {
-      errors.firstSurname = translate('tooShort');
+      errors.firstSurname = translate("tooShort");
     }
 
     if (!values.secondSurname) {
-      errors.secondSurname = translate('required');
+      errors.secondSurname = translate("required");
     } else if (values.secondSurname.length < 5) {
-      errors.secondSurname = translate('tooShort');
+      errors.secondSurname = translate("tooShort");
     }
 
     if (!values.email) {
-      errors.email = translate('required');
+      errors.email = translate("required");
     }
 
     if (!values.phone) {
-      errors.phone = translate('required');
+      errors.phone = translate("required");
     } else if (values.phone.length < 6) {
-      errors.phone = translate('tooShort');
+      errors.phone = translate("tooShort");
     }
 
     if (!values.birthDate) {
-      errors.birthDate = translate('required');
+      errors.birthDate = translate("required");
     }
 
     if (!values.gender) {
-      errors.gender = translate('required');
+      errors.gender = translate("required");
     }
     //quizas se pueda validar mejor con algun regex
     if (!values.address) {
-      errors.address = translate('required');
+      errors.address = translate("required");
     } else if (values.address.length < 6) {
-      errors.address = translate('tooShort');
+      errors.address = translate("tooShort");
     }
 
     if (!values.aboutMe) {
-      errors.aboutMe = translate('required');
+      errors.aboutMe = translate("required");
     } else if (values.aboutMe.length < 10) {
-      errors.aboutMe = translate('tooShort');
+      errors.aboutMe = translate("tooShort");
     }
 
     if (!values.hobbies) {
-      errors.hobbies = translate('required');
+      errors.hobbies = translate("required");
     } else if (values.hobbies.length < 10) {
-      errors.hobbies = translate('tooShort');
+      errors.hobbies = translate("tooShort");
     }
 
     return errors;
@@ -96,26 +96,16 @@ function CvForm() {
       email: "",
       address: "",
       aboutMe: "",
-      tags: [],
-
       digitalSkills: "",
       comunicationSkills: "",
-
       drivingLicense: "",
       hobbies: "",
-      volunteering: [],
 
       num: "8",
       calle: "La Habana",
       cod_postal: "41701",
       ciudad: "Sevilla",
       pais: "España",
-
-      skills:
-        "Microsoft Office, Microsoft Word, Microsoft Excel, Outlook, Facebook, Google / Graphics Design Adobe Photoshop Sketchup / Canva and GIMP / Social Media/Social Network",
-      interskills: "Trabajador",
-      interskills1: "Paciente",
-      interskills2: "Responsable",
     },
 
     validate,
@@ -169,6 +159,15 @@ function CvForm() {
         writting: "",
         produc: "",
         interac: "",
+      },
+    ],
+    volunteering: [
+      {
+        enterpriseVolun: "",
+        placeVolun: "",
+        startDateVolun: "",
+        endDateVolun:"",
+        descriptionVolun: "",
       },
     ],
   };
@@ -621,7 +620,6 @@ function CvForm() {
         <label>{translate("motherTongue")}</label>
         <br />
 
-        
         <Tags></Tags>
 
         <br />
@@ -782,6 +780,152 @@ function CvForm() {
                             writting: "",
                             produc: "",
                             interac: "",
+                          })
+                        }
+                      >
+                        {translate("add")}
+                      </button>
+                    </div>
+                  )}
+                </FieldArray>
+              </Form>
+            )}
+          </Formik>
+        </div>
+        <label>{translate("digitalSkills")}:</label>
+        <br />
+        <textarea type="text" {...formik.getFieldProps("digitalSkills")} />
+        {formik.touched.digitalSkills && formik.errors.digitalSkills ? (
+          <p>{formik.errors.digitalSkills}</p>
+        ) : null}
+        <br />
+        <label>{translate("comunicationSkills")}:</label>
+        <br />
+        <textarea type="text" {...formik.getFieldProps("comunicationSkills")} />
+        {formik.touched.comunicationSkills &&
+        formik.errors.comunicationSkills ? (
+          <p>{formik.errors.comunicationSkills}</p>
+        ) : null}
+        <br />
+        <br />
+        <label>{translate("volunteering")}</label>
+        <br />
+        <br />
+        <div>
+          <Formik
+            initialValues={initialValues}
+            onSubmit={async (values) => {
+              await new Promise((r) => setTimeout(r, 500));
+              alert(JSON.stringify(values, null, 2));
+            }}
+          >
+            {({ values }) => (
+              <Form>
+                <FieldArray name="volunteering">
+                  {({ insert, remove, push }) => (
+                    <div>
+                      {values.volunteering.length > 0 &&
+                        values.volunteering.map((volunteering, index) => (
+                          <div className="row" key={index}>
+                            <div className="col"></div>
+                            <label>{translate("companyName")}:</label>
+                              <input
+                                type="text"
+                                {...formik.getFieldProps(
+                                  `volunteering.${index}.enterpriseVolun`
+                                )}
+                              />
+                              {formik.touched.name && formik.errors.name ? (
+                                <p>{formik.errors.name}</p>
+                              ) : null}
+                              <br />
+                              <select
+                                name="slector"
+                                onChange={(event) =>
+                                  formik.setFieldValue(
+                                    `volunteering.${index}.placeVolun`,
+                                    event.target.value
+                                  )
+                                }
+                              >
+                                <option value="" label="Select a Country" />
+                                {languagesObtined.map((language, index) => (
+                                  <option
+                                    key={index}
+                                    value={language.value}
+                                    label={language.value}
+                                  />
+                                ))}
+                              </select>
+                              <br />
+                              <label>{translate("startDate")}:</label>
+                              <input
+                                type="date"
+                                max="2022-01-01"
+                                onChange={(event) =>
+                                  formik.setFieldValue(
+                                    `volunteering.${index}.startDateVolun`,
+                                    event.target.value
+                                  )
+                                }
+                              />
+                              {formik.touched.name && formik.errors.name ? (
+                                <p>{formik.errors.name}</p>
+                              ) : null}
+                              <br />
+
+                              <label>{translate("endDate")}:</label>
+                              <input
+                                type="date"
+                                max="2022-01-01"
+                                onChange={(event) =>
+                                  formik.setFieldValue(
+                                    `volunteering.${index}.endDateVolun`,
+                                    event.target.value
+                                  )
+                                }
+                              />
+                              {formik.touched.name && formik.errors.name ? (
+                                <p>{formik.errors.name}</p>
+                              ) : null}
+                              <br />
+
+                              
+
+                              <label>{translate("descriptionVolun")}:</label>
+                              <br />
+                              <textarea
+                                type="text"
+                                {...formik.getFieldProps(
+                                  `volunteering.${index}.descriptionVolun`
+                                )}
+                              />
+                              {formik.touched.name && formik.errors.name ? (
+                                <p>{formik.errors.name}</p>
+                              ) : null}
+                              <br />
+
+                            <div className="col">
+                              <button
+                                type="button"
+                                className="secondary"
+                                onClick={() => remove(index)}
+                              >
+                                {translate("close")}
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                      <button
+                        type="button"
+                        className="secondary"
+                        onClick={() =>
+                          push({
+                            enterpriseVolun: "",
+                            placeVolun: "",
+                            startDateVolun: "",
+                            endDateVolun:"",
+                            descriptionVolun: "",
                           })
                         }
                       >
