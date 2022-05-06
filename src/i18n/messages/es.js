@@ -70,5 +70,9 @@ export const esp = {
         'Italian': 'Italiano',
         'required':'Requerido',
         'tooShort': 'demasiado corto',
+        'digitalSkills':'Aptitudes Digitales',
+        'comunicationSkills':'Aptitudes de Comunicación',
+        'volunteering':'Voluntariado',
+        'descriptionVolun':'Descripción',
     }
 }
