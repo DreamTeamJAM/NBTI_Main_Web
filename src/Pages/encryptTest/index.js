@@ -1,6 +1,7 @@
 
 /** test base64 */
 
+import { Button } from "GlobalStyles";
 import { useState } from "react";
 
 
@@ -26,9 +27,15 @@ export default function Encrypt() {
     };
     return (
       <>
-       
-        <label>Upload Your File </label>
+       <div>
+       <label>Upload Your File </label>
         <input type="file" className="form-control" name="file" onChange={onFileChangeHandler}/>
+       </div>
+       <div>
+         <label>GET Test</label>
+         <Button></Button>
+       </div>
+        
       </>
     );
   }

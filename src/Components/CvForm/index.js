@@ -10,7 +10,7 @@ import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import { docDefinition } from "Templates/Pass_content";
 import { Formik, Field, Form, ErrorMessage, FieldArray } from "formik";
-import Tags from "Components/tags";
+import {LanguageTags, PhonePrefixTags} from "Components/tags";
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 function CvForm() {
@@ -90,6 +90,7 @@ function CvForm() {
       firstSurname: "",
       secondSurname: "",
       nationality: "",
+      phonePrefix: '',
       phone: "",
       birthDate: "",
       gender: "",
@@ -206,6 +207,7 @@ function CvForm() {
         </select>
         <br />
         <label>{translate("phone")}:</label>
+        <PhonePrefixTags/>
         <input type="text" {...formik.getFieldProps("phone")} />
         {formik.touched.phone && formik.errors.phone ? (
           <p>{formik.errors.phone}</p>
@@ -620,7 +622,8 @@ function CvForm() {
         <label>{translate("motherTongue")}</label>
         <br />
 
-        <Tags></Tags>
+        
+        <LanguageTags></LanguageTags>
 
         <br />
         <label>{translate("otherlanguage")}</label>

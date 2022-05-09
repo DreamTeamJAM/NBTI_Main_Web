@@ -3,8 +3,9 @@ import "react-tagsinput/react-tagsinput.css";
 import Select from "react-select";
 import { Formik, Form, FieldArray, ErrorMessage } from "formik";
 import {LanguageOptions} from "Utils/Tongue"
+import {phonePrefixes} from "Utils/phonePrefixes"
 
- const Tags= ()=>{
+ export const LanguageTags= ()=>{
     const [Tags, setTags] = useState({ tags: [] });
   
     const handleChange = (tags) => {
@@ -14,6 +15,7 @@ import {LanguageOptions} from "Utils/Tongue"
    // useEffect(() => {
     //  console.log("tags", Tags);
    // });
+  
   
     return (
       <Formik
@@ -28,7 +30,50 @@ import {LanguageOptions} from "Utils/Tongue"
               classNamePrefix="select"
               isSearchable={false}
               onChange={(tags) => {
-                console.log("Tagsss", tags);
+                console.log("language Tags", tags);
+                setFieldValue("tags", tags);
+              }}
+            />
+          </Form>
+        )}
+      />
+    );
+  }
+
+  export const PhonePrefixTags= ()=>{
+    const [Tags, setTags] = useState({ tags: [] });
+  
+    const handleChange = (tags) => {
+      console.log(tags);
+      setTags(tags);
+    };
+   // useEffect(() => {
+    //  console.log("tags", Tags);
+   // });
+  
+   const prefixOptions = phonePrefixes.map(p => {
+    {
+      return {
+        value: p.dial_code,
+        label: "(" + p.code + ") " + p.dial_code
+
+      } 
+    }
+  })
+
+    return (
+      <Formik
+        initialValues={Tags}
+        onSubmit={React.onSubmit}
+        render={({ values, handleSubmit, setFieldValue }) => (
+          <Form onSubmit={handleSubmit} noValidate name="simpleForm">
+            <Select
+              options={prefixOptions}
+              className="basic-multi-select"
+              classNamePrefix="select"
+              isSearchable={true}
+              onChange={(tags) => {
+                console.log("language Tags", tags);
                 setFieldValue("tags", tags);
               }}
             />
@@ -39,4 +84,3 @@ import {LanguageOptions} from "Utils/Tongue"
   }
 
 
-export default Tags;
