@@ -14,9 +14,9 @@ export const getAllStudents = async (user) => {
     return response.data
 }
 
-export const getStudentById = async (user) => {
+export const getStudentById = async (user, id) => {
 
-    const response = await axios.get(`${BASE_HOST}/${user.id}`, {
+    const response = await axios.get(`${BASE_HOST}/${id}`, {
         auth: {
             username: user.username,
             password: user.password
