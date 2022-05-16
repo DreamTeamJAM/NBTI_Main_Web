@@ -52,13 +52,13 @@ import {phonePrefixes} from "Utils/phonePrefixes"
    // });
   
    const prefixOptions = phonePrefixes.map(p => {
-    {
+    
       return {
         value: p.dial_code,
         label: "(" + p.code + ") " + p.dial_code
 
       } 
-    }
+    
   })
 
     return (
