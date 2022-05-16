@@ -1,11 +1,10 @@
 
 /** test base64 */
-
-import { Button } from "GlobalStyles";
 import { useState } from "react";
+import axios from "axios";
+import { getAllUsers } from "services/api/userApi";
 
 
-  
 export default function Encrypt() {
 
     const [file, setFile] = useState("");
@@ -25,6 +24,20 @@ export default function Encrypt() {
             }
         });
     };
+
+    const user = {
+      id : 1,
+      username : 'abcabcz',
+      password : '1234'
+    };
+      
+
+    const fetchUsers = () => {
+    const awsurl = 'https://34vznuxt9f.execute-api.eu-west-1.amazonaws.com/beta/users'
+     
+     return axios.get(awsurl).then(response => console.log(response.data));
+
+    };
     return (
       <>
        <div>
@@ -33,7 +46,10 @@ export default function Encrypt() {
        </div>
        <div>
          <label>GET Test</label>
-         <Button></Button>
+         <button onClick = {() => getAllUsers(user)}>
+           get Students
+         </button>
+
        </div>
         
       </>
