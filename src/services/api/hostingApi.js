@@ -25,14 +25,9 @@ export const getHostingById = async (user, id) => {
     return response.data
 }
 
-export const postHosting = async (user, body) => {
+export const postHosting = async (body) => {
 
-    const response = await axios.post(`${BASE_HOST}`, body, {
-        auth: {
-            username: user.username,
-            password: user.password
-        }
-    });
+    const response = await axios.post(`${BASE_HOST}`, body);
     return response.data
 }
 
@@ -46,4 +41,3 @@ export const putHosting = async (user, body) => {
     });
     return response.data
 }
-

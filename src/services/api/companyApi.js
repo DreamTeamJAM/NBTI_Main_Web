@@ -25,14 +25,9 @@ export const getCompanyById = async (user, id) => {
     return response.data
 }
 
-export const postCompany = async (user, body) => {
+export const postCompany = async ( body) => {
 
-    const response = await axios.post(`${BASE_HOST}`, body, {
-        auth: {
-            username: user.username,
-            password: user.password
-        }
-    });
+    const response = await axios.post(`${BASE_HOST}`, body);
     return response.data
 }
 
