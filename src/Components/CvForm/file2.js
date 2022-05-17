@@ -1,54 +1,136 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Field, Form, ErrorMessage, FieldArray } from "formik";
-import translate from "i18n/translate";
 import { lvllanguage } from "Utils/lvllanguage";
-import {LanguageTags, PhonePrefixTags} from "Components/tags";
+import { LanguageTags, PhonePrefixTags } from "Components/tags";
 import { useFormik } from "formik";
-import {formik, initialValues} from "./../CvForm/index.js";
 import { languages } from "Utils/languages";
 import { Container } from "GlobalStyles";
+import { Secondary } from "redux/Slice";
+import { useDispatch } from "react-redux";
 
-function File2(){
-    const [languagesObtined, setLanguagesObtined] = React.useState([]);
-    useEffect(() => {
-        const options = languages.map((language) => ({
-          value: language.name_en,
-          label: language.name_en,
-        }));
-        setLanguagesObtined(options);
-      }, []);
-      const validate = (values) => {
-        //Faltan las traducciones de los errores.
-        const errors = {};
-      }
-      const formik = useFormik({
-        initialValues: {
-          name: "",
-          firstSurname: "",
-          secondSurname: "",
-          nationality: "",
-          phonePrefix: '',
-          phone: "",
-          birthDate: "",
-          gender: "",
-          email: "",
-          address: "",
-          aboutMe: "",
-          digitalSkills: "",
-          comunicationSkills: "",
-          drivingLicense: "",
-          hobbies: "",
-    
-          num: "8",
-          calle: "La Habana",
-          cod_postal: "41701",
-          ciudad: "Sevilla",
-          pais: "España",
+function File2() {
+  const [title, setTitle] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [countrys, setCountrys] = useState("");
+  const [citys, setCitys] = useState("");
+  const [center, setCenter] = useState("");
+  const [fieldsOfStudy, setFieldsOfStudy] = useState("");
+  const [titleWork, setTitleWork] = useState("");
+  const [startDateWork, setStartDateWork] = useState("");
+  const [endDateWork, setEndDateWork] = useState("");
+  const [countryWork, setCountrysWork] = useState("");
+  const [cityWork, setCitysWork] = useState("");
+  const [companyWork, setCompanyWork] = useState("");
+  const [tasksWork, setTasksWork] = useState("");
+  const [tongue, setTongue] = useState("");
+  const [language, setLanguage] = useState("");
+  const [listening, setListening] = useState("");
+  const [reading, setReading] = useState("");
+  const [writting, setWritting] = useState("");
+  const [produc, setProduc] = useState("");
+  const [interac, setInterac] = useState("");
+
+  const [languagesObtined, setLanguagesObtined] = React.useState([]);
+  useEffect(() => {
+    const options = languages.map((language) => ({
+      value: language.name_en,
+      label: language.name_en,
+    }));
+    setLanguagesObtined(options);
+  }, []);
+  const validate = (values) => {
+    //Faltan las traducciones de los errores.
+    const errors = {};
+  };
+  const dispatch = useDispatch();
+  const formik = useFormik({
+    initialValues: {
+      training: [
+        {
+          title: "",
+          startDate: "",
+          endDate: "",
+          countrys: "",
+          citys: "",
+          center: "",
+          fieldsOfStudy: "",
         },
-    
-        validate,
-    
-          /* fetch("http://192.168.1.74:8080/nbtiCV", values.text, {
+      ],
+      work: [
+        {
+          titleWork: "",
+          startDateWork: "",
+          endDateWork: "",
+          countryWork: "",
+          cityWork: "",
+          companyWork: "",
+          tasksWork: "",
+        },
+      ],
+      motherTongues: [
+        {
+          tongue: "",
+        },
+      ],
+      otherLanguages: [
+        {
+          language: "",
+          listening: "",
+          reading: "",
+          writting: "",
+          produc: "",
+          interac: "",
+        },
+      ],
+    },
+
+    validate,
+    onSubmit: (values) => {
+      dispatch(
+        Secondary({
+          training: [
+            {
+              title: title,
+              startDate: startDate,
+              endDate: endDate,
+              countrys: countrys,
+              citys: citys,
+              center: center,
+              fieldsOfStudy: fieldsOfStudy,
+            },
+          ],
+          work: [
+            {
+              titleWork: titleWork,
+              startDateWork: startDateWork,
+              endDateWork: endDateWork,
+              countryWork: countryWork,
+              cityWork: cityWork,
+              companyWork: companyWork,
+              tasksWork: tasksWork,
+            },
+          ],
+          motherTongues: [
+            {
+              tongue: tongue,
+            },
+          ],
+          otherLanguages: [
+            {
+              language: language,
+              listening: listening,
+              reading: reading,
+              writting: writting,
+              produc: produc,
+              interac: interac,
+            },
+          ],
+        })
+      );
+      console.log("values", values);
+
+      /* fetch("http://192.168.1.74:8080/nbtiCV", values.text, {
             method: "POST",
             mode: "cors",
             headers: {
@@ -56,63 +138,17 @@ function File2(){
               "Access-Control-Allow-Origin": "*",
             },
           }).then((res) => console.log(res.json())); */
-        
-      });
-      const initialValues = {
-        training: [
-          {
-            title: "",
-            startDate: "",
-            endDate: "",
-            countrys: "",
-            citys: "",
-            center: "",
-            fieldsOfStudy: "",
-          },
-        ],
-        work: [
-          {
-            titleWork: "",
-            startDateWork: "",
-            endDateWork: "",
-            countryWork: "",
-            cityWork: "",
-            companyWork: "",
-            tasksWork: "",
-          },
-        ],
-        motherTongues: [
-          {
-            tongue: "",
-          },
-        ],
-        otherLanguages: [
-          {
-            language: "",
-            listening: "",
-            reading: "",
-            writting: "",
-            produc: "",
-            interac: "",
-          },
-        ],
-        volunteering: [
-          {
-            enterpriseVolun: "",
-            placeVolun: "",
-            startDateVolun: "",
-            endDateVolun:"",
-            descriptionVolun: "",
-          },
-        ],
-      };
-      return (
-<Container style={{ marginTop: "2em" }}>
-<label>{translate("workExperience")}:</label>
+    },
+  });
+
+  return (
+    <Container style={{ marginTop: "2em" }}>
+      <form onSubmit={formik.handleSubmit}>
+        <label>Work Experience:</label>
         <br />
         <div>
           <Formik
-            initialValues={initialValues}
+            initialValues={formik}
             onSubmit={async (values) => {
               await new Promise((r) => setTimeout(r, 500));
               alert(JSON.stringify(values, null, 2));
@@ -123,15 +159,15 @@ function File2(){
                 <FieldArray name="work">
                   {({ insert, remove, push }) => (
                     <div>
-                      {values.work.length > 0 &&
-                        values.work.map((work, index) => (
+                      {values.initialValues.work.length > 0 &&
+                        values.initialValues.work.map((work, index) => (
                           <div className="row" key={index}>
                             <div className="col">
-                              <label>{translate("title")}:</label>
+                              <label>Title:</label>
                               <input
                                 type="text"
                                 {...formik.getFieldProps(
-                                  `work.${index}.titleWork`
+                                  `initialValues.work.${index}.titleWork`
                                 )}
                               />
                               {formik.touched.name && formik.errors.name ? (
@@ -139,13 +175,13 @@ function File2(){
                               ) : null}
                               <br />
 
-                              <label>{translate("startDate")}:</label>
+                              <label>Start Date:</label>
                               <input
                                 type="date"
                                 max="2022-01-01"
                                 onChange={(event) =>
                                   formik.setFieldValue(
-                                    `work.${index}.startDateWork`,
+                                    `initialValues.work.${index}.startDateWork`,
                                     event.target.value
                                   )
                                 }
@@ -155,13 +191,13 @@ function File2(){
                               ) : null}
                               <br />
 
-                              <label>{translate("endDate")}:</label>
+                              <label>End Date:</label>
                               <input
                                 type="date"
                                 max="2022-01-01"
                                 onChange={(event) =>
                                   formik.setFieldValue(
-                                    `work.${index}.endDateWork`,
+                                    `initialValues.work.${index}.endDateWork`,
                                     event.target.value
                                   )
                                 }
@@ -174,7 +210,7 @@ function File2(){
                                 name="slector"
                                 onChange={(event) =>
                                   formik.setFieldValue(
-                                    `work.${index}.countryWork`,
+                                    `initialValues.work.${index}.countryWork`,
                                     event.target.value
                                   )
                                 }
@@ -190,11 +226,11 @@ function File2(){
                               </select>
                               <br />
 
-                              <label>{translate("city")}:</label>
+                              <label>City:</label>
                               <input
                                 type="text"
                                 {...formik.getFieldProps(
-                                  `work.${index}.cityWork`
+                                  `initialValues.work.${index}.cityWork`
                                 )}
                               />
                               {formik.touched.name && formik.errors.name ? (
@@ -202,11 +238,11 @@ function File2(){
                               ) : null}
                               <br />
 
-                              <label>{translate("companyName")}:</label>
+                              <label>Company Name:</label>
                               <input
                                 type="text"
                                 {...formik.getFieldProps(
-                                  `work.${index}.companyWork`
+                                  `initialValues.work.${index}.companyWork`
                                 )}
                               />
                               {formik.touched.name && formik.errors.name ? (
@@ -214,12 +250,12 @@ function File2(){
                               ) : null}
                               <br />
 
-                              <label>{translate("tasks")}:</label>
+                              <label>Tasks:</label>
                               <br />
                               <textarea
                                 type="text"
                                 {...formik.getFieldProps(
-                                  `work.${index}.tasksWork`
+                                  `initialValues.work.${index}.tasksWork`
                                 )}
                               />
                               {formik.touched.name && formik.errors.name ? (
@@ -234,7 +270,7 @@ function File2(){
                                 className="secondary"
                                 onClick={() => remove(index)}
                               >
-                                {translate("close")}
+                                Close
                               </button>
                             </div>
                           </div>
@@ -254,7 +290,7 @@ function File2(){
                           })
                         }
                       >
-                        {translate("add")}
+                        Add
                       </button>
                     </div>
                   )}
@@ -264,11 +300,11 @@ function File2(){
           </Formik>
         </div>
         <br />
-        <label>{translate("vocationalTraining")}:</label>
+        <label>Vocational Training:</label>
         <br />
         <div>
           <Formik
-            initialValues={initialValues}
+            initialValues={formik}
             onSubmit={async (values) => {
               await new Promise((r) => setTimeout(r, 500));
               alert(JSON.stringify(values, null, 2));
@@ -279,17 +315,17 @@ function File2(){
                 <FieldArray name="training">
                   {({ insert, remove, push }) => (
                     <div>
-                      {values.training.length > 0 &&
-                        values.training.map((training, index) => (
+                      {values.initialValues.training.length > 0 &&
+                        values.initialValues.training.map((training, index) => (
                           <div className="row" key={index}>
                             <div className="col">
                               <label htmlFor={`training.${index}.title`}>
-                                {translate("title")}:
+                                Title:
                               </label>
                               <input
                                 type="text"
                                 {...formik.getFieldProps(
-                                  `training.${index}.title`
+                                  `initialValues.training.${index}.title`
                                 )}
                               />
                               {formik.touched.name && formik.errors.name ? (
@@ -297,13 +333,13 @@ function File2(){
                               ) : null}
                               <br />
 
-                              <label>{translate("startDate")}:</label>
+                              <label>Start Date:</label>
                               <input
                                 type="date"
                                 max="2022-01-01"
                                 onChange={(event) =>
                                   formik.setFieldValue(
-                                    `training.${index}.startDate`,
+                                    `initialValues.training.${index}.startDate`,
                                     event.target.value
                                   )
                                 }
@@ -313,13 +349,13 @@ function File2(){
                               ) : null}
                               <br />
 
-                              <label>{translate("endDate")}:</label>
+                              <label>End Date:</label>
                               <input
                                 type="date"
                                 max="2022-01-01"
                                 onChange={(event) =>
                                   formik.setFieldValue(
-                                    `training.${index}.endDate`,
+                                    `initialValues.training.${index}.endDate`,
                                     event.target.value
                                   )
                                 }
@@ -332,7 +368,7 @@ function File2(){
                                 name="slector"
                                 onChange={(event) =>
                                   formik.setFieldValue(
-                                    `training.${index}.countrys`,
+                                    `initialValues.training.${index}.countrys`,
                                     event.target.value
                                   )
                                 }
@@ -348,11 +384,11 @@ function File2(){
                               </select>
                               <br />
 
-                              <label>{translate("city")}:</label>
+                              <label>City:</label>
                               <input
                                 type="text"
                                 {...formik.getFieldProps(
-                                  `training.${index}.citys`
+                                  `initialValues.training.${index}.citys`
                                 )}
                               />
                               {formik.touched.name && formik.errors.name ? (
@@ -360,11 +396,11 @@ function File2(){
                               ) : null}
                               <br />
 
-                              <label>{translate("center")}:</label>
+                              <label>Center:</label>
                               <input
                                 type="text"
                                 {...formik.getFieldProps(
-                                  `training.${index}.center`
+                                  `initialValues.training.${index}.center`
                                 )}
                               />
                               {formik.touched.name && formik.errors.name ? (
@@ -372,12 +408,12 @@ function File2(){
                               ) : null}
                               <br />
 
-                              <label>{translate("fieldsOfStudy")}:</label>
+                              <label>Fields Of Study:</label>
                               <br />
                               <textarea
                                 type="text"
                                 {...formik.getFieldProps(
-                                  `training.${index}.fieldsOfStudy`
+                                  `initialValues.training.${index}.fieldsOfStudy`
                                 )}
                               />
                               {formik.touched.name && formik.errors.name ? (
@@ -392,7 +428,7 @@ function File2(){
                                 className="secondary"
                                 onClick={() => remove(index)}
                               >
-                                {translate("close")}
+                                Close
                               </button>
                             </div>
                           </div>
@@ -412,7 +448,7 @@ function File2(){
                           })
                         }
                       >
-                        {translate("add")}
+                        Add
                       </button>
                     </div>
                   )}
@@ -422,17 +458,17 @@ function File2(){
           </Formik>
         </div>
         <br />
-        <label>{translate("motherTongue")}</label>
+        <label>Mother Tongue</label>
         <br />
 
         <LanguageTags></LanguageTags>
 
         <br />
-        <label>{translate("otherlanguage")}</label>
+        <label>Other Language</label>
         <br />
         <div>
           <Formik
-            initialValues={initialValues}
+            initialValues={formik}
             onSubmit={async (values) => {
               await new Promise((r) => setTimeout(r, 500));
               alert(JSON.stringify(values, null, 2));
@@ -443,137 +479,159 @@ function File2(){
                 <FieldArray name="otherLanguages">
                   {({ insert, remove, push }) => (
                     <div>
-                      {values.otherLanguages.length > 0 &&
-                        values.otherLanguages.map((otherLanguages, index) => (
-                          <div className="row" key={index}>
-                            <div className="col">
-                              <br />
-                              <br />
-                              <label>{translate("language")}:</label>
-                              <br />
-                              <select
-                                name="slector"
-                                onChange={(event) =>
-                                  formik.setFieldValue(
-                                    `otherLanguages.${index}.language`,
-                                    event.target.value
-                                  )
-                                }
-                              >
-                                <option value="" label="Select a Place" />
-                                {languagesObtined.map((language, index) => (
-                                  <option
-                                    key={index}
-                                    value={language.value}
-                                    label={language.value}
-                                  />
-                                ))}
-                              </select>
-                              <br />
+                      {values.initialValues.otherLanguages.length > 0 &&
+                        values.initialValues.otherLanguages.map(
+                          (otherLanguages, index) => (
+                            <div className="row" key={index}>
+                              <div className="col">
+                                <br />
+                                <br />
+                                <label>Language:</label>
+                                <br />
+                                <select
+                                  name="slector"
+                                  onChange={(event) =>
+                                    formik.setFieldValue(
+                                      `initialValues.otherLanguages.${index}.language`,
+                                      event.target.value
+                                    )
+                                  }
+                                >
+                                  <option value="" label="Select a Place" />
+                                  {languagesObtined.map((language, index) => (
+                                    <option
+                                      key={index}
+                                      value={language.value}
+                                      label={language.value}
+                                    />
+                                  ))}
+                                </select>
+                                <br />
 
-                              <br />
-                              <label>{translate("listening")}:</label>
-                              <br />
-                              <select
-                                name="lvllanguage"
-                                onChange={(event) =>
-                                  formik.setFieldValue(
-                                    `otherLanguages.${index}.listening`,
-                                    event.target.value
-                                  )
-                                }
-                              >
-                                <option value="" label="Select your level" />
-                                {lvllanguage.map((lvl, index) => (
-                                  <option key={index} value={lvl} label={lvl} />
-                                ))}
-                              </select>
-                              <br />
-                              <br />
-                              <label>{translate("reading")}:</label>
-                              <br />
-                              <select
-                                name="lvllanguage"
-                                onChange={(event) =>
-                                  formik.setFieldValue(
-                                    `otherLanguages.${index}.reading`,
-                                    event.target.value
-                                  )
-                                }
-                              >
-                                <option value="" label="Select your level" />
-                                {lvllanguage.map((lvl, index) => (
-                                  <option key={index} value={lvl} label={lvl} />
-                                ))}
-                              </select>
-                              <br />
-                              <br />
-                              <label>{translate("writting")}:</label>
-                              <br />
-                              <select
-                                name="lvllanguage"
-                                onChange={(event) =>
-                                  formik.setFieldValue(
-                                    `otherLanguages.${index}.writting`,
-                                    event.target.value
-                                  )
-                                }
-                              >
-                                <option value="" label="Select your level" />
-                                {lvllanguage.map((lvl, index) => (
-                                  <option key={index} value={lvl} label={lvl} />
-                                ))}
-                              </select>
-                              <br />
-                              <br />
-                              <label>{translate("produc")}:</label>
-                              <br />
-                              <select
-                                name="lvllanguage"
-                                onChange={(event) =>
-                                  formik.setFieldValue(
-                                    `otherLanguages.${index}.produc`,
-                                    event.target.value
-                                  )
-                                }
-                              >
-                                <option value="" label="Select your level" />
-                                {lvllanguage.map((lvl, index) => (
-                                  <option key={index} value={lvl} label={lvl} />
-                                ))}
-                              </select>
-                              <br />
-                              <br />
-                              <label>{translate("interac")}:</label>
-                              <br />
-                              <select
-                                name="lvllanguage"
-                                onChange={(event) =>
-                                  formik.setFieldValue(
-                                    `otherLanguages.${index}.interac`,
-                                    event.target.value
-                                  )
-                                }
-                              >
-                                <option value="" label="Select your level" />
-                                {lvllanguage.map((lvl, index) => (
-                                  <option key={index} value={lvl} label={lvl} />
-                                ))}
-                              </select>
-                              <br />
-                            </div>
+                                <br />
+                                <label>Listening:</label>
+                                <br />
+                                <select
+                                  name="lvllanguage"
+                                  onChange={(event) =>
+                                    formik.setFieldValue(
+                                      `initialValues.otherLanguages.${index}.listening`,
+                                      event.target.value
+                                    )
+                                  }
+                                >
+                                  <option value="" label="Select your level" />
+                                  {lvllanguage.map((lvl, index) => (
+                                    <option
+                                      key={index}
+                                      value={lvl}
+                                      label={lvl}
+                                    />
+                                  ))}
+                                </select>
+                                <br />
+                                <br />
+                                <label>Reading:</label>
+                                <br />
+                                <select
+                                  name="lvllanguage"
+                                  onChange={(event) =>
+                                    formik.setFieldValue(
+                                      `initialValues.otherLanguages.${index}.reading`,
+                                      event.target.value
+                                    )
+                                  }
+                                >
+                                  <option value="" label="Select your level" />
+                                  {lvllanguage.map((lvl, index) => (
+                                    <option
+                                      key={index}
+                                      value={lvl}
+                                      label={lvl}
+                                    />
+                                  ))}
+                                </select>
+                                <br />
+                                <br />
+                                <label>Writting:</label>
+                                <br />
+                                <select
+                                  name="lvllanguage"
+                                  onChange={(event) =>
+                                    formik.setFieldValue(
+                                      `initialValues.otherLanguages.${index}.writting`,
+                                      event.target.value
+                                    )
+                                  }
+                                >
+                                  <option value="" label="Select your level" />
+                                  {lvllanguage.map((lvl, index) => (
+                                    <option
+                                      key={index}
+                                      value={lvl}
+                                      label={lvl}
+                                    />
+                                  ))}
+                                </select>
+                                <br />
+                                <br />
+                                <label>Spoken Production:</label>
+                                <br />
+                                <select
+                                  name="lvllanguage"
+                                  onChange={(event) =>
+                                    formik.setFieldValue(
+                                      `initialValues.otherLanguages.${index}.produc`,
+                                      event.target.value
+                                    )
+                                  }
+                                >
+                                  <option value="" label="Select your level" />
+                                  {lvllanguage.map((lvl, index) => (
+                                    <option
+                                      key={index}
+                                      value={lvl}
+                                      label={lvl}
+                                    />
+                                  ))}
+                                </select>
+                                <br />
+                                <br />
+                                <label>Spoken Interaction:</label>
+                                <br />
+                                <select
+                                  name="lvllanguage"
+                                  onChange={(event) =>
+                                    formik.setFieldValue(
+                                      `initialValues.otherLanguages.${index}.interac`,
+                                      event.target.value
+                                    )
+                                  }
+                                >
+                                  <option value="" label="Select your level" />
+                                  {lvllanguage.map((lvl, index) => (
+                                    <option
+                                      key={index}
+                                      value={lvl}
+                                      label={lvl}
+                                    />
+                                  ))}
+                                </select>
+                                <br />
+                              </div>
 
-                            <div className="col">
-                              <button
-                                type="button"
-                                className="secondary"
-                                onClick={() => remove(index)}
-                              >
-                                {translate("close")}
-                              </button>
+                              <div className="col">
+                                <button
+                                  type="button"
+                                  className="secondary"
+                                  onClick={() => remove(index)}
+                                >
+                                  Close
+                                </button>
+                              </div>
                             </div>
-                          </div>
-                        ))}
+                          )
+                        )}
                       <button
                         type="button"
                         className="secondary"
@@ -588,7 +646,7 @@ function File2(){
                           })
                         }
                       >
-                        {translate("add")}
+                        Add
                       </button>
                     </div>
                   )}
@@ -597,10 +655,9 @@ function File2(){
             )}
           </Formik>
         </div>
-</Container>
-
-      );
-
-      
+        <button type="submit">Submit</button>
+      </form>
+    </Container>
+  );
 }
 export default File2;
