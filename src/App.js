@@ -4,11 +4,12 @@ import { I18Provider } from './i18n';
 import { useState } from 'react';
 import { Route, Routes } from "react-router-dom";
 import Home from 'Pages/Home';
+import CvPage from 'Pages/CvPage';
 import UpperNavbar from 'Components/UpperNavbar';
-import Enterprise from 'Components/Enterprise';
-import Hosting from 'Components/Hosting';
+import Enterprise from 'Pages/Enterprise';
+import Hosting from 'Pages/Hosting';
 import Encrypt from 'Pages/encryptTest';
-import CvPage from './Pages/CvPage/index';
+
 
 function App() {
   const [locale, setLocale] = useState(sessionStorage.getItem('language') === 'es' ? LOCALES.SPANISH : LOCALES.ENGLISH);

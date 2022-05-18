@@ -1,6 +1,6 @@
 import React from "react";
 import { Container } from "GlobalStyles";
-import Steps from "./../../Steps/step";
+import Steps from "./../../Steps/step"
 
 function CvPage() {
   return (

@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Initial,selectUser, userSlice } from "redux/Slice";
 import { languages } from "Utils/languages";
 import { FieldArray, Form, Formik, useFormik } from "formik";
-import { Container } from "GlobalStyles";
 import { LanguageTags, PhonePrefixTags } from "Components/tags";
 import { drivingLicense } from "Utils/drivingLicenses";
 import { lvllanguage } from "Utils/lvllanguage";
@@ -355,7 +354,7 @@ export const Steps = () => {
     ],
   };
   return (
-    <Container style={{ marginTop: "2em" }}>
+    <>
       <Stepper activeStep={activeStep} alternativeLabel>
         {steps.map((label) => (
           <Step key={label}>
@@ -1271,7 +1270,7 @@ export const Steps = () => {
           </form>
         </div>
       )}
-    </Container>
+    </>
   );
 };
 
