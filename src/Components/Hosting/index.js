@@ -13,15 +13,9 @@ function Hosting() {
   const validate = (values) => {
     const errors = {};
     
-    defaultFieldValidation(values,errors,"landlord")
-    basicFieldValidation(values,errors,"city")
-    defaultFieldValidation(values,errors,"address")
-    defaultFieldValidation(values,errors,"region")
-    defaultFieldValidation(values,errors,"postalCode")
-    numberFieldValidation(values,errors,"telephone")
-    basicFieldValidation(values,errors,"email")
-    numberFieldValidation(values,errors,"rentPerMonth")
-    numberFieldValidation(values,errors,"deposit")
+    Array.from(["landlord","address","region","postalCode"]).forEach((s) => defaultFieldValidation(values,errors,s))
+    Array.from(["email", "city"]).forEach((s) => basicFieldValidation(values,errors,s));
+    Array.from(["telephone", "rentPerMonth","deposit"]).forEach((s) => numberFieldValidation(values,errors,s));
     
     return errors;
   };
