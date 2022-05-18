@@ -3,6 +3,8 @@ import { Container } from "GlobalStyles";
 import translate from "i18n/translate";
 import React, { useEffect } from "react";
 import { languages } from "Utils/languages";
+import {postHosting} from "services/api/hostingApi";
+
 
 function Hosting() {
   const [languagesObtined, setLanguagesObtined] = React.useState([]);
@@ -52,6 +54,7 @@ function Hosting() {
     //validate,
     onSubmit: (values) => {
       console.log("values", values);
+      postHosting(values);
     },
   });
 
