@@ -1,41 +1,55 @@
-import { ButtonDiv, LanguageSelect, Nav, NavTitleImg } from "./styles";
-import { LOCALES } from "i18n";
-import NbtiLogo from "assets/images/logo_horizontal.jpg";
-import { HiOutlineMenu } from "react-icons/hi";
-import { Button } from "GlobalStyles";
-import translate from "i18n/translate";
+import { Nav, ButtonContainer } from "./styles";
+import { useRef } from "react";
+import { useState } from "react";
+import { useOnClickOutside } from "hooks/BurgerMenu.hooks";
+import { Burger, Menu } from "Components/SideMenu";
+import FocusLock from "react-focus-lock";
+import { ThemeProvider } from "styled-components";
+import { theme } from "theme";
+import HorizontalMenu from "./Menu/index";
+import LoginButton from "Components/LoginButton";
 
 /** Navbar Component */
 export default function Navbar({ setLocale }) {
-  const handleChangeLanguage = (event) => {
-    console.log(event.target.value);
-    setLocale(event.target.value === "es" ? LOCALES.SPANISH : LOCALES.ENGLISH);
-    sessionStorage.setItem("language", event.target.value);
-  };
+  const [open, setOpen] = useState(false);
+  const node = useRef();
+  const menuId = "main-menu";
+
+  useOnClickOutside(node, () => setOpen(false));
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <Nav>
-        <ButtonDiv>
-          <LanguageSelect name="language" onChange={handleChangeLanguage}>
-            {sessionStorage.getItem("language") === LOCALES.SPANISH ? (
-              <>
-                <option value={LOCALES.SPANISH} label="ES" selected></option>
-                <option value={LOCALES.ENGLISH} label="EN"></option>
-              </>
-            ) : (
-              <>
-                <option value={LOCALES.SPANISH} label="ES"></option>
-                <option value={LOCALES.ENGLISH} label="EN" selected></option>
-              </>
-            )}
-          </LanguageSelect>
-        </ButtonDiv>
-        <NavTitleImg src={NbtiLogo} alt="NBTI Logo" />
-        <Button>
-          {translate('access')}
-        </Button>
+        {/* <div ref={node}>
+          <FocusLock disabled={!open}>
+            <Burger open={open} setOpen={setOpen} aria-controls={menuId} />
+            <Menu open={open} setOpen={setOpen} id={menuId} />
+          </FocusLock>
+        </div> */}
+        <HorizontalMenu />
+        <ButtonContainer>
+          <LoginButton
+            to={`/login`}
+            bgcolor="#D9E8EF"
+            color="#181eb3"
+            txcolor="white"
+            hoverbgcolor="#181eb3"
+            hovercolor="#D9E8EF"
+          >
+            Login
+          </LoginButton>
+          <LoginButton
+            to={`/register`}
+            bgcolor="#181eb3"
+            color="white"
+            txcolor="white"
+            hoverbgcolor="#D9E8EF"
+            hovercolor="#181eb3"
+          >
+            Register
+          </LoginButton>
+        </ButtonContainer>
       </Nav>
-    </>
+    </ThemeProvider>
   );
 }

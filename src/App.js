@@ -11,16 +11,16 @@ import Hosting from 'Components/Hosting';
 import Encrypt from 'Pages/encryptTest';
 
 function App() {
-  const [locale, setLocale] = useState(LOCALES.ENGLISH);
+  const [locale, setLocale] = useState(sessionStorage.getItem('language') === 'es' ? LOCALES.SPANISH : LOCALES.ENGLISH);
   return (
     /** Provider to changes languages */
     <I18Provider locale={locale}>
-      <UpperNavbar />
       <Navbar setLocale={setLocale}/>
+      {/* <UpperNavbar setLocale={setLocale}/>  */}
 
       {/* ROUTES */}
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/"  element={<Home />} />
         <Route path="/students" element={<CvForm />} />
         <Route path="/enterprise" element={<Enterprise />} />
         <Route path="/hosting" element={<Hosting />} />

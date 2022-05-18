@@ -44,6 +44,8 @@ export const esp = {
         'enterprise': 'Empresas',
         'student': 'Estudiantes',
         'access': 'Acceder',
+        'register': 'Registrarse',
+        'login': 'Iniciar Sesión',
         'workExperience':'Experiencia De Trabajo',
         'tasks':'Tareas',
         'close':'Cerrar',

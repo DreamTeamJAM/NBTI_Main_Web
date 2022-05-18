@@ -2,22 +2,22 @@
 export const NavItems = [
   {
     id: 1,
-    title: "home",
-    url: "/",
+    text: "home",
+    link: "/",
   },
   {
     id: 2,
-    title: "student",
-    url: "/students",
+    text: "student",
+    link: "/students",
   },
   {
     id: 3,
-    title: "enterprise",
-    url: "/enterprise",
+    text: "enterprise",
+    link: "/enterprise",
   },
   {
     id: 4,
-    title: "hosting",
-    url: "/hosting",
+    text: "hosting",
+    link: "/hosting",
   },
 ];
