@@ -1,53 +1,61 @@
 export const docDefinition = ({
-    name,
-    email,
-    firstSurname,
-    secondSurname,
-    nationality,
-    phone,
-    birthDate,
-    gender,
-    address,
+  name,
+  firstSurname,
+  secondSurname,
+  nationality,
+  phonePrefix,
+  phone,
+  birthDate,
+  gender,
+  email,
+  address,
+  aboutMe,
+  drivinglicense,
+  hobbies,
 
-    num,
-    calle,
-    cod_postal,
-    ciudad,
-    pais,
-
-    aboutMe,
-    titleWork,
-    startDateWork,
-    endDateWork,
-    countryWork,
-    cityWork,
-    companyWork,
-    tasksWork,
-    title,
-    startDate,
-    endDate,
-    countrys,
-    citys,
-    center,
-    fieldsOfStudy,
-
-    idioma,
-    idioma2,
-    lenguaje,
-    listening,
-    reading,
-    writting,
-    produc,
-    interac,
-
-    skills,
-    interskills,
-    interskills1,
-    interskills2,
+  num,
+  calle,
+  cod_postal,
+  ciudad,
+  pais,
+  
+      title,
+      startDate,
+      endDate,
+      countrys,
+      citys,
+      center ,
+      fieldsOfStudy,
+  
     
-    drivingLicense,
-    hobbies,
-    volunteering,
+      titleWork ,
+      startDateWork ,
+      endDateWork ,
+      countryWork ,
+      cityWork ,
+      companyWork ,
+      tasksWork ,
+    
+  
+      tongue,
+    
+ 
+      language,
+      listening,
+      reading,
+      writting,
+      produc,
+      interac,
+ 
+  digitalSkills,
+  comunicationSkills,
+
+      enterpriseVolun,
+      placeVolun,
+      startDateVolun,
+      endDateVolun,
+      descriptionVolun,
+  
   }) => {
     const nbti = {
       content: [
@@ -71,7 +79,7 @@ export const docDefinition = ({
             `, 
             {text: 'Nationality: ', italics: false, fontSize: 14}, ` ${nationality}
             `,
-            {text: 'Telephone:', italics: false, fontSize: 14}, ` ${phone}
+            {text: 'Telephone:', italics: false, fontSize: 14}, ` ${phonePrefix} ${phone}
             `,
             {text: 'Date of birth:', italics: false, fontSize: 14}, ` ${birthDate}
             `,
@@ -174,11 +182,11 @@ export const docDefinition = ({
         {style: ["quote", "font"],
         text:[ 
           
-          {text: 'Mother tongue(s):', italics: false, fontSize: 14}, ` ${idioma} | ${idioma2}.,
+          {text: 'Mother tongue(s):', italics: false, fontSize: 14}, ` ${tongue} |.,
         `,
         {text: 'Other language(s):', italics: false, fontSize: 14}, 
         
-        `${lenguaje}
+        `${language}
         
         `,
         
@@ -206,7 +214,7 @@ export const docDefinition = ({
       },
         {
           text: `
-          ${skills}
+          ${digitalSkills}
   
           `,
   
@@ -218,15 +226,8 @@ export const docDefinition = ({
       },
         {
           ul: [
-            `${interskills}
-            `,
+            `${comunicationSkills}
   
-            `${interskills1}
-            `,
-  
-            `${interskills2}
-  
-            
             `,
           ],
         },
@@ -239,7 +240,7 @@ export const docDefinition = ({
             style: ["quote", "font"],
             text:[
              
-              {text: 'Driving Licence: ', italics: false, fontSize: 14}, ` ${drivingLicense}
+              {text: 'Driving Licence: ', italics: false, fontSize: 14}, ` ${drivinglicense}
             `,
           ] 
         },
@@ -261,11 +262,23 @@ export const docDefinition = ({
           style: "subheader",
         },
         {
-          text: `${volunteering}
-                 
-          `,
-  
+          
           style: ["quote", "font"],
+          text:[ `
+          
+          ${enterpriseVolun}.
+          `,
+          `[${startDateVolun}] [${endDateVolun}]
+         
+          `,
+          {text: 'Place:', italics: false, fontSize: 14}, ` ${placeVolun},
+          `,
+          {text: 'Description:', italics: false, fontSize: 14}, ` ${descriptionVolun}
+          `,
+          
+
+        ]
+          
         },
       ],
       styles: {
