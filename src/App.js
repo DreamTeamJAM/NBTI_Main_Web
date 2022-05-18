@@ -4,11 +4,11 @@ import { I18Provider } from './i18n';
 import { useState } from 'react';
 import { Route, Routes } from "react-router-dom";
 import Home from 'Pages/Home';
-import CvForm from 'Components/CvForm';
 import UpperNavbar from 'Components/UpperNavbar';
 import Enterprise from 'Components/Enterprise';
 import Hosting from 'Components/Hosting';
 import Encrypt from 'Pages/encryptTest';
+import CvPage from './Pages/CvPage/index';
 
 function App() {
   const [locale, setLocale] = useState(sessionStorage.getItem('language') === 'es' ? LOCALES.SPANISH : LOCALES.ENGLISH);
@@ -21,7 +21,7 @@ function App() {
       {/* ROUTES */}
       <Routes>
         <Route path="/"  element={<Home />} />
-        <Route path="/students" element={<CvForm />} />
+        <Route path="/students" element={<CvPage />} />
         <Route path="/enterprise" element={<Enterprise />} />
         <Route path="/hosting" element={<Hosting />} />
         <Route path="/encrypt" element={<Encrypt />} />

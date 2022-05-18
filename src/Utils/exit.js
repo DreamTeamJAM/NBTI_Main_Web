@@ -1,20 +1,19 @@
-import React from 'react'
+import React from "react";
+import { Container } from "GlobalStyles";
 
 function Exit() {
   return (
-    <>
-    <div>
-    
-    <div>
-      <h2>Gracias por contactar con nostros! </h2>
-      <p>En breve nos pondremos en contacto a traves del correo suministrado</p>
-    </div>
-   
-  </div>
-  
-  
-  </>
-  )
+    <Container>
+      <div>
+        <div>
+          <h2>Gracias por contactar con nostros! </h2>
+          <p>
+            En breve nos pondremos en contacto a traves del correo suministrado
+          </p>
+        </div>
+      </div>
+    </Container>
+  );
 }
 
-export default Exit
+export default Exit;

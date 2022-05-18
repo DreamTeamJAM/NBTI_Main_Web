@@ -1,10 +1,13 @@
-import CvForm from "Components/CvForm";
 import React from "react";
+import { Container } from "GlobalStyles";
+import Steps from "./../../Steps/step";
 
 function CvPage() {
   return (
     <div>
-      <CvForm />
+      <Container>
+        <Steps></Steps>
+      </Container>
     </div>
   );
 }
