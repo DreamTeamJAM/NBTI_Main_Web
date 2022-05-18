@@ -10,6 +10,7 @@ import Enterprise from 'Pages/Enterprise';
 import Hosting from 'Pages/Hosting';
 import Encrypt from 'Pages/encryptTest';
 
+
 function App() {
   const [locale, setLocale] = useState(sessionStorage.getItem('language') === 'es' ? LOCALES.SPANISH : LOCALES.ENGLISH);
   return (

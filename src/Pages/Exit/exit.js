@@ -18,4 +18,4 @@ function Exit() {
   )
 }
 
-export default Exit
+export default Exit;
