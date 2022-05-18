@@ -5,7 +5,6 @@ import React, { useEffect } from "react";
 import { languages } from "Utils/languages";
 import {postCompany} from "services/api/companyApi";
 import Exit from "./../../Utils/exit"
-import { Stepper, Step, StepLabel, Button } from "@material-ui/core";
 
 function Enterprise() {
   const [languagesObtined, setLanguagesObtined] = React.useState([]);
@@ -62,9 +61,6 @@ function Enterprise() {
     const handleNext = () => {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
     };
-    const handleBack = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
-      };
 
   return (
     <div>
