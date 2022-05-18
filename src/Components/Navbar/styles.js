@@ -7,18 +7,17 @@ export const Nav = styled.nav`
   top: 0;
   margin: 0;
   padding: 0;
-  background-color: #ffff;
+  background: none;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  -webkit-box-shadow: 0px 5px 29px -5px rgba(0, 0, 0, 0.4);
-  box-shadow: 0px 5px 29px -5px rgba(0, 0, 0, 0.4);
   overflow: hidden;
+  position: fixed;
+  z-index: 100;
 `;
 
-export const NavTitleImg = styled.img`
-  width: 18em;
-  margin-bottom: -0.5em;
+export const NavErasmusImg = styled.img`
+  width: 16em;
 `;
 
 export const ButtonDiv = styled.div`
@@ -42,15 +41,15 @@ export const Button = styled.button`
   cursor: pointer;
 `;
 
-export const LanguageSelect = styled.select`
-  width: 50px;
-  height: 40px;
-  cursor: pointer;
-  border-radius: 5px;
-  background-color: #fff;
-  list-style: none;
-  text-align: center;
-  border: 2px solid black;
-  
+export const Ground = styled.div`
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
 
+`
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `

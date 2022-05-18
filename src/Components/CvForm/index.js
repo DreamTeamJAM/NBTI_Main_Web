@@ -1,8 +1,7 @@
-import axios from "axios";
-import { Field, useFormik } from "formik";
+import { useFormik } from "formik";
 import { Container } from "GlobalStyles";
 import translate from "i18n/translate";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { drivingLicense } from "Utils/drivingLicenses";
 import { languages } from "Utils/languages";
 import pdfMake from "pdfmake/build/pdfmake";
