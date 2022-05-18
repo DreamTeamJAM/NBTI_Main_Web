@@ -3,10 +3,10 @@ import { Container } from "GlobalStyles";
 import translate from "i18n/translate";
 import React, { useEffect } from "react";
 import { languages } from "Utils/languages";
-import {postCompany} from "services/api/companyApi";
-import Exit from "./../../Utils/exit"
+import {postHosting} from "services/api/hostingApi";
+import Exit from "../Exit/exit"
 
-function Enterprise() {
+function Hosting() {
   const [languagesObtined, setLanguagesObtined] = React.useState([]);
 
   const validate = (values) => {
@@ -38,29 +38,31 @@ function Enterprise() {
     setLanguagesObtined(options);
   }, []);
 
-  const formik = useFormik({
-    initialValues: {
-      companyname: "",
-      address: "",
-      city: "",
-      contactperson: "",
-      telephonenumber: "",
-      email: "",
-      region:"",
-    },
-    //validate,
-    onSubmit: (values) => {
-      console.log("values", values);
-      postCompany(values)
-    },
-  });
-
-
   const [activeStep, setActiveStep] = React.useState(0);
   
     const handleNext = () => {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
     };
+
+  const formik = useFormik({
+    initialValues: {
+      landlord: "",
+      city: "",
+      Address: "",
+      region: "",
+      postalCode: "",
+      telephoneNumber: "",
+      Email: "",
+      rentPerMonth: "",
+      deposit: "",
+      foodIncluded: "",
+    },
+    //validate,
+    onSubmit: (values) => {
+      console.log("values", values);
+      postHosting(values);
+    },
+  });
 
   return (
     <div>
@@ -68,8 +70,8 @@ function Enterprise() {
           <div>
           <Container>
       <form onSubmit={formik.handleSubmit}>
-        <label>{translate("Company Name")}: </label>
-        <input type="text" {...formik.getFieldProps("companyname")} />
+        <label>{translate("Land Lord")}: </label>
+        <input type="text" {...formik.getFieldProps("landlord")} />
         {formik.touched.name && formik.errors.name ? (
           <p>{formik.errors.name}</p>
         ) : null}
@@ -85,7 +87,7 @@ function Enterprise() {
         </select>
         <br />
         <label>{translate("Address")}: </label>
-        <input type="text" {...formik.getFieldProps("address")} />
+        <input type="text" {...formik.getFieldProps("Address")} />
         {formik.touched.name && formik.errors.name ? (
           <p>{formik.errors.name}</p>
         ) : null}
@@ -95,29 +97,68 @@ function Enterprise() {
         {formik.touched.name && formik.errors.name ? (
           <p>{formik.errors.name}</p>
         ) : null}
-        
+
         <br />
-        <label>{translate("Contact Person")}: </label>
-        <input type="text" {...formik.getFieldProps("contactperson")} />
+        <label>{translate("Postal Code")}: </label>
+        <input type="text" {...formik.getFieldProps("postalCode")} />
         {formik.touched.name && formik.errors.name ? (
           <p>{formik.errors.name}</p>
         ) : null}
         <br />
 
         <label>{translate("Telephone Number")}: </label>
-        <input type="text" {...formik.getFieldProps("telephonenumber")} />
+        <input type="text" {...formik.getFieldProps("telephoneNumber")} />
         {formik.touched.name && formik.errors.name ? (
           <p>{formik.errors.name}</p>
         ) : null}
         <br />
 
         <label>{translate("Email")}: </label>
-        <input type="email" {...formik.getFieldProps("email")} />
+        <input type="email" {...formik.getFieldProps("Email")} />
         {formik.touched.name && formik.errors.name ? (
           <p>{formik.errors.name}</p>
         ) : null}
         <br />
 
+        <label>{translate("Rent Per Month")}: </label>
+        <input type="text" {...formik.getFieldProps("rentPerMonth")} />
+        {formik.touched.name && formik.errors.name ? (
+          <p>{formik.errors.name}</p>
+        ) : null}
+        <br />
+
+        <label>{translate("Deposit")}: </label>
+        <input type="text" {...formik.getFieldProps("deposit")} />
+        {formik.touched.name && formik.errors.name ? (
+          <p>{formik.errors.name}</p>
+        ) : null}
+        <br />
+        <label>{translate("Food Included")}:</label>
+        <div>
+          <input
+            type="radio"
+            id="true"
+            name="foodIncluded"
+            value="true"
+            onChange={(event) =>
+              formik.setFieldValue("foodIncluded", event.target.value)
+            }
+          />
+          <label for="Yes">{translate("Yes")}</label>
+        </div>
+        <div>
+          <input
+            type="radio"
+            id="false"
+            name="foodIncluded"
+            value="false"
+            onChange={(event) =>
+              formik.setFieldValue("foodIncluded", event.target.value)
+            }
+          />
+          <label for="No">{translate("No")}</label>
+        </div>
+        <br/>
         <button type="submit" onClick={handleNext}>{translate("submit")}</button>
       </form>
     </Container>
@@ -130,8 +171,7 @@ function Enterprise() {
           </div>
         )}
       </div>
-    
   );
 }
 
-export default Enterprise;
+export default Hosting;

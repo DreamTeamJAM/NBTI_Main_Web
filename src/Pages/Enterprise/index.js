@@ -3,10 +3,10 @@ import { Container } from "GlobalStyles";
 import translate from "i18n/translate";
 import React, { useEffect } from "react";
 import { languages } from "Utils/languages";
-import {postHosting} from "services/api/hostingApi";
-import Exit from "./../../Utils/exit"
+import {postCompany} from "services/api/companyApi";
+import Exit from "../Exit/exit"
 
-function Hosting() {
+function Enterprise() {
   const [languagesObtined, setLanguagesObtined] = React.useState([]);
 
   const validate = (values) => {
@@ -38,31 +38,29 @@ function Hosting() {
     setLanguagesObtined(options);
   }, []);
 
+  const formik = useFormik({
+    initialValues: {
+      companyname: "",
+      address: "",
+      city: "",
+      contactperson: "",
+      telephonenumber: "",
+      email: "",
+      region:"",
+    },
+    //validate,
+    onSubmit: (values) => {
+      console.log("values", values);
+      postCompany(values)
+    },
+  });
+
+
   const [activeStep, setActiveStep] = React.useState(0);
   
     const handleNext = () => {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
     };
-
-  const formik = useFormik({
-    initialValues: {
-      landlord: "",
-      city: "",
-      Address: "",
-      region: "",
-      postalCode: "",
-      telephoneNumber: "",
-      Email: "",
-      rentPerMonth: "",
-      deposit: "",
-      foodIncluded: "",
-    },
-    //validate,
-    onSubmit: (values) => {
-      console.log("values", values);
-      postHosting(values);
-    },
-  });
 
   return (
     <div>
@@ -70,8 +68,8 @@ function Hosting() {
           <div>
           <Container>
       <form onSubmit={formik.handleSubmit}>
-        <label>{translate("Land Lord")}: </label>
-        <input type="text" {...formik.getFieldProps("landlord")} />
+        <label>{translate("Company Name")}: </label>
+        <input type="text" {...formik.getFieldProps("companyname")} />
         {formik.touched.name && formik.errors.name ? (
           <p>{formik.errors.name}</p>
         ) : null}
@@ -87,7 +85,7 @@ function Hosting() {
         </select>
         <br />
         <label>{translate("Address")}: </label>
-        <input type="text" {...formik.getFieldProps("Address")} />
+        <input type="text" {...formik.getFieldProps("address")} />
         {formik.touched.name && formik.errors.name ? (
           <p>{formik.errors.name}</p>
         ) : null}
@@ -97,68 +95,29 @@ function Hosting() {
         {formik.touched.name && formik.errors.name ? (
           <p>{formik.errors.name}</p>
         ) : null}
-
+        
         <br />
-        <label>{translate("Postal Code")}: </label>
-        <input type="text" {...formik.getFieldProps("postalCode")} />
+        <label>{translate("Contact Person")}: </label>
+        <input type="text" {...formik.getFieldProps("contactperson")} />
         {formik.touched.name && formik.errors.name ? (
           <p>{formik.errors.name}</p>
         ) : null}
         <br />
 
         <label>{translate("Telephone Number")}: </label>
-        <input type="text" {...formik.getFieldProps("telephoneNumber")} />
+        <input type="text" {...formik.getFieldProps("telephonenumber")} />
         {formik.touched.name && formik.errors.name ? (
           <p>{formik.errors.name}</p>
         ) : null}
         <br />
 
         <label>{translate("Email")}: </label>
-        <input type="email" {...formik.getFieldProps("Email")} />
+        <input type="email" {...formik.getFieldProps("email")} />
         {formik.touched.name && formik.errors.name ? (
           <p>{formik.errors.name}</p>
         ) : null}
         <br />
 
-        <label>{translate("Rent Per Month")}: </label>
-        <input type="text" {...formik.getFieldProps("rentPerMonth")} />
-        {formik.touched.name && formik.errors.name ? (
-          <p>{formik.errors.name}</p>
-        ) : null}
-        <br />
-
-        <label>{translate("Deposit")}: </label>
-        <input type="text" {...formik.getFieldProps("deposit")} />
-        {formik.touched.name && formik.errors.name ? (
-          <p>{formik.errors.name}</p>
-        ) : null}
-        <br />
-        <label>{translate("Food Included")}:</label>
-        <div>
-          <input
-            type="radio"
-            id="true"
-            name="foodIncluded"
-            value="true"
-            onChange={(event) =>
-              formik.setFieldValue("foodIncluded", event.target.value)
-            }
-          />
-          <label for="Yes">{translate("Yes")}</label>
-        </div>
-        <div>
-          <input
-            type="radio"
-            id="false"
-            name="foodIncluded"
-            value="false"
-            onChange={(event) =>
-              formik.setFieldValue("foodIncluded", event.target.value)
-            }
-          />
-          <label for="No">{translate("No")}</label>
-        </div>
-        <br/>
         <button type="submit" onClick={handleNext}>{translate("submit")}</button>
       </form>
     </Container>
@@ -171,7 +130,8 @@ function Hosting() {
           </div>
         )}
       </div>
+    
   );
 }
 
-export default Hosting;
+export default Enterprise;

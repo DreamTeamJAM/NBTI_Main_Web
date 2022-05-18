@@ -1,8 +1,9 @@
 import React from 'react'
+import { Container } from "GlobalStyles";
 
 function Exit() {
   return (
-    <>
+    <Container>
     <div>
     
     <div>
@@ -13,7 +14,7 @@ function Exit() {
   </div>
   
   
-  </>
+  </Container>
   )
 }
 
