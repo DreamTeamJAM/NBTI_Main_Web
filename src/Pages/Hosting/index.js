@@ -6,6 +6,8 @@ import { postHosting } from "services/api/hostingApi";
 import { defaultFieldValidation, basicFieldValidation, numberFieldValidation } from "services/formValidation";
 import { languages } from "Utils/languages";
 
+import {postHosting} from "services/api/hostingApi";
+import Exit from "../Exit/exit"
 
 function Hosting() {
   const [languagesObtined, setLanguagesObtined] = React.useState([]);
@@ -28,6 +30,12 @@ function Hosting() {
     setLanguagesObtined(options);
   }, []);
 
+  const [activeStep, setActiveStep] = React.useState(0);
+  
+    const handleNext = () => {
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    };
+
   const formik = useFormik({
     initialValues: {
       landlord: "",
@@ -49,7 +57,10 @@ function Hosting() {
   });
 
   return (
-    <Container>
+    <div>
+        {activeStep < 1 ? (
+          <div>
+          <Container>
       <form onSubmit={formik.handleSubmit}>
         <label>{translate("landLord")}: </label>
         <input type="text" {...formik.getFieldProps("landlord")} />
@@ -117,9 +128,18 @@ function Hosting() {
         <label>{translate("foodIncluded")}:</label>
         <input {...formik.getFieldProps("foodIncluded")} type="checkbox" />
           <br></br>
-        <button type="submit">{translate("submit")}</button>
+        <button type="submit" onClick={handleNext}>{translate("submit")}</button>
       </form>
     </Container>
+          </div>
+        ) : (
+            <div>
+            
+          <Exit></Exit>
+          
+          </div>
+        )}
+      </div>
   );
 }
 

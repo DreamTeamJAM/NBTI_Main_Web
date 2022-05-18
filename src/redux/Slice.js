@@ -9,16 +9,10 @@ export const userSlice=createSlice({
   reducers:{
     Initial: (state, action) =>{
       state.user=action.payload;
-    },
-    Secondary: (state, action) =>{
-        state.user=action.payload;
-      },
-      
-    Tertiary: (state, action) =>{
-        state.user=action.payload;
-      },
+    }
+    
   },
 });
-export const{Initial,Secondary,Tertiary}=userSlice.actions;
+export const{Initial}=userSlice.actions;
 export const selectUser=(state) => state.user.user;
 export default userSlice.reducer;
