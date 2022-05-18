@@ -44,6 +44,8 @@ export const eng = {
         'enterprise': 'Enterprise',
         'student': 'Students',
         'access': 'Access',
+        'register': 'Register',
+        'login': 'Login',
         'workExperience':'Work Experience',
         'tasks':'Tasks',
         'close':'close',

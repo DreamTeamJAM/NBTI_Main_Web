@@ -4,7 +4,7 @@ body {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgba(24, 30, 179, 0.1);
+  background-color: #D9E8EF;
 }
 
 code {

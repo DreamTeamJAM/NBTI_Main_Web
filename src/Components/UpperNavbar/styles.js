@@ -2,13 +2,14 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const UpperNavbarContainer = styled.div`
-    background-color: rgba(24, 30, 179, 1);
-    margin: 0;
+    background-color:#fff;
+    margin: 0px 1em 0px 1em;
     padding: 0;
-    height: 40px;
+    height: 50px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    border-bottom: 1px solid #e5e5e5;
 
 `
 
@@ -33,4 +34,10 @@ export const UpperNavbarItems = styled(Link)`
         background-color: #fff;
         color: rgba(24, 30, 179, 1);
     }
+`
+
+export const ButtonContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
