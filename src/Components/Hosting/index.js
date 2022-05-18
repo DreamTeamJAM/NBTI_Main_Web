@@ -49,7 +49,7 @@ function Hosting() {
   });
 
   return (
-    <Container style={{ marginTop: "2em" }}>
+    <Container>
       <form onSubmit={formik.handleSubmit}>
         <label>{translate("landLord")}: </label>
         <input type="text" {...formik.getFieldProps("landlord")} />
