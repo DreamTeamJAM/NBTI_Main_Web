@@ -4,6 +4,7 @@ import translate from "i18n/translate";
 import React, { useEffect } from "react";
 import { languages } from "Utils/languages";
 import {postCompany} from "services/api/companyApi";
+import Exit from "./../../Utils/exit"
 
 function Enterprise() {
   const [languagesObtined, setLanguagesObtined] = React.useState([]);
@@ -54,8 +55,18 @@ function Enterprise() {
     },
   });
 
+
+  const [activeStep, setActiveStep] = React.useState(0);
+  
+    const handleNext = () => {
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    };
+
   return (
-    <Container>
+    <div>
+        {activeStep < 1 ? (
+          <div>
+          <Container>
       <form onSubmit={formik.handleSubmit}>
         <label>{translate("Company Name")}: </label>
         <input type="text" {...formik.getFieldProps("companyname")} />
@@ -107,9 +118,19 @@ function Enterprise() {
         ) : null}
         <br />
 
-        <button type="submit">{translate("submit")}</button>
+        <button type="submit" onClick={handleNext}>{translate("submit")}</button>
       </form>
     </Container>
+          </div>
+        ) : (
+            <div>
+            
+          <Exit></Exit>
+          
+          </div>
+        )}
+      </div>
+    
   );
 }
 
