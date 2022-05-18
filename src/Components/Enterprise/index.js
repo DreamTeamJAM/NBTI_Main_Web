@@ -55,7 +55,7 @@ function Enterprise() {
   });
 
   return (
-    <Container style={{ marginTop: "2em" }}>
+    <Container>
       <form onSubmit={formik.handleSubmit}>
         <label>{translate("Company Name")}: </label>
         <input type="text" {...formik.getFieldProps("companyname")} />
