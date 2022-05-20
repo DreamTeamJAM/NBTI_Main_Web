@@ -21,15 +21,40 @@ export const BrochureSectionTitle = styled.h1`
 export const BrochureContent = styled.div`
   display: flex;
   justify-content: space-evenly;
-  align-items: flex-start;
+  align-items: center;
   width: 70%;
+  margin-top: 2em;
 
   p {
     text-align: justify;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
       Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     font-weight: 400;
-    font-size: 1.3em;
-    width: 20vw;
+    font-size: 1.2em;
+    width: 25vw;
+  }
+
+  img {
+    filter: drop-shadow(0 8px 3px rgba(0, 0, 0, 0.4));
+  }
+`;
+
+export const DownloadButtonContent = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: space-between;
+`;
+export const LeftContent = styled.div`
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: space-between;
+  flex-direction: column;
+  height: 40vh;
+
+  hr {
+    border: 0.1px solid rgba(0, 0, 0, 0.2);
+    width: 100%;
   }
 `;
