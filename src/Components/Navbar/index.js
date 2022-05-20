@@ -8,6 +8,7 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "theme";
 import HorizontalMenu from "./Menu/index";
 import LoginButton from "Components/LoginButton";
+import { LanguageSelect } from './../LanguageSelect/styles';
 
 /** Navbar Component */
 export default function Navbar({ setLocale }) {
@@ -15,18 +16,32 @@ export default function Navbar({ setLocale }) {
   const node = useRef();
   const menuId = "main-menu";
 
-  useOnClickOutside(node, () => setOpen(false));
+  const [colorChange, setColorChange] = useState(false);
 
+  const changeNavbarColor = () => {
+    if (window.scrollY >= 60) {
+      setColorChange(true);
+    } else {
+      setColorChange(false);
+    }
+  };
+
+  useOnClickOutside(node, () => setOpen(false));
+  window.addEventListener("scroll", changeNavbarColor);
   return (
     <ThemeProvider theme={theme}>
-      <Nav>
+      <Nav
+        navColorChange={colorChange === false ? "none" : "rgb(217,232,239, 1)"}
+        isOnScroll={colorChange}
+      >
         {/* <div ref={node}>
           <FocusLock disabled={!open}>
             <Burger open={open} setOpen={setOpen} aria-controls={menuId} />
             <Menu open={open} setOpen={setOpen} id={menuId} />
           </FocusLock>
         </div> */}
-        <HorizontalMenu />
+        <HorizontalMenu setLocale={setLocale} />
+        
         <ButtonContainer>
           <LoginButton
             to={`/login`}
