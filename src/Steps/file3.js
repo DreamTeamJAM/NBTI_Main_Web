@@ -3,15 +3,12 @@ import { Stepper, Step, StepLabel, Button } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { Initial, selectUser, userSlice } from "redux/Slice";
 import { add, del, selectVoluns } from "redux/volunteringSlice";
-import { languages } from "Utils/languages";
 import { FieldArray, Form, Formik, useFormik } from "formik";
-import { LanguageTags, PhonePrefixTags } from "Components/tags";
-import { drivingLicense } from "Utils/drivingLicenses";
-import { lvllanguage } from "Utils/lvllanguage";
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import { docDefinition } from "Templates/Pass_content";
 import { GetSteps } from "./step";
+import { languages } from "Utils/languages"
 import { Container } from "GlobalStyles";
 
 function File3() {
@@ -23,12 +20,17 @@ function File3() {
   const [startDateVolun, setstartDateVolun] = useState("");
   const [endDateVolun, setendDateVolun] = useState("");
   const [descriptionVolun, setdescriptionVolun] = useState("");
-  const [digitalSkills, setdigitalSkills] = useState("");
-  const [comunicationSkills, setcomunicationSkills] = useState("");
+
 
   const dispatch = useDispatch();
   const [languagesObtined, setLanguagesObtined] = React.useState([]);
-
+  useEffect(() => {
+    const options = languages.map((language) => ({
+      value: language.name_en,
+      label: language.name_en,
+    }));
+    setLanguagesObtined(options);
+  }, []);
 
   const onCleanValue = () => {
     setenterpriseVolun("");
@@ -44,12 +46,15 @@ function File3() {
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     dispatch(
-      Initial({
+        add({
+          enterpriseVolun: enterpriseVolun,
+          placeVolun: placeVolun,
+          startDateVolun: startDateVolun,
+          endDateVolun: endDateVolun,
+          descriptionVolun: descriptionVolun,
+        }),
         
-        digitalSkills: digitalSkills,
-        comunicationSkills: comunicationSkills,
-      })
-    );
+      )
   };
   const formik = useFormik({
     initialValues: {
@@ -125,7 +130,7 @@ function File3() {
     //validate,
     onSubmit: (values) => {
       console.log("values", values);
-      pdfMake.createPdf(docDefinition({ ...user })).open();
+      pdfMake.createPdf(docDefinition({ ...user,...volun })).open();
       /* fetch("http://192.168.1.74:8080/nbtiCV", values.text, {
               method: "POST",
               mode: "cors",
@@ -190,31 +195,6 @@ function File3() {
     
     
       <form onSubmit={formik.handleSubmit}>
-        <label>Digital Skills:</label>
-        <br />
-        <textarea
-          type="text"
-          {...formik.getFieldProps("digitalSkills")}
-          value={digitalSkills}
-          onChange={(e) => setdigitalSkills(e.target.value)}
-        />
-        {formik.touched.digitalSkills && formik.errors.digitalSkills ? (
-          <p>{formik.errors.digitalSkills}</p>
-        ) : null}
-        <br />
-        <label>Comunication Skills:</label>
-        <br />
-        <textarea
-          type="text"
-          {...formik.getFieldProps("comunicationSkills")}
-          value={comunicationSkills}
-          onChange={(e) => setcomunicationSkills(e.target.value)}
-        />
-        {formik.touched.comunicationSkills &&
-        formik.errors.comunicationSkills ? (
-          <p>{formik.errors.comunicationSkills}</p>
-        ) : null}
-        <br />
         <br />
         <label>Volunteering</label>
         <br />
