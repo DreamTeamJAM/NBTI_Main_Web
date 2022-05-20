@@ -2,7 +2,10 @@ import { useFormik } from "formik";
 import { Container } from "GlobalStyles";
 import translate from "i18n/translate";
 import React, { useEffect } from "react";
+import { postHosting } from "services/api/hostingApi";
+import { defaultFieldValidation, basicFieldValidation, numberFieldValidation } from "services/formValidation";
 import { languages } from "Utils/languages";
+
 import {postHosting} from "services/api/hostingApi";
 import Exit from "../Exit/exit"
 
@@ -11,22 +14,11 @@ function Hosting() {
 
   const validate = (values) => {
     const errors = {};
-    if (!values.name) {
-      errors.name = "Requerido";
-    } else if (values.name.length < 5) {
-      errors.name = "Nombre demasiado corto";
-    }
-
-    if (!values.lastname) {
-      errors.lastname = "Requerido";
-    } else if (values.lastname.length < 5) {
-      errors.lastname = "Apellido demasiado corto";
-    }
-
-    if (!values.email) {
-      errors.email = "Requerido";
-    }
-
+    
+    Array.from(["landlord","address","region","postalCode"]).forEach((s) => defaultFieldValidation(values,errors,s))
+    Array.from(["email", "city"]).forEach((s) => basicFieldValidation(values,errors,s));
+    Array.from(["telephone", "rentPerMonth","deposit"]).forEach((s) => numberFieldValidation(values,errors,s));
+    
     return errors;
   };
 
@@ -48,16 +40,16 @@ function Hosting() {
     initialValues: {
       landlord: "",
       city: "",
-      Address: "",
+      address: "",
       region: "",
       postalCode: "",
-      telephoneNumber: "",
-      Email: "",
+      telephone: "",
+      email: "",
       rentPerMonth: "",
       deposit: "",
-      foodIncluded: "",
+      foodIncluded: false,
     },
-    //validate,
+    validate,
     onSubmit: (values) => {
       console.log("values", values);
       postHosting(values);
@@ -70,10 +62,10 @@ function Hosting() {
           <div>
           <Container>
       <form onSubmit={formik.handleSubmit}>
-        <label>{translate("Land Lord")}: </label>
+        <label>{translate("landLord")}: </label>
         <input type="text" {...formik.getFieldProps("landlord")} />
-        {formik.touched.name && formik.errors.name ? (
-          <p>{formik.errors.name}</p>
+        {formik.touched.landlord && formik.errors.landlord ? (
+          <p>{formik.errors.landlord}</p>
         ) : null}
         <br />
         <select
@@ -86,79 +78,56 @@ function Hosting() {
           ))}
         </select>
         <br />
-        <label>{translate("Address")}: </label>
-        <input type="text" {...formik.getFieldProps("Address")} />
-        {formik.touched.name && formik.errors.name ? (
-          <p>{formik.errors.name}</p>
+        <label>{translate("address")}: </label>
+        <input type="text" {...formik.getFieldProps("address")} />
+        {formik.touched.address && formik.errors.address ? (
+          <p>{formik.errors.address}</p>
         ) : null}
         <br />
-        <label>{translate("Region")}: </label>
+        <label>{translate("region")}: </label>
         <input type="text" {...formik.getFieldProps("region")} />
-        {formik.touched.name && formik.errors.name ? (
-          <p>{formik.errors.name}</p>
+        {formik.touched.region && formik.errors.region ? (
+          <p>{formik.errors.region}</p>
         ) : null}
 
         <br />
-        <label>{translate("Postal Code")}: </label>
+        <label>{translate("postalCode")}: </label>
         <input type="text" {...formik.getFieldProps("postalCode")} />
-        {formik.touched.name && formik.errors.name ? (
-          <p>{formik.errors.name}</p>
+        {formik.touched.postalCode && formik.errors.postalCode ? (
+          <p>{formik.errors.postalCode}</p>
         ) : null}
         <br />
 
-        <label>{translate("Telephone Number")}: </label>
-        <input type="text" {...formik.getFieldProps("telephoneNumber")} />
-        {formik.touched.name && formik.errors.name ? (
-          <p>{formik.errors.name}</p>
+        <label>{translate("telephoneNumber")}: </label>
+        <input type="text" {...formik.getFieldProps("telephone")} />
+        {formik.touched.telephone && formik.errors.telephone ? (
+          <p>{formik.errors.telephone}</p>
         ) : null}
         <br />
 
-        <label>{translate("Email")}: </label>
-        <input type="email" {...formik.getFieldProps("Email")} />
-        {formik.touched.name && formik.errors.name ? (
-          <p>{formik.errors.name}</p>
+        <label>{translate("email")}: </label>
+        <input type="email" {...formik.getFieldProps("email")} />
+        {formik.touched.email && formik.errors.email ? (
+          <p>{formik.errors.email}</p>
         ) : null}
         <br />
 
-        <label>{translate("Rent Per Month")}: </label>
+        <label>{translate("rentPerMonth")}: </label>
         <input type="text" {...formik.getFieldProps("rentPerMonth")} />
-        {formik.touched.name && formik.errors.name ? (
-          <p>{formik.errors.name}</p>
+        {formik.touched.rentPerMonth && formik.errors.rentPerMonth ? (
+          <p>{formik.errors.rentPerMonth}</p>
         ) : null}
         <br />
 
-        <label>{translate("Deposit")}: </label>
+        <label>{translate("deposit")}: </label>
         <input type="text" {...formik.getFieldProps("deposit")} />
-        {formik.touched.name && formik.errors.name ? (
-          <p>{formik.errors.name}</p>
+        {formik.touched.deposit && formik.errors.deposit ? (
+          <p>{formik.errors.deposit}</p>
         ) : null}
         <br />
-        <label>{translate("Food Included")}:</label>
-        <div>
-          <input
-            type="radio"
-            id="true"
-            name="foodIncluded"
-            value="true"
-            onChange={(event) =>
-              formik.setFieldValue("foodIncluded", event.target.value)
-            }
-          />
-          <label for="Yes">{translate("Yes")}</label>
-        </div>
-        <div>
-          <input
-            type="radio"
-            id="false"
-            name="foodIncluded"
-            value="false"
-            onChange={(event) =>
-              formik.setFieldValue("foodIncluded", event.target.value)
-            }
-          />
-          <label for="No">{translate("No")}</label>
-        </div>
-        <br/>
+        <label>{translate("foodIncluded")}:</label>
+        <input {...formik.getFieldProps("foodIncluded")} type="checkbox" />
+          <br></br>
         <button type="submit" onClick={handleNext}>{translate("submit")}</button>
       </form>
     </Container>
