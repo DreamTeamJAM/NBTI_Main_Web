@@ -15,11 +15,11 @@ function File3() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [autoPopulateData, setAutoPopulateData] = React.useState([]);
   const steps = GetSteps();
-  const [enterpriseVolun, setenterpriseVolun] = useState("");
-  const [placeVolun, setplaceVolun] = useState("");
-  const [startDateVolun, setstartDateVolun] = useState("");
-  const [endDateVolun, setendDateVolun] = useState("");
-  const [descriptionVolun, setdescriptionVolun] = useState("");
+  const [enterpriseVolun, setEnterpriseVolun] = useState("");
+  const [placeVolun, setPlaceVolun] = useState("");
+  const [startDateVolun, setStartDateVolun] = useState("");
+  const [endDateVolun, setEndDateVolun] = useState("");
+  const [descriptionVolun, setDescriptionVolun] = useState("");
 
 
   const dispatch = useDispatch();
@@ -33,11 +33,11 @@ function File3() {
   }, []);
 
   const onCleanValue = () => {
-    setenterpriseVolun("");
-    setplaceVolun("");
-    setstartDateVolun("");
-    setendDateVolun("");
-    setdescriptionVolun("");
+    setEnterpriseVolun("");
+    setPlaceVolun("");
+    setStartDateVolun("");
+    setEndDateVolun("");
+    setDescriptionVolun("");
   };
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -224,7 +224,7 @@ function File3() {
                                 )}
                                 value={index.enterpriseVolun}
                                 onChange={(e) =>
-                                  setenterpriseVolun(e.target.value)
+                                  setEnterpriseVolun(e.target.value)
                                 }
                               />
                               {formik.touched.name && formik.errors.name ? (
@@ -238,7 +238,7 @@ function File3() {
                                   formik.setFieldValue(
                                     `volunteering.${index}.placeVolun`
                                   );
-                                  setplaceVolun(event.target.value);
+                                  setPlaceVolun(event.target.value);
                                 }}
                               >
                                 <option value="" label="Select a Country" />
@@ -260,7 +260,7 @@ function File3() {
                                   formik.setFieldValue(
                                     `volunteering.${index}.startDateVolun`
                                   );
-                                  setstartDateVolun(event.target.value);
+                                  setStartDateVolun(event.target.value);
                                 }}
                               />
                               {formik.touched.name && formik.errors.name ? (
@@ -277,7 +277,7 @@ function File3() {
                                   formik.setFieldValue(
                                     `volunteering.${index}.endDateVolun`
                                   );
-                                  setendDateVolun(event.target.value);
+                                  setEndDateVolun(event.target.value);
                                 }}
                               />
                               {formik.touched.name && formik.errors.name ? (
@@ -293,7 +293,7 @@ function File3() {
                                   `volunteering.${index}.descriptionVolun`
                                 )}
                                 onChange={(e) =>
-                                  setdescriptionVolun(e.target.value)
+                                  setDescriptionVolun(e.target.value)
                                 }
                                 value={index.descriptionVolun}
                               />

@@ -14,20 +14,20 @@ function File1() {
   const [autoPopulateData, setAutoPopulateData] = React.useState([]);
   const steps = GetSteps();
   const [name, setName] = useState("");
-  const [firstSurname, setfirstSurname] = useState("");
-  const [secondSurname, setsecondSurname] = useState("");
-  const [nationality, setnationality] = useState("");
-  const [phonePrefix, setphonePrefix] = useState("");
-  const [phone, setphone] = useState("");
-  const [birthDate, setbirthDate] = useState("");
-  const [gender, setgender] = useState("");
+  const [firstSurname, setFirstSurname] = useState("");
+  const [secondSurname, setSecondSurname] = useState("");
+  const [nationality, setNationality] = useState("");
+  const [phonePrefix, setPhonePrefix] = useState("");
+  const [phone, setPhone] = useState("");
+  const [birthDate, setBirthDate] = useState("");
+  const [gender, setGender] = useState("");
   const [email, setEmail] = useState("");
-  const [address, setaddress] = useState("");
-  const [aboutMe, setaboutMe] = useState("");
-  const [drivinglicense, setdrivinglicense] = useState("");
-  const [hobbies, sethobbies] = useState("");
-  const [digitalSkills, setdigitalSkills] = useState("");
-  const [comunicationSkills, setcomunicationSkills] = useState("");
+  const [address, setAddress] = useState("");
+  const [aboutMe, setAboutMe] = useState("");
+  const [license, setLicense] = useState("");
+  const [hobbies, setHobbies] = useState("");
+  const [digitalSkills, setDigitalSkills] = useState("");
+  const [comunicationSkills, setComunicationSkills] = useState("");
 
   const dispatch = useDispatch();
   const [languagesObtined, setLanguagesObtined] = React.useState([]);
@@ -54,7 +54,7 @@ const handleNext = () => {
         email: email,
         address: address,
         aboutMe: aboutMe,
-        drivinglicense: drivinglicense,
+        license: license,
         hobbies: hobbies,
         digitalSkills: digitalSkills,
         comunicationSkills: comunicationSkills,
@@ -164,7 +164,7 @@ const formik = useFormik({
             type="text"
             {...formik.getFieldProps("firstSurname")}
             value={firstSurname}
-            onChange={(e) => {setfirstSurname(e.target.value)}}
+            onChange={(e) => {setFirstSurname(e.target.value)}}
           />
           {formik.touched.firstSurname && formik.errors.firstSurname ? (
             <p>{formik.errors.firstSurname}</p>
@@ -175,7 +175,7 @@ const formik = useFormik({
             type="text"
             {...formik.getFieldProps("secondSurname")}
             value={secondSurname}
-            onChange={(e) => {setsecondSurname(e.target.value)}}
+            onChange={(e) => {setSecondSurname(e.target.value)}}
           />
           {formik.touched.secondSurname && formik.errors.secondSurname ? (
             <p>{formik.errors.secondSurname}</p>
@@ -186,7 +186,7 @@ const formik = useFormik({
             value={nationality}
             onChange={(event) =>
               formik.setFieldValue("nationality", event.target.value) &&
-              setnationality(event.target.value)
+              setNationality(event.target.value)
             }
           >
             <option label="Select a country" />
@@ -205,7 +205,7 @@ const formik = useFormik({
             type="text"
             {...formik.getFieldProps("phone")}
             value={phone}
-            onChange={(e) => {setphone(e.target.value)}}
+            onChange={(e) => {setPhone(e.target.value)}}
           />
           {formik.touched.phone && formik.errors.phone ? (
             <p>{formik.errors.phone}</p>
@@ -218,7 +218,7 @@ const formik = useFormik({
             value={birthDate}
             onChange={(event) =>{
               formik.setFieldValue("birthDate", event.target.value)
-              setbirthDate(event.target.value)}
+              setBirthDate(event.target.value)}
             }
           />
           {formik.touched.birthDate && formik.errors.birthDate ? (
@@ -234,7 +234,7 @@ const formik = useFormik({
               value="male"
               onChange={(event) =>{
                 formik.setFieldValue("gender", event.target.value)
-                setgender(event.target.value)}
+                setGender(event.target.value)}
               }
             />
             <label for="male">Male</label>
@@ -247,7 +247,7 @@ const formik = useFormik({
               value="female"
               onChange={(event) =>{
                 formik.setFieldValue("gender", event.target.value)
-                setgender(event.target.value)}
+                setGender(event.target.value)}
               }
             />
             <label for="female">Female</label>
@@ -260,7 +260,7 @@ const formik = useFormik({
               value="other"
               onChange={(event) =>{
                 formik.setFieldValue("gender", event.target.value)
-                setgender(event.target.value)}
+                setGender(event.target.value)}
               }
             />
             <label for="other">Other</label>
@@ -285,7 +285,7 @@ const formik = useFormik({
             type="text"
             {...formik.getFieldProps("address")}
             value={address}
-            onChange={(e) => setaddress(e.target.value)}
+            onChange={(e) => setAddress(e.target.value)}
           />
           {formik.touched.address && formik.errors.address ? (
             <p>{formik.errors.address}</p>
@@ -297,7 +297,7 @@ const formik = useFormik({
             type="text"
             {...formik.getFieldProps("aboutMe")}
             value={aboutMe}
-            onChange={(e) => {setaboutMe(e.target.value)}}
+            onChange={(e) => {setAboutMe(e.target.value)}}
           />
           {formik.touched.aboutMe && formik.errors.aboutMe ? (
             <p>{formik.errors.aboutMe}</p>
@@ -305,10 +305,10 @@ const formik = useFormik({
           <br />
           <select
             name="drivingLicense"
-            value={drivinglicense}
+            value={license}
             onChange={(event) =>{
-              formik.setFieldValue("drivingLicense", event.target.value)
-              setdrivinglicense(event.target.value)}
+              formik.setFieldValue("License", event.target.value)
+              setLicense(event.target.value)}
             }
           >
             <option label="Select a driving licence" />
@@ -323,7 +323,7 @@ const formik = useFormik({
             type="text"
             {...formik.getFieldProps("hobbies")}
             value={hobbies}
-            onChange={(e) => {sethobbies(e.target.value)}}
+            onChange={(e) => {setHobbies(e.target.value)}}
           />
           {formik.touched.hobbies && formik.errors.hobbies ? (
             <p>{formik.errors.hobbies}</p>
@@ -336,7 +336,7 @@ const formik = useFormik({
           type="text"
           {...formik.getFieldProps("digitalSkills")}
           value={digitalSkills}
-          onChange={(e) => setdigitalSkills(e.target.value)}
+          onChange={(e) => setDigitalSkills(e.target.value)}
         />
         {formik.touched.digitalSkills && formik.errors.digitalSkills ? (
           <p>{formik.errors.digitalSkills}</p>
@@ -348,7 +348,7 @@ const formik = useFormik({
           type="text"
           {...formik.getFieldProps("comunicationSkills")}
           value={comunicationSkills}
-          onChange={(e) => setcomunicationSkills(e.target.value)}
+          onChange={(e) => setComunicationSkills(e.target.value)}
         />
         {formik.touched.comunicationSkills &&
         formik.errors.comunicationSkills ? (
