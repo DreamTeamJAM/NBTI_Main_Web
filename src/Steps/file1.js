@@ -26,7 +26,8 @@ function File1() {
   const [aboutMe, setaboutMe] = useState("");
   const [drivinglicense, setdrivinglicense] = useState("");
   const [hobbies, sethobbies] = useState("");
-  
+  const [digitalSkills, setdigitalSkills] = useState("");
+  const [comunicationSkills, setcomunicationSkills] = useState("");
 
   const dispatch = useDispatch();
   const [languagesObtined, setLanguagesObtined] = React.useState([]);
@@ -55,7 +56,8 @@ const handleNext = () => {
         aboutMe: aboutMe,
         drivinglicense: drivinglicense,
         hobbies: hobbies,
-        
+        digitalSkills: digitalSkills,
+        comunicationSkills: comunicationSkills,
       })
     );
   };
@@ -328,6 +330,31 @@ const formik = useFormik({
           ) : null}
           <br />
           <br />
+          <label>Digital Skills:</label>
+        <br />
+        <textarea
+          type="text"
+          {...formik.getFieldProps("digitalSkills")}
+          value={digitalSkills}
+          onChange={(e) => setdigitalSkills(e.target.value)}
+        />
+        {formik.touched.digitalSkills && formik.errors.digitalSkills ? (
+          <p>{formik.errors.digitalSkills}</p>
+        ) : null}
+        <br />
+        <label>Comunication Skills:</label>
+        <br />
+        <textarea
+          type="text"
+          {...formik.getFieldProps("comunicationSkills")}
+          value={comunicationSkills}
+          onChange={(e) => setcomunicationSkills(e.target.value)}
+        />
+        {formik.touched.comunicationSkills &&
+        formik.errors.comunicationSkills ? (
+          <p>{formik.errors.comunicationSkills}</p>
+        ) : null}
+        <br />
           <button type="submit" onClick={handleNext}>
             Save
           </button>
