@@ -31,7 +31,7 @@ export const BrochureContent = styled.div`
       Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     font-weight: 400;
     font-size: 1.2em;
-    width: 25vw;
+    width: 30vw;
   }
 
   img {

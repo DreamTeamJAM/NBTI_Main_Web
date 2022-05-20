@@ -27,8 +27,8 @@ function Brochure() {
             </p>
             <hr />
             <DownloadButtonContent>
-              <DownloadButton>Download</DownloadButton>
-              <DownloadButton>Descargar</DownloadButton>
+              <DownloadButton>Download in English</DownloadButton>
+              <DownloadButton>Descargar en Español</DownloadButton>
             </DownloadButtonContent>
           </LeftContent>
         </div>
