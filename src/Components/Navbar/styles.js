@@ -3,17 +3,20 @@ import styled from "styled-components";
 /** Navbar Styles */
 export const Nav = styled.nav`
   width: 100vw;
-  height: 100px;
+  height: 70px;
   top: 0;
   margin: 0;
   padding: 0;
-  background: none;
+  background-color: ${(props) => props.navColorChange};
   display: flex;
   justify-content: space-around;
   align-items: center;
   overflow: hidden;
   position: fixed;
   z-index: 100;
+  transition: all 0.5s ease-in-out;
+  box-shadow: ${(props) =>
+    props.isOnScroll ? "0px 0px 10px rgba(0, 0, 0, 0.1)" : "none"};
 `;
 
 export const NavErasmusImg = styled.img`
@@ -45,11 +48,10 @@ export const Ground = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-
-`
+`;
 
 export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`
+`;

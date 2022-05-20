@@ -1,17 +1,18 @@
 import ImageSlider from "Components/CarsouselSimple";
 import image1 from "../../assets/images/w1.png";
-import image2 from "../../assets/images/chefs-wallpaper.jpg";
+import image2 from "../../assets/images/mountain.jpg";
 import image3 from "../../assets/images/ewee-wallpaper.jpg";
 import image4 from "../../assets/images/it-wallpaper.jpg";
 import image5 from "../../assets/images/ewee-wallpaper.jpg";
 import image6 from "../../assets/images/chefs-wallpaper.jpg";
 import LearnMoreButton from "./../../Components/LearnMoreButton/index";
+import { HomeContainer } from './styles';
+import Brochure from './../../Components/Brochure/index';
 
 export default function Home() {
-  /* var items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] */
 
   return (
-    <div>
+    <HomeContainer>
       <ImageSlider images={[image1, image2, image3, image4, image5, image6]}>
         <div
           style={{
@@ -41,7 +42,7 @@ export default function Home() {
         </div>
         </div>
       </ImageSlider>
-      {/* <Carousel items={items} active={0}/> */}
-    </div>
+      <Brochure />
+    </HomeContainer>
   );
 }

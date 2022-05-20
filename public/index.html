@@ -5,12 +5,10 @@
     <link rel="icon" href="%PUBLIC_URL%/images/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created to test Nbti"
-    />
+    <meta name="description" content="Web site created to test Nbti" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/images/logo.png" />
     <link rel="manifest" href="./manifest.json" />
+    <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet" />
 
     <title>NBTI - NATIONAL BUSINESS TRAINING INSTITUTE</title>
   </head>
@@ -26,6 +24,10 @@
             .catch((err) => console.log("Failure: ", err));
         });
       }
+    </script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
     </script>
   </body>
 </html>

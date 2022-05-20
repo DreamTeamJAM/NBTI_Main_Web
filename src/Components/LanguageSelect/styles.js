@@ -21,6 +21,7 @@ export const LanguageSelect = styled.select`
     padding-bottom: 2px;
     text-overflow: ellipsis;
     white-space: nowrap;
+    outline: none;
 
   option {
     border: solid red 1px;

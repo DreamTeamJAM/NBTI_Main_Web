@@ -10,7 +10,7 @@ export const docDefinition = ({
   email,
   address,
   aboutMe,
-  drivinglicense,
+  license,
   hobbies,
 
   num,
@@ -240,7 +240,7 @@ export const docDefinition = ({
             style: ["quote", "font"],
             text:[
              
-              {text: 'Driving Licence: ', italics: false, fontSize: 14}, ` ${drivinglicense}
+              {text: 'Driving Licence: ', italics: false, fontSize: 14}, ` ${license}
             `,
           ] 
         },
