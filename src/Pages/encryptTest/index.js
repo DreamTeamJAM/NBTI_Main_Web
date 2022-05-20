@@ -3,56 +3,72 @@
 import { useState } from "react";
 import axios from "axios";
 import { getAllUsers } from "services/api/userApi";
+import {uploadFile, downloadFile} from "services/api/fileApi"
+import { Container } from "GlobalStyles";
 
 
 export default function Encrypt() {
 
-    const [file, setFile] = useState("");
+  const [img, setImg] = useState()
+  const user = {
+    id : 1,
+    username : 'manu',
+    password : '1234'
+  };
 
     const onFileChangeHandler = (e) => {
         e.preventDefault();
-       setFile(e.target.files[0]);
-        const formData = new FormData();
-        formData.append('file', file);
-        fetch('http://localhost:8080/api/upload', {
-            method: 'post',
-            body: formData
-        }).then(res => {
-            if(res.ok) {
-                console.log(res.data);
-                alert("File uploaded successfully.")
-            }
-        });
+        console.log(e.target.files)
+       console.log("file: ",e.target.files[0])
+        let formData = new FormData();
+        formData.append('file', e.target.files[0]);
+
+        console.log(formData)
+        uploadFile(user, formData)
+        // fetch('http://localhost:8080/api/upload', {
+        //     method: 'post',
+        //     body: formData
+        // }).then(res => {
+        //     if(res.ok) {
+        //         console.log(res.data);
+        //         
+        //     }
+        // });
     };
 
-    const user = {
-      id : 1,
-      username : 'abcabcz',
-      password : '1234'
-    };
+   const handleDownload =  async () => {
+      const response = await downloadFile(user,14)
+   
+    console.log(response.data)
+    
       
-
-    const fetchUsers = () => {
-    const awsurl = 'https://34vznuxt9f.execute-api.eu-west-1.amazonaws.com/beta/users'
+      setImg(response.data);
      
-     return axios.get(awsurl).then(response => console.log(response.data));
-
-    };
+      console.log(img)
+  //  document.querySelector("#image").src = imageUrl;
+   }
+      
     return (
-      <>
+      <Container>
        <div>
        <label>Upload Your File </label>
-        <input type="file" className="form-control" name="file" onChange={onFileChangeHandler}/>
+        <input type="file" className="form-control" name="file" onChange={(e) => onFileChangeHandler(e)}/>
        </div>
        <div>
          <label>GET Test</label>
          <button onClick = {() => getAllUsers(user)}>
            get Students
          </button>
-
-       </div>
+         </div>
+         <div>
+         <label>GET Test</label>
+         <button onClick = {handleDownload}>
+           get File
+         </button>
+         <img id="image" alt="retrieved" src={`data:image/jpeg;base64, ${img}`}/>
+         </div>
         
-      </>
+      </Container>
     );
   }
 
