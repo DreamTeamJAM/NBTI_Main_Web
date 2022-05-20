@@ -5,8 +5,6 @@ import React, { useEffect } from "react";
 import { postHosting } from "services/api/hostingApi";
 import { defaultFieldValidation, basicFieldValidation, numberFieldValidation } from "services/formValidation";
 import { languages } from "Utils/languages";
-
-import {postHosting} from "services/api/hostingApi";
 import Exit from "../Exit/exit"
 
 function Hosting() {
