@@ -5,10 +5,11 @@ import { useState } from 'react';
 import { Route, Routes } from "react-router-dom";
 import Home from 'Pages/Home';
 import CvPage from 'Pages/CvPage';
-import UpperNavbar from 'Components/UpperNavbar';
 import Enterprise from 'Pages/Enterprise';
 import Hosting from 'Pages/Hosting';
 import Encrypt from 'Pages/encryptTest';
+import Footer from './Components/Footer';
+
 import Login from "./Pages/Login/Login"
 import Register from "./Pages/Register/register"
 
@@ -18,7 +19,6 @@ function App() {
     /** Provider to changes languages */
     <I18Provider locale={locale}>
       <Navbar setLocale={setLocale}/>
-      {/* <UpperNavbar setLocale={setLocale}/>  */}
 
       {/* ROUTES */}
       <Routes>
@@ -31,6 +31,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="*" element={<h1>Error 404</h1>} />
       </Routes>
+      <Footer />
     </I18Provider>
   );
 }
