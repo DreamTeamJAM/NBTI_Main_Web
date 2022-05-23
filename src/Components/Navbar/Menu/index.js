@@ -10,7 +10,7 @@ function HorizontalMenu({ setLocale }) {
       <NavTitleImg src={NbtiLogo} alt="NBTI Logo" />
       <ItemContainer>
         {NavItems.map((item) => {
-          return <Item to={item.link}>{translate(item.text)}</Item>;
+          return <Item key={item.id} to={item.link}>{translate(item.text)}</Item>;
         })}
       </ItemContainer>
       <LanguageSelect setLocale={setLocale} />
