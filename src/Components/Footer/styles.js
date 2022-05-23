@@ -9,6 +9,7 @@ export const FooterContainer = styled.footer`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 
   img {
     width: 12em;
@@ -27,5 +28,19 @@ export const FooterMainContainer = styled.div`
 
 export const FooterHelper = styled.div`
   width: 80vw;
+`
+
+export const CopyContainer = styled.div`
+  width: 80vw;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  flex-direction: column;
+  margin-top: 2.5em;
+`
+
+export const Copyright = styled.p`
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   
 `
