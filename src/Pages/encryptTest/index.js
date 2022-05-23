@@ -7,11 +7,21 @@ import {uploadFile, downloadFile} from "services/api/fileApi"
 import { Container } from "GlobalStyles";
 
 
-export default function Encrypt() {
 
+
+export default function Encrypt() {
+  const [student, setStudent] = useState({});
+  function handleHook(e){
+    const { name, value} = e.target;
+    setStudent(prev => ({...prev, "cosa": {
+      [name]: value
+      
+    }}));
+   console.log(student)
+  }
   const [img, setImg] = useState()
   const user = {
-    id : 1,
+    id : 3,
     username : 'manu',
     password : '1234'
   };
@@ -67,6 +77,8 @@ export default function Encrypt() {
          </button>
          <img id="image" alt="retrieved" src={`data:image/jpeg;base64, ${img}`}/>
          </div>
+         <input name="cosa1" onChange= {handleHook}/>
+         
         
       </Container>
     );

@@ -1,12 +1,13 @@
 import React from "react";
 import { Container } from "GlobalStyles";
-import Steps from "./../../Steps/step"
+// import Steps from "./../../Steps/step"
+import StepController from "registerStudent/stepsController"
 
 function CvPage() {
   return (
     <div>
       <Container>
-        <Steps></Steps>
+        <StepController></StepController>
       </Container>
     </div>
   );
