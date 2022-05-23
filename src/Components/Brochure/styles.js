@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Container } from "GlobalStyles";
 
+
 export const BrochureContainer = styled(Container)`
   margin: 0;
   padding: 2.5em;

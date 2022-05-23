@@ -26,7 +26,7 @@ export const getUserById = async (user) => {
 }
 
 export const logIn = async (user) => {
-    const response = await axios.get(`${BASE_HOST}/login`, {
+    const response = await axios.get(`${BASE_HOST}/logIn`, {
         auth: {
             username: user.username,
             password: user.password

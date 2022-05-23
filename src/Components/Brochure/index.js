@@ -4,10 +4,11 @@ import {
   BrochureSectionTitle,
   BrochureContent,
   DownloadButtonContent,
-  LeftContent,
+  LeftContent
 } from "./styles";
 import BrochureImg from "assets/images/Brochure.png";
 import DownloadButton from "./../DownloadButton/index";
+import { Link } from "react-router-dom";
 
 function Brochure() {
   return (
@@ -27,8 +28,8 @@ function Brochure() {
             </p>
             <hr />
             <DownloadButtonContent>
-              <DownloadButton>Download in English</DownloadButton>
-              <DownloadButton>Descargar en Español</DownloadButton>
+            <Link to="./Brochure/NTBI-Brochure-English.pdf" target="_blank" download><DownloadButton>Download in English</DownloadButton></Link>
+            <Link to="./Brochure/NBTI-Folleto-Espanol.pdf" target="_blank" download><DownloadButton>Descargar en Español</DownloadButton></Link>
             </DownloadButtonContent>
           </LeftContent>
         </div>
