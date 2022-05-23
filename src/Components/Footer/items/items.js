@@ -3,7 +3,7 @@ export const itemsAboutUs = [
   "projects",
   "destinations",
   "students",
-  "hositing",
+  "hosting",
   "companies",
 ];
 

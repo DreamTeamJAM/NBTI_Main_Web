@@ -82,7 +82,6 @@ export const eng = {
         'projects':'Projects',
         'destinations':'Destinations',
         'students':'Students',
-        'hositing':'Hositing',
         'companies':'Companies',
         'legalAdvise':'Legal Advise',
         'privacyPolicies':'Privacy Policies',

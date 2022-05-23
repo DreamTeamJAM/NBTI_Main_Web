@@ -3,8 +3,6 @@ import { FooterTitle, Ul, FooterItem, Li } from "./styles";
 import translate from "i18n/translate";
 
 function FooterList({ title, items }) {
-  console.log("title", title);
-  console.log("items", items);
 
   return (
     <div>
