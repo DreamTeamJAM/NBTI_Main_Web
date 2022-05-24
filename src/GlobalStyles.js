@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import App from "./App";
 
 /** Global Styles */
 export const Container = styled.div`
@@ -42,5 +43,44 @@ export const Button = styled.button`
     background-image: linear-gradient(#5257dc 40%, #181eb2 100%);
     background-color: #181eb2;
     color: #fff;
+  }
+`;
+
+export const InputForm = styled.input`
+  padding: 0.6rem 1rem;
+  outline: none;
+  margin-top: 0.5em;
+`;
+
+export const LabelForm = styled.label`
+  font-size: 0.8em;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+`;
+
+export const FormEnterprise = styled.form`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+`;
+export const SelectEnterprise = styled.select`
+  padding: 0.6rem 1rem;
+  width: 80%;
+  outline: none;
+  margin-top: 0.5em;
+`;
+
+export const FormButton = styled.button`
+  padding: 0.6rem 1rem;
+  outline: none;
+  margin-top: 0.5em;
+  border: 1px solid black;
+  width: 80%;
+  color: #fff;
+  background-color: rgba(23,22,29, 1);
+  transition: all .2s ease-in-out;
+
+  &:hover {
+    background-color: rgba(23,22,29, 0.8 );
   }
 `;

@@ -3,18 +3,38 @@ import { Container } from "GlobalStyles";
 import translate from "i18n/translate";
 import React, { useEffect } from "react";
 import { languages } from "Utils/languages";
-import {postCompany} from "services/api/companyApi";
-import { defaultFieldValidation, basicFieldValidation, numberFieldValidation } from "services/formValidation";
-import Exit from "../Exit/exit"
+import { postCompany } from "services/api/companyApi";
+import {
+  defaultFieldValidation,
+  basicFieldValidation,
+  numberFieldValidation,
+} from "services/formValidation";
+import Exit from "../Exit/exit";
+import {
+  InputForm,
+  LabelForm,
+  FormEnterprise,
+  SelectEnterprise,
+  FormButton,
+} from "./../../GlobalStyles";
+import {
+  EnterpriseContainer,
+  FormTitleDiv,
+  ContainerEnterprise,
+} from "./styles";
 
 function Enterprise() {
   const [languagesObtined, setLanguagesObtined] = React.useState([]);
   const validate = (values) => {
     const errors = {};
 
-    Array.from(["companyName","address","contactPerson","region"]).forEach((s) => defaultFieldValidation(values,errors,s));
-    Array.from(["city", "email"]).forEach((s) => basicFieldValidation(values,errors,s));
-    numberFieldValidation(values,errors,"telephoneNumber");
+    Array.from(["companyName", "address", "contactPerson", "region"]).forEach(
+      (s) => defaultFieldValidation(values, errors, s)
+    );
+    Array.from(["city", "email"]).forEach((s) =>
+      basicFieldValidation(values, errors, s)
+    );
+    numberFieldValidation(values, errors, "telephoneNumber");
 
     return errors;
   };
@@ -35,91 +55,152 @@ function Enterprise() {
       contactPerson: "",
       telephoneNumber: "",
       email: "",
-      region:"",
+      region: "",
     },
     validate,
     onSubmit: (values) => {
       console.log("values", values);
-      postCompany(values)
+      postCompany(values);
     },
   });
 
-
   const [activeStep, setActiveStep] = React.useState(0);
-  
-    const handleNext = () => {
-      setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    };
+
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
 
   return (
-    <div>
+    <Container>
+      <EnterpriseContainer>
+        <FormTitleDiv>
+          <h1>Are you a company that wants to work with us?</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
+            eos quia doloremque, quae, quisquam dolorum quisquam. lorem ipsum
+            dolor sit amet consectetur adipisicing elit. Quisquam eos quia
+            doloremque, quae, quisquam dolorum quisquam.
+          </p>
+        </FormTitleDiv>
         {activeStep < 1 ? (
-          <div>
-          <Container>
-      <form onSubmit={formik.handleSubmit}>
-        <label>{translate("Company Name")}: </label>
-        <input type="text" {...formik.getFieldProps("companyName")} />
-        {formik.touched.companyName && formik.errors.companyName ? (
-          <p>{formik.errors.companyName}</p>
-        ) : null}
-        <br />
-        <select
-          name="slector"
-          onChange={(event) => formik.setFieldValue("city", event.target.value)}
-        >
-          <option value="" label="Select a city" />
-          {languagesObtined.map((language, index) => (  
-            <option key={index} value={language.value} label={language.value} />
-          ))}
-        </select>
-        <br />
-        <label>{translate("Address")}: </label>
-        <input type="text" {...formik.getFieldProps("address")} />
-        {formik.touched.address && formik.errors.address ? (
-          <p>{formik.errors.address}</p>
-        ) : null}
-        <br />
-        <label>{translate("Region")}: </label>
-        <input type="text" {...formik.getFieldProps("region")} />
-        {formik.touched.region && formik.errors.region ? (
-          <p>{formik.errors.region}</p>
-        ) : null}
-        
-        <br />
-        <label>{translate("Contact Person")}: </label>
-        <input type="text" {...formik.getFieldProps("contactPerson")} />
-        {formik.touched.contactPerson && formik.errors.contactPerson ? (
-          <p>{formik.errors.contactPerson}</p>
-        ) : null}
-        <br />
+          <ContainerEnterprise>
+            <h1>ENTERPRISE</h1>
+            <FormEnterprise onSubmit={formik.handleSubmit}>
+              <div>
+                <LabelForm>{translate("Company Name")} </LabelForm>
+                <br />
+                <InputForm
+                  placeholder="Company Name..."
+                  type="text"
+                  {...formik.getFieldProps("companyName")}
+                />
+                {formik.touched.companyName && formik.errors.companyName ? (
+                  <p>{formik.errors.companyName}</p>
+                ) : null}
+              </div>
 
-        <label>{translate("Telephone Number")}: </label>
-        <input type="text" {...formik.getFieldProps("telephoneNumber")} />
-        {formik.touched.telephoneNumber && formik.errors.telephoneNumber ? (
-          <p>{formik.errors.telephoneNumber}</p>
-        ) : null}
-        <br />
+              <div>
+                <LabelForm>{translate("Select a City")} </LabelForm>
+                <br />
+                <SelectEnterprise
+                  name="slector"
+                  onChange={(event) =>
+                    formik.setFieldValue("city", event.target.value)
+                  }
+                >
+                  <option value="" label="Select a city" />
+                  {languagesObtined.map((language, index) => (
+                    <option
+                      key={index}
+                      value={language.value}
+                      label={language.value}
+                    />
+                  ))}
+                </SelectEnterprise>
+              </div>
 
-        <label>{translate("email")}: </label>
-        <input type="email" {...formik.getFieldProps("email")} />
-        {formik.touched.email && formik.errors.email ? (
-          <p>{formik.errors.email}</p>
-        ) : null}
-        <br />
+              <div>
+                <LabelForm>{translate("Address")} </LabelForm>
+                <br />
+                <InputForm
+                  placeholder="Address..."
+                  type="text"
+                  {...formik.getFieldProps("address")}
+                />
+                {formik.touched.address && formik.errors.address ? (
+                  <p>{formik.errors.address}</p>
+                ) : null}
+              </div>
 
-        <button type="submit" onClick={handleNext}>{translate("submit")}</button>
-      </form>
-    </Container>
-          </div>
+              <div>
+                <LabelForm>{translate("Region")} </LabelForm>
+                <br />
+                <InputForm
+                  placeholder="Region..."
+                  type="text"
+                  {...formik.getFieldProps("region")}
+                />
+                {formik.touched.region && formik.errors.region ? (
+                  <p>{formik.errors.region}</p>
+                ) : null}
+              </div>
+
+              <div>
+                <LabelForm>{translate("Contact Person")} </LabelForm>
+                <br />
+                <InputForm
+                  placeholder="Contact Person..."
+                  type="text"
+                  {...formik.getFieldProps("contactPerson")}
+                />
+                {formik.touched.contactPerson && formik.errors.contactPerson ? (
+                  <p>{formik.errors.contactPerson}</p>
+                ) : null}
+              </div>
+
+              <div>
+                <LabelForm>{translate("Telephone Number")} </LabelForm>
+                <br />
+                <InputForm
+                  placeholder="Telephone Number..."
+                  type="text"
+                  {...formik.getFieldProps("telephoneNumber")}
+                />
+                {formik.touched.telephoneNumber &&
+                formik.errors.telephoneNumber ? (
+                  <p>{formik.errors.telephoneNumber}</p>
+                ) : null}
+              </div>
+
+              <div>
+                <LabelForm>{translate("email")} </LabelForm>
+                <br />
+                <InputForm
+                  placeholder="Email..."
+                  type="email"
+                  {...formik.getFieldProps("email")}
+                />
+                {formik.touched.email && formik.errors.email ? (
+                  <p>{formik.errors.email}</p>
+                ) : null}
+              </div>
+
+              <div>
+                <label></label>
+                <br />
+                <FormButton type="submit" onClick={handleNext}>
+                  {translate("submit")}
+                </FormButton>
+              </div>
+            </FormEnterprise>
+          </ContainerEnterprise>
         ) : (
-            <div>
-            
-          <Exit></Exit>
-          
+          <div>
+            <Exit></Exit>
           </div>
         )}
-      </div>
-    
+      </EnterpriseContainer>
+    </Container>
   );
 }
 
