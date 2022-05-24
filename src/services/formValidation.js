@@ -23,3 +23,25 @@ export function defaultFieldValidation(valuesObj, errorObj,field){
       errorObj[field] = "Must be a valid number"
     }
   }
+
+  export function PasswordFieldValidation(valuesObj,errorObj,pass,pass1){
+    
+ let res;
+
+    if (!valuesObj[pass]) {
+      errorObj[pass] = "Required with more 6 character";
+    } else if (valuesObj[pass].length < 6) {
+      errorObj[pass] = "Too Short";
+    }
+    if(valuesObj[pass]!=valuesObj[pass1]){
+      errorObj[pass] = "Must be the same word";
+      res=false
+      console.log(valuesObj)
+      console.log(res)
+    }else if(valuesObj[pass]==valuesObj[pass1]){
+      errorObj[pass] = "same word";
+    res=true
+      console.log(res)
+      
+    }
+  }
