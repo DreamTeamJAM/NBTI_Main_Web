@@ -5,9 +5,7 @@ import {
 export const studentSlice = createSlice({
     name: 'student',
     initialState: {
-        "id": 5,
-        "created": "",
-        "lastUpdated": "",
+        "id": "",
         // "photo": null,
         "name": "",
         "dni": "",
