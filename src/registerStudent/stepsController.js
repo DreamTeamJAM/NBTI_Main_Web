@@ -4,8 +4,12 @@ import React, {
     useState
 } from "react";
 import { Stepper, Step, StepLabel, Button } from "@material-ui/core";
+import Step0 from "./step0";
 import Step1 from "./step1";
 import Step2 from "./step2";
+import Step3 from "./step3";
+import Step4 from "./step4";
+import Step5 from "./step5";
 import { useSelector, useDispatch } from 'react-redux';
 import {
   selectCount,
@@ -30,9 +34,17 @@ export const StepController = () => {
             ))}
           </Stepper>
           {activeStep === 0 ? (    
-                <Step1/>
+                <Step0/>
         ) : activeStep === 1 ? (
+                <Step1/>
+                ) : activeStep === 2 ? (
                 <Step2/>
+                ) : activeStep === 3 ? (
+                <Step3/>
+                ) : activeStep === 4 ? (
+                <Step4/>
+                ) : activeStep === 5 ? (
+                <Step5/>
         ) : null}
           
         </>
