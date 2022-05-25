@@ -3,13 +3,46 @@ import { useFormik } from "formik";
 import { useSelector, useDispatch } from 'react-redux';
 import {increment} from 'redux/stepSlice';
 import {updateStudent, selectStudent} from "redux/studentSlice"
-
+import { defaultFieldValidation, basicFieldValidation, numberFieldValidation } from "services/formValidation";
+import {drivingLicense} from "Utils/drivingLicenses"
+import { languages } from "Utils/languages";
+import {inputGeneration} from "Templates/formGeneration"
 function Step1(){
+  const nationalityOptions = languages.map((language) => ({
+    value: language.name_en,
+    label: language.name_en,
+  }));
+  const drivingOptions = drivingLicense.map((drive) => ({
+    value: drive,
+    label: drive,
+  }));
 
+  const inputs = {
+        "name" : {type: "text"},
+        "dni" : {type: "text"},
+        "city": {type: "text"},
+        "firstSurname": {type: "text"},
+        "secondSurname": {type: "text"},
+        "nationality":{type: "option",
+                      options : nationalityOptions,
+                      validation : "basic"},
+        "phone": {type: "phone",
+                  validation: "number"},
+        "birthDate": {type:"date"},
+        "gender": {type:"radio",
+                  options : ["male", "female", "other"]},
+        "email" : {type:"email"},
+        "address": {type: "text"},
+        "aboutMe": {type: "textarea"},
+        "digitalSkills" : {type: "textarea"},
+        "comunicationSkills" : {type: "textarea"},
+        "drivingLicense" : {type: "option",
+                        options : drivingOptions},
+        "hobbies" : {type: "textarea"},
+}
   const dispatch = useDispatch();
   const student = useSelector(selectStudent)
   const [basicInfo, setBasicInfo] = React.useState(student);
-  console.log(student)
   const updateBasicInfo = (e) => {
       const { name, value } = e.target;
       setBasicInfo(prevState => ({
@@ -18,47 +51,36 @@ function Step1(){
       }));
   };
 
+  
+  const validate = (values) => {
+    const errors = {};
+    
+
+    Array.from(["landlord","address","region","postalCode"]).forEach((s) => defaultFieldValidation(values,errors,s))
+    Array.from(["email", "city"]).forEach((s) => basicFieldValidation(values,errors,s));
+    Array.from(["telephone", "rentPerMonth","deposit"]).forEach((s) => numberFieldValidation(values,errors,s));
+    
+    return errors;
+  };
+  
     const formik = useFormik({
-        initialValues: {
-          name: basicInfo.name,
-          firstSurname: basicInfo.firstSurname
-        },
-        //validate
+        initialValues: basicInfo,
+        validate,
         onSubmit: (values) => {}});
+
+      const inputHtml =inputGeneration(inputs,basicInfo,updateBasicInfo,formik)
+    
     return (
     <>
         <form onSubmit={formik.handleSubmit}>
-              <label>Name:</label>
-              <input
-                type="text"
-                {...formik.getFieldProps("name")}
-                value={basicInfo.name}
-                name = "name"
-                onChange={updateBasicInfo}
-              />
-              {formik.touched.name && formik.errors.name ? (
-                <p>{formik.errors.name}</p>
-              ) : null}
-              <br />
-              <label>First Surname:</label>
-              <input
-                type="text"
-                name ="firstSurname"
-                {...formik.getFieldProps("firstSurname")}
-                value={basicInfo.firstSurname}
-                onChange={updateBasicInfo}
-              />
-              {formik.touched.firstSurname && formik.errors.firstSurname ? (
-                <p>{formik.errors.firstSurname}</p>
-              ) : null}
-              <br />
+
+            {inputHtml}
+              
               </form>
               <button type="submit" onClick={() => {
               dispatch(increment())
               dispatch(updateStudent(basicInfo))
-             
-              //save cosas
-          }} >next</button>
+          }} >Next</button>
               </>
               
     )
