@@ -94,6 +94,10 @@ function iterateElement(element){
                 dispatch(decrement())
                 dispatch(updateStudent(values))
           }} >back</button>
+          <button type="submit" onClick={() => {
+              dispatch(increment())
+              //save cosas
+          }} >next</button>
         </Form>
       )}
     </Formik>
