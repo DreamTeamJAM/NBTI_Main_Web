@@ -8,12 +8,35 @@ import {
 } from 'redux/stepSlice';
 import { updateStudent,selectStudent } from 'redux/studentSlice';
 import {ArrayInput} from "Templates/inputComponent"
-
+import { languages } from "Utils/languages";
+import { useFormik } from "formik";
+import {inputGeneration} from "Templates/formGeneration"
 
 const Step2 = () => {
+  const nationalityOptions = languages.map((language) => ({
+    value: language.name_en,
+    label: language.name_en,
+  }));
+const inputs={
+  workExperience:{
+    type:"array",
+    children:{
+      "title": {type:"text"},
+    "startDate":{type:"date"},
+    "endDate":{type:"date"},
+    "country":{type: "option",
+                      options : nationalityOptions,
+                      validation : "basic"},
+     "city": {type:"text"},
+     "company": {type:"text"},
+     "tasks": {type:"textarea"},
+    }
+}
+}
+
   const dispatch = useDispatch();
   const student = useSelector(selectStudent);
-    
+  const [workExperience,setWorkExperience]= React.useState(student)  
     const initialValues = student.workExperience.length > 0 ?
      {workExperience: student.workExperience} : {
       workExperience: [
@@ -23,6 +46,13 @@ const Step2 = () => {
         },
       ],
     };
+    const updateBasicInfo = (e) => {
+      const { name, value } = e.target;
+      setWorkExperience(prevState => ({
+          ...prevState,
+          [name]: value
+      }));
+  };
 
 function iterateElement(element){
   const elementHtml = []
@@ -40,68 +70,31 @@ function iterateElement(element){
   return elementHtml
 }
 
-
+const formik = useFormik({
+  initialValues: initialValues,
+  //validate,
+  onSubmit: (values) => {}});
+  const inputHtml =inputGeneration(inputs,workExperience,updateBasicInfo,formik)
   return (
-  <div>
+  <>
     
-    <Formik
-      initialValues={initialValues}
-      onSubmit={async (values) => {
-        await new Promise((r) => setTimeout(r, 500));
-        alert(JSON.stringify(values, null, 2));
-      }}
-    >
-      {({ values }) => (
-        <Form>
-          <ArrayInput
-          values={values}
-          label="workExperience"
-          ></ArrayInput>
-          {/* <h1>Work Experience</h1>
-          <FieldArray name="workExperience">
-            {({ insert, remove, push }) => (
-              <div>
-                {values.workExperience.length > 0 &&
-                  values.workExperience.map((workExperience, index) => (
-                    <div className="row" key={index}>
-                      {iterateElement(workExperience)}
-                      <div className="col">
-                        <button
-                          type="button"
-                          className="secondary"
-                          onClick={() => remove(index)}
-                        >
-                          X
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                <button
-                  type="button"
-                  className="secondary"
-                  onClick={() => push({ title: '', startDate: '' })}
-                >
-                  Add Friend
-                </button>
-              </div>
-            )}
-          </FieldArray> */}
-          <button type="submit" onClick={() => {
-              dispatch(increment())
-              //save cosas
-          }} >next</button>
+    <form onSubmit={formik.handleSubmit}>
+
+{inputHtml}
+  
+  </form>
+         
           <button type="submit" onClick={(e) => {
                 dispatch(decrement())
-                dispatch(updateStudent(values))
-          }} >back</button>
+                dispatch(updateStudent(workExperience))
+          }} >Back</button>
           <button type="submit" onClick={() => {
               dispatch(increment())
-              //save cosas
-          }} >next</button>
-        </Form>
-      )}
-    </Formik>
-  </div>
+              dispatch(updateStudent(workExperience))
+          }} >Next</button>
+      
+   
+  </>
 )};
 
 export default Step2;

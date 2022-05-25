@@ -3,6 +3,7 @@ import Select from "react-select";
 import { phonePrefixes } from "Utils/phonePrefixes";
 import { useReducer, useEffect } from "react";
 import { Formik, Field, Form, ErrorMessage, FieldArray } from "formik";
+import {inputGeneration} from "Templates/formGeneration"
 
 function prettify(text) {
   var result = text.replace(/([A-Z])/g, " $1");
@@ -135,7 +136,7 @@ export function RadioInput(props) {
           onChange={props.onChange}
           checked={opt === props.value}
         />
-        <label for={opt}>{prettify(opt)}</label>
+        <label htmlFor={opt}>{prettify(opt)}</label>
       </div>
     );
   });
@@ -152,50 +153,41 @@ export function RadioInput(props) {
 }
 
 export function ArrayInput(props) {
-  const values = props.values;
-  console.log("values", values[props.label]);
+  console.log("values", props.values);
+  let values = [...props.values];
+  const inputList = props.inputList
+  
+  let emptyChild = {}
+  for (const [key, input] of Object.entries(inputList)) {
+    emptyChild[key] = "";
+  }
+  const subOnChange = (e,index) =>{
+    const {name, value} = e.target;
+    values[index][name] = value;
+    props.onChange({target:{
+      name: props.label,
+      value: values
+    }})
+  }
   return (
     <>
       <h1>{prettify(props.label)}</h1>
-      <FieldArray name={props.label}>
-        {({ remove, push }) => (
           <div>
-            {values[props.label].length > 0 &&
-              values[props.label].map((element, index) => (
+            {values.length > 0 &&
+              values.map((element, index) => (
                 <div className="row" key={index}>
-                  <div className="col">
-                    <label htmlFor={`${props.label}.${index}.title`}>
-                      Title
-                    </label>
-                    <Field
-                      name={`${props.label}.${index}.title`}
-                      type="text"
-                    />
-                    <ErrorMessage
-                      name={`${props.label}.${index}.title`}
-                      component="div"
-                      className="field-error"
-                    />
-                  </div>
-                  <div className="col">
-                    <label htmlFor={`workExperience.${index}.startDate`}>
-                      Start Date
-                    </label>
-                    <Field
-                      name={`workExperience.${index}.startDate`}
-                      type="date"
-                    />
-                    <ErrorMessage
-                      name={`workExperience.${index}.startDate`}
-                      component="div"
-                      className="field-error"
-                    />
-                  </div>
+                  {inputGeneration(inputList,values[index],(e) => subOnChange(e,index),props.formik)}
+                  
                   <div className="col">
                     <button
                       type="button"
                       className="secondary"
-                      onClick={() => remove(index)}
+                      onClick={() =>{
+                        values.splice(index,1)
+                        props.onChange({target: {
+                        name: props.label,
+                        value: [...values]
+                      }}) }}
                     >
                       X
                     </button>
@@ -205,13 +197,14 @@ export function ArrayInput(props) {
             <button
               type="button"
               className="secondary"
-              onClick={() => push({ title: "", startDate: "" })}
+              onClick={() => { props.onChange({target: {
+                name: props.label,
+                value: [...props.values,emptyChild]
+              }}) }}
             >
-              Add Friend
+              Add {prettify(props.label)}
             </button>
           </div>
-        )}
-      </FieldArray>
     </>
   );
 }

@@ -1,4 +1,4 @@
-export const lvllanguage = [
+export const levelLanguage = [
     
     "A1",
     "A2",
