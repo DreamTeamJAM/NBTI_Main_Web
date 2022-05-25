@@ -9,8 +9,8 @@ function FooterList({ title, items }) {
       <Ul>
         <FooterTitle> {translate(title)} </FooterTitle>
         {items.map((item, index) => (
-          <Li>
-            <FooterItem key={index} to={item}>
+          <Li key={index}>
+            <FooterItem to={item}>
               {translate(item)}
             </FooterItem>
           </Li>
