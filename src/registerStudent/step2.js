@@ -11,9 +11,8 @@ import {ArrayInput} from "Templates/inputComponent"
 
 
 const Step2 = () => {
-
-    const dispatch = useDispatch();
-    const student = useSelector(selectStudent)
+  const dispatch = useDispatch();
+  const student = useSelector(selectStudent);
     
     const initialValues = student.workExperience.length > 0 ?
      {workExperience: student.workExperience} : {
@@ -101,4 +100,4 @@ function iterateElement(element){
   </div>
 )};
 
-export default Step2
+export default Step2;

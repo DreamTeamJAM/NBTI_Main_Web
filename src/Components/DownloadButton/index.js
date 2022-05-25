@@ -4,10 +4,10 @@ import "./styles.css";
 function DownloadButton({ children }) {
   return (
     <>
-      <button class="button">
-        <span class="button_lg">
-          <span class="button_sl"></span>
-          <span class="button_text"> {children} </span>
+      <button className="button">
+        <span className="button_lg">
+          <span className="button_sl"></span>
+          <span className="button_text"> {children} </span>
         </span>
       </button>
     </>
