@@ -1,7 +1,7 @@
 import React from "react";
 import { useFormik } from "formik";
 import { useSelector, useDispatch } from 'react-redux';
-import {increment} from 'redux/stepSlice';
+import {increment,decrement} from 'redux/stepSlice';
 import {updateStudent, selectStudent} from "redux/studentSlice"
 import { defaultFieldValidation, basicFieldValidation, numberFieldValidation } from "services/formValidation";
 import {drivingLicense} from "Utils/drivingLicenses"
@@ -77,6 +77,10 @@ function Step1(){
             {inputHtml}
               
               </form>
+              <button type="submit" onClick={(e) => {
+                dispatch(decrement())
+                dispatch(updateStudent(basicInfo))
+          }} >Back</button>
               <button type="submit" onClick={() => {
               dispatch(increment())
               dispatch(updateStudent(basicInfo))
