@@ -23,7 +23,7 @@ export const FooterMainContainer = styled.div`
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 0px 0px;
   width: 80vw;
-  margin-left: 6em;
+  margin-left: 0em;
 `;
 
 export const FooterHelper = styled.div`

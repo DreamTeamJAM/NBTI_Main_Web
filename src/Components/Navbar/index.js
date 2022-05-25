@@ -31,7 +31,7 @@ export default function Navbar({ setLocale }) {
   return (
     <ThemeProvider theme={theme}>
       <Nav
-        navColorChange={colorChange === false ? "none" : "rgb(217,232,239, 1)"}
+        navColorChange={colorChange === false ? "none" : "rgb(184,222,240, 1)"}
         isOnScroll={colorChange}
       >
         {/* <div ref={node}>
@@ -45,11 +45,11 @@ export default function Navbar({ setLocale }) {
         <ButtonContainer>
           <LoginButton
             to={`/login`}
-            bgcolor="#D9E8EF"
+            bgcolor="#b8def0"
             color="#181eb3"
             txcolor="white"
             hoverbgcolor="#181eb3"
-            hovercolor="#D9E8EF"
+            hovercolor="#b8def0"
           >
             Login
           </LoginButton>
@@ -58,7 +58,7 @@ export default function Navbar({ setLocale }) {
             bgcolor="#181eb3"
             color="white"
             txcolor="white"
-            hoverbgcolor="#D9E8EF"
+            hoverbgcolor="#b8def0"
             hovercolor="#181eb3"
           >
             Register
