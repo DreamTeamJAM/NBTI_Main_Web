@@ -7,7 +7,7 @@ import {
   setToAmount,
 } from 'redux/stepSlice';
 import { updateStudent,selectStudent } from 'redux/studentSlice';
-
+import {ArrayInput} from "Templates/inputComponent"
 
 
 const Step2 = () => {
@@ -15,18 +15,36 @@ const Step2 = () => {
     const dispatch = useDispatch();
     const student = useSelector(selectStudent)
     
-    const initialValues = student.work.length > 0 ?
-     {work: student.work} : {
-      work: [
+    const initialValues = student.workExperience.length > 0 ?
+     {workExperience: student.workExperience} : {
+      workExperience: [
         {
           title: '',
           startDate: '',
         },
       ],
     };
+
+function iterateElement(element){
+  const elementHtml = []
+  for (const [key, input] of Object.entries(element)) {
+    let currentInput = (<>
+      <label>{key}</label>
+          <Field
+              name={key}
+              type="text"
+                        />
+                        </>
+    );
+    elementHtml.push(currentInput);
+  }
+  return elementHtml
+}
+
+
   return (
   <div>
-    <h1>Work Experience</h1>
+    
     <Formik
       initialValues={initialValues}
       onSubmit={async (values) => {
@@ -36,36 +54,18 @@ const Step2 = () => {
     >
       {({ values }) => (
         <Form>
-          <FieldArray name="work">
+          <ArrayInput
+          values={values}
+          label="workExperience"
+          ></ArrayInput>
+          {/* <h1>Work Experience</h1>
+          <FieldArray name="workExperience">
             {({ insert, remove, push }) => (
               <div>
-                {values.work.length > 0 &&
-                  values.work.map((work, index) => (
+                {values.workExperience.length > 0 &&
+                  values.workExperience.map((workExperience, index) => (
                     <div className="row" key={index}>
-                      <div className="col">
-                        <label htmlFor={`work.${index}.title`}>Title</label>
-                        <Field
-                          name={`work.${index}.title`}
-                          type="text"
-                        />
-                        <ErrorMessage
-                          name={`work.${index}.title`}
-                          component="div"
-                          className="field-error"
-                        />
-                      </div>
-                      <div className="col">
-                        <label htmlFor={`friends.${index}.startDate`}>Start Date</label>
-                        <Field
-                          name={`work.${index}.startDate`}
-                          type="date"
-                        />
-                        <ErrorMessage
-                          name={`work.${index}.startDate`}
-                          component="div"
-                          className="field-error"
-                        />
-                      </div>
+                      {iterateElement(workExperience)}
                       <div className="col">
                         <button
                           type="button"
@@ -86,11 +86,11 @@ const Step2 = () => {
                 </button>
               </div>
             )}
-          </FieldArray>
-          {/* <button type="submit" onClick={() => {
+          </FieldArray> */}
+          <button type="submit" onClick={() => {
               dispatch(increment())
               //save cosas
-          }} >next</button> */}
+          }} >next</button>
           <button type="submit" onClick={(e) => {
                 dispatch(decrement())
                 dispatch(updateStudent(values))
