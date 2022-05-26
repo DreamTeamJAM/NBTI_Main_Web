@@ -1,63 +1,109 @@
-export const docDefinition = ({
-  name,
-  firstSurname,
-  secondSurname,
-  nationality,
-  phonePrefix,
-  phone,
-  birthDate,
-  gender,
-  email,
-  address,
-  aboutMe,
-  license,
-  hobbies,
+export const docDefinition = (st) => {
+const workArray= st.workExperience.map((value,index)=>{
+  return(
+    {
+      style: ["quote", "font"],
+      text:[
+         `
+         ${value.title}.
+      `,
+      
 
-  num,
-  calle,
-  cod_postal,
-  ciudad,
-  pais,
-  
-      title,
-      startDate,
-      endDate,
-      countrys,
-      citys,
-      center ,
-      fieldsOfStudy,
-  
-    
-      titleWork ,
-      startDateWork ,
-      endDateWork ,
-      countryWork ,
-      cityWork ,
-      companyWork ,
-      tasksWork ,
-    
-  
-      tongue,
-    
- 
-      language,
-      listening,
-      reading,
-      writting,
-      produc,
-      interac,
- 
-  digitalSkills,
-  comunicationSkills,
+      `${value.company} [${value.startDate}]  [${value.endDate}]
+      
+      `,
+      {text: 'City: ', italics: false, fontSize: 14}, ` ${value.city}
+      `,
+      {text: 'Country: ', italics: false, fontSize: 14}, ` ${value.country},
+      `,
+      `${value.tasks}
+            
+      `,
+      ]
+    }
+  )
+})
+const educationArray= st.education.map((value,index)=>{
+  return(
+    {
+      style: ["quote", "font"],
+      text:[
+         `
+         ${value.title}.
+      `,
+      
 
-      enterpriseVolun,
-      placeVolun,
-      startDateVolun,
-      endDateVolun,
-      descriptionVolun,
-  
-  }) => {
+      `${value.center} [${value.startDate}]  [${value.endDate}]
+      
+      `,
+      {text: 'City: ', italics: false, fontSize: 14}, ` ${value.city}
+      `,
+      {text: 'Country: ', italics: false, fontSize: 14}, ` ${value.country},
+      `,
+      `${value.fieldsOfStudy}
+            
+      `,
+      ]
+    }
+  )
+})
+
+const languageArray= st. otherLanguages.map((value,index)=>{
+  return(
+    {
+      style: ["quote", "font"],
+      text:[ 
+      {text: 'Other language(s):', italics: false, fontSize: 14}, 
+      
+      `${value.languageName}
+      
+      `,
+      
+      {text: 'LISTENING:', italics: false, fontSize: 14}, ` ${value.listening} 
+      
+      `,
+      {text: 'READING:', italics: false, fontSize: 14}, ` ${value.reading}
+      
+      `,
+      {text: 'WRITING:', italics: false, fontSize: 14}, ` ${value.writing}
+      
+      `,
+      {text: 'SPOKEN PRODUCTION:', italics: false, fontSize: 14}, ` ${value.spokenProduction}
+      
+      `,
+      {text: 'SPOKEN INTERACTION:', italics: false, fontSize: 14}, `  ${value.spokenInteraction}
+      
+      `,
+      
+    ]
+    }
+  )
+})
+const volunteeringArray= st.volunteering.map((value,index)=>{
+  return(
+    {
+      style: ["quote", "font"],
+      text:[ `
+          
+          ${value.title}.
+          `,
+          `[${value.startDate}] [${value.endDate}]
+         
+          `,
+          {text: 'Place:', italics: false, fontSize: 14}, ` ${value.country},
+         
+          `,
+          {text: 'Description:', italics: false, fontSize: 14}, ` ${value.Description}
+          `,
+          
+
+        ]
+    }
+  )
+})
     const nbti = {
+
+
       content: [
         {
           alignment: "justify",
@@ -75,21 +121,21 @@ export const docDefinition = ({
            
           
           text:[
-            `${name} ${firstSurname} ${secondSurname}
+            `${st.name} ${st.firstSurname} ${st.secondSurname}
             `, 
-            {text: 'Nationality: ', italics: false, fontSize: 14}, ` ${nationality}
+            {text: 'Nationality: ', italics: false, fontSize: 14}, ` ${st.nationality}
             `,
-            {text: 'Telephone:', italics: false, fontSize: 14}, ` ${phonePrefix} ${phone}
+            {text: 'Telephone:', italics: false, fontSize: 14}, ` ${st.fullPhone}
             `,
-            {text: 'Date of birth:', italics: false, fontSize: 14}, ` ${birthDate}
+            {text: 'Date of birth:', italics: false, fontSize: 14}, ` ${st.birthDate}
             `,
-            {text: 'Gender:', italics: false, fontSize: 14}, ` ${gender}
+            {text: 'Gender:', italics: false, fontSize: 14}, ` ${st.gender}
             `,
-            {text: 'Email address:', italics: false, fontSize: 14}, ` ${email}
+            {text: 'Email address:', italics: false, fontSize: 14}, ` ${st.email}
             `,
-            {text: 'Addres: ', italics: false, fontSize: 14}, `${address} ${num},${calle},${cod_postal} 
-            ${ciudad}(${pais})
+            {text: 'Addres: ', italics: false, fontSize: 14}, `${st.address} 
             `,
+            
           ],
               
             },
@@ -109,7 +155,7 @@ export const docDefinition = ({
         },
         {
           text: `
-          ${aboutMe}
+          ${st.aboutMe}
           
           `,
           style: ["quote", "font"],
@@ -118,103 +164,37 @@ export const docDefinition = ({
           text: "WORK EXPERIENCE                                                                                                     ",
         style: "subheader",
       },
-        {
-          style: ["quote", "font"],
-          text:[
-             `
-             ${titleWork}.
-          `,
-          
-  
-          `${companyWork} [${startDateWork}]  [${endDateWork}]
-          
-          `,
-          {text: 'City: ', italics: false, fontSize: 14}, ` ${cityWork}
-          `,
-          {text: 'Country: ', italics: false, fontSize: 14}, ` ${countryWork},
-          `,
-
-          ]
-        },
-        {
-          ul: [
-            `${tasksWork}
-            
-            `,
-          ],
-        },
+        
+          ...workArray,
+        
         {
           text: "EDUCATION AND TRAINING                                                                                      ",
         style: "subheader",
       },
-        {
-          style: ["quote", "font"],
-          text:[ `
-          ${title}.
-          `,
-          `${center} [${startDate}] [${endDate}]
-         
-          `,
-          {text: 'City:', italics: false, fontSize: 14}, ` ${citys},
-          `,
-          {text: 'Country:', italics: false, fontSize: 14}, ` ${countrys}
-          `,
-          {text: 'Field(s) of study:', italics: false, fontSize: 14}, ` 
-          `,
-           
-
-        ]
-          
-        },
-        {
-          ul: [
-            `${fieldsOfStudy}
-            
-            `,
-          ],
-          pageBreak: "after",
-        },
+      ...educationArray,
         {
           text: "LANGUAGE SKILLS                                                                                                      ",
         style: "subheader",
         
       },
-        {style: ["quote", "font"],
+      {
+        style: ["quote", "font"],
         text:[ 
+            
+          {text: 'Mother tongue(s):', italics: false, fontSize: 14}, ` ${st.motherTongues}
+        `,
+        ]
+      },
           
-          {text: 'Mother tongue(s):', italics: false, fontSize: 14}, ` ${tongue} |.,
-        `,
-        {text: 'Other language(s):', italics: false, fontSize: 14}, 
+          ...languageArray,
         
-        `${language}
-        
-        `,
-        
-        {text: 'LISTENING:', italics: false, fontSize: 14}, ` ${listening} 
-        
-        `,
-        {text: 'READING:', italics: false, fontSize: 14}, ` ${reading}
-        
-        `,
-        {text: 'WRITING:', italics: false, fontSize: 14}, ` ${writting}
-        
-        `,
-        {text: 'SPOKEN PRODUCTION:', italics: false, fontSize: 14}, ` ${produc}
-        
-        `,
-        {text: 'SPOKEN INTERACTION:', italics: false, fontSize: 14}, `  ${interac}
-        
-        `,
-        
-      ]
-        },
         {
           text: "DIGITAL SKILLS                                                                                                            ",
         style: "subheader",
       },
         {
           text: `
-          ${digitalSkills}
+          ${st.digitalSkills}
   
           `,
   
@@ -226,7 +206,7 @@ export const docDefinition = ({
       },
         {
           ul: [
-            `${comunicationSkills}
+            `${st.comunicationSkills}
   
             `,
           ],
@@ -240,7 +220,7 @@ export const docDefinition = ({
             style: ["quote", "font"],
             text:[
              
-              {text: 'Driving Licence: ', italics: false, fontSize: 14}, ` ${license}
+              {text: 'Driving Licence: ', italics: false, fontSize: 14}, ` ${st.drivingLicense}
             `,
           ] 
         },
@@ -251,7 +231,7 @@ export const docDefinition = ({
   
         {
           ul: [
-            `${hobbies}
+            `${st.hobbies}
             
             
             `,
@@ -261,25 +241,7 @@ export const docDefinition = ({
           text: "VOLUNTEERING                                                                                              ",
           style: "subheader",
         },
-        {
-          
-          style: ["quote", "font"],
-          text:[ `
-          
-          ${enterpriseVolun}.
-          `,
-          `[${startDateVolun}] [${endDateVolun}]
-         
-          `,
-          {text: 'Place:', italics: false, fontSize: 14}, ` ${placeVolun},
-          `,
-          {text: 'Description:', italics: false, fontSize: 14}, ` ${descriptionVolun}
-          `,
-          
-
-        ]
-          
-        },
+        ...volunteeringArray,
       ],
       styles: {
         header: {

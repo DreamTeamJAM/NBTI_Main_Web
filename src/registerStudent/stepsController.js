@@ -14,6 +14,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   selectCount,
 } from 'redux/stepSlice';
+import PdfButton from "Pages/Exit/pdf_button"
 
 export function GetSteps() {
     return ["Account Info", "Personal Info", "Work Experience", "Education & Training", "Language Skills", "Volunteering" ];
@@ -45,6 +46,8 @@ export const StepController = () => {
                 <Step4/>
                 ) : activeStep === 5 ? (
                 <Step5/>
+                ) : activeStep === 6 ? (
+                  <PdfButton></PdfButton>
         ) : null}
           
         </>

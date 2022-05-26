@@ -11,6 +11,7 @@ export function Step4() {
     otherLanguages: {
       type: "array",
       children: {
+        languageName:{ type: "text" },
         listening: {
           type: "option",
           options: levelOptions,
