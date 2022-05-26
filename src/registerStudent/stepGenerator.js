@@ -7,29 +7,33 @@ import {
 import { updateStudent,selectStudent } from 'redux/studentSlice';
 import { useFormik } from "formik";
 import {inputGeneration} from "Templates/formGeneration"
+import { validationHandler } from "services/formValidation";
+
 
 const StepGenerator = (props) => {
  
-const inputs=props.inputMap
+  const inputs=props.inputMap
 
   const dispatch = useDispatch();
   const student = useSelector(selectStudent);
-  const [workExperience,setWorkExperience]= React.useState(student)  
+  const [formInfo,setFormInfo]= React.useState(student)  
 
     const updateBasicInfo = (e) => {
       const { name, value } = e.target;
-      setWorkExperience(prevState => ({
+      setFormInfo(prevState => ({
           ...prevState,
           [name]: value
       }));
   };
 
 
+  const validate = (values) => validationHandler(formInfo,inputs);
+
 const formik = useFormik({
   initialValues: student,
-  //validate,
+  validate,
   onSubmit: (values) => {}});
-  const inputHtml =inputGeneration(inputs,workExperience,updateBasicInfo,formik)
+  const inputHtml =inputGeneration(inputs,formInfo,updateBasicInfo,formik)
   return (
   <>
     
@@ -41,11 +45,11 @@ const formik = useFormik({
          
           <button type="submit" onClick={() => {
                 dispatch(decrement())
-                dispatch(updateStudent(workExperience))
+                dispatch(updateStudent(formInfo))
           }} >Back</button>
           <button type="submit" onClick={() => {
               dispatch(increment())
-              dispatch(updateStudent(workExperience))
+              dispatch(updateStudent(formInfo))
           }} >Next</button>
       
    
