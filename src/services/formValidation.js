@@ -69,12 +69,14 @@ export function validationHandler(values, inputMap) {
         default:
           defaultFieldValidation(values, errors, key);
       }
-    } else if ("children" in input) {
-      errors = {
-        ...errors,
-        ...validationHandler(values[key], input.children)
-      }
     }
+    //  else if ("children" in input) {
+    //   const childrenErrors = {...validationHandler(values[key], input.children)}
+    //   errors = {
+    //     ...errors,
+    //     [key] : childrenErrors
+    //   }
+    // }
   }
   console.log("errors", errors)
   return errors;

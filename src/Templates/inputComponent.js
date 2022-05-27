@@ -2,7 +2,8 @@ import "react-tagsinput/react-tagsinput.css";
 import Select from "react-select";
 import { phonePrefixes } from "Utils/phonePrefixes";
 import { useReducer, useEffect } from "react";
-import { Formik, Field, Form, ErrorMessage, FieldArray } from "formik";
+import { useFormik } from "formik";
+import { validationHandler } from "services/formValidation";
 import {inputGeneration} from "Templates/formGeneration"
 
 function prettify(text) {
@@ -157,7 +158,16 @@ export function RadioInput(props) {
 export function ArrayInput(props) {
   let values = [...props.values];
   const inputList = props.inputList
-  
+  const formik = [];
+ for (let i = 0; i <10; i++){
+  const validate = () => validationHandler(values[i],inputList)
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  formik.push(useFormik({
+    initialValues: {...values[i]},
+    validate,
+    onSubmit: (values) => {}}));
+ };
+
   let emptyChild = {}
   for (const [key, input] of Object.entries(inputList)) {
     emptyChild[key] = "";
@@ -170,35 +180,41 @@ export function ArrayInput(props) {
       value: values
     }})
   }
+
+
+  const formArray = values.map((element, index) => {
+   
+    return (<div className="row" key={index}>
+      {inputGeneration(inputList,props.values[index],(e) => subOnChange(e,index),formik[index])}
+      
+      <div className="col">
+        <button
+          type="button"
+          className="secondary"
+          onClick={() =>{
+            values.splice(index,1)
+            props.onChange({target: {
+            name: props.label,
+            value: [...values]
+          }}) }}
+        >
+          X
+        </button>
+      </div>
+    </div>
+  )})
+
+
   return (
     <>
       <h1>{prettify(props.label)}</h1>
           <div>
-            {values.length > 0 &&
-              values.map((element, index) => (
-                <div className="row" key={index}>
-                  {inputGeneration(inputList,props.values[index],(e) => subOnChange(e,index),props.formik)}
-                  
-                  <div className="col">
-                    <button
-                      type="button"
-                      className="secondary"
-                      onClick={() =>{
-                        values.splice(index,1)
-                        props.onChange({target: {
-                        name: props.label,
-                        value: [...values]
-                      }}) }}
-                    >
-                      X
-                    </button>
-                  </div>
-                </div>
-              ))}
+            {formArray}
             <button
               type="button"
               className="secondary"
-              onClick={() => { props.onChange({target: {
+              onClick={() => {values.length < 10 &&
+                 props.onChange({target: {
                 name: props.label,
                 value: [...props.values,emptyChild]
               }}) }}
