@@ -24,7 +24,7 @@ export const StepController = () => {
 
     const steps = GetSteps();
     const activeStep = useSelector(selectCount)
-   
+    const dispatch = useDispatch();
     return (
         <>
           <Stepper activeStep={activeStep} alternativeLabel>
@@ -47,7 +47,7 @@ export const StepController = () => {
                 ) : activeStep === 5 ? (
                 <Step5/>
                 ) : activeStep === 6 ? (
-                  <PdfButton></PdfButton>
+                 <PdfButton></PdfButton>
         ) : null}
           
         </>

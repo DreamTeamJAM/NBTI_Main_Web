@@ -10,7 +10,7 @@ function PdfButton() {
   const student = useSelector(selectStudent);
   function make()
   {
-    pdfMake.createPdf(docDefinition({ ...student })).open();
+    pdfMake.createPdf(docDefinition({ ...student })).download();
   }
   return (
     <>
@@ -22,7 +22,7 @@ function PdfButton() {
     </div>
    
   </div>
-  <button onClick={()=> {make()}}>Descargar pdf</button>
+  <button onClick={()=> {make()}}>Descargar Pdf</button>
   <br/>
   <button>Moverse al perfil</button>
   

@@ -26,7 +26,7 @@ function Step1(){
                   validation: "number"},
         "birthDate": {type:"date", validation: "basic"},
         "gender": {type:"radio",
-                  options : ["male", "female", "other"],
+                  options : ["Male", "Female", "Other"],
                   validation: "basic"},
         "email" : {type:"email", validation: "email"},
         "address": {type: "text",validation: "text"},
