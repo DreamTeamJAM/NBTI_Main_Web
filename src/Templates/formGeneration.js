@@ -3,7 +3,7 @@ import {PhoneInput,ArrayInput, TextInput, RadioInput, OptionInput, AreaInput} fr
 
 export function inputGeneration (inputs,values,onChange,formik){
     const inputHtml = []
-
+  console.log(formik)
     for (const [key, input] of Object.entries(inputs)) {
       let currentInput;
       switch (input.type) {

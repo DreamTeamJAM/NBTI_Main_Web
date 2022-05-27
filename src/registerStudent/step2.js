@@ -10,15 +10,18 @@ export function Step2() {
     workExperience:{
       type:"array",
       children:{
-        "title": {type:"text"},
+        "title": {type:"text",
+          "validation":"text"},
       "startDate":{type:"date"},
       "endDate":{type:"date"},
       "country":{type: "option",
                         options : nationalityOptions,
                         validation : "basic"},
-       "city": {type:"text"},
-       "company": {type:"text"},
-       "tasks": {type:"textarea"},
+       "city": {type:"text",
+               "validation":"text"},
+       "company": {type:"text",
+                  validation:"text"},
+       "tasks": {type:"textarea", validation: "text"}
       }
   }
   }
