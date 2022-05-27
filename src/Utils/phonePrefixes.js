@@ -1,4 +1,13 @@
-export const phonePrefixes = [{
+export const phonePrefixes = [
+    {
+        dial_code: "Select",
+    },
+    {
+        name: "Spain",
+        dial_code: "+34",
+        code: "ES"
+    },
+    {
         name: "Afghanistan",
         dial_code: "+93",
         code: "AF"
@@ -1012,11 +1021,6 @@ export const phonePrefixes = [{
         name: "South Georgia and the South Sandwich Islands",
         dial_code: "+500",
         code: "GS"
-    },
-    {
-        name: "Spain",
-        dial_code: "+34",
-        code: "ES"
     },
     {
         name: "Sri Lanka",
