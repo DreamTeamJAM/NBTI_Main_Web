@@ -19,6 +19,7 @@ export function TextInput(props) {
     <>
       <label>{prettify(props.label)}:</label>
       <input
+       {...props.formik.getFieldProps(props.label)}
         type={finalType}
         value={props.value}
         name={props.label}
@@ -61,7 +62,6 @@ export function PhoneInput(props) {
         value: phoneState.fullPhone,
       },
     });
-    console.log("prefix", phoneState);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phoneState]);
 
@@ -79,6 +79,7 @@ export function PhoneInput(props) {
         ))}
       </select>
       <input
+      {...props.formik.getFieldProps(props.label)}
         type="text"
         value={phoneState.phone}
         name={props.label}
@@ -112,7 +113,7 @@ export function AreaInput(props) {
       <textarea
         type="text"
         name={props.label}
-        //   {...formik.getFieldProps("comunicationSkills")}
+        {...props.formik.getFieldProps(props.label)}
         value={props.value}
         onChange={props.onChange}
       />
@@ -129,6 +130,7 @@ export function RadioInput(props) {
     return (
       <div>
         <input
+         {...props.formik.getFieldProps(props.label)}
           type="radio"
           id={opt}
           name={props.label}
@@ -153,7 +155,6 @@ export function RadioInput(props) {
 }
 
 export function ArrayInput(props) {
-  console.log("values", props.values);
   let values = [...props.values];
   const inputList = props.inputList
   
@@ -163,7 +164,7 @@ export function ArrayInput(props) {
   }
   const subOnChange = (e,index) =>{
     const {name, value} = e.target;
-    values[index][name] = value;
+    values[index] = {...values[index], [name] : value}
     props.onChange({target:{
       name: props.label,
       value: values
@@ -176,7 +177,7 @@ export function ArrayInput(props) {
             {values.length > 0 &&
               values.map((element, index) => (
                 <div className="row" key={index}>
-                  {inputGeneration(inputList,values[index],(e) => subOnChange(e,index),props.formik)}
+                  {inputGeneration(inputList,props.values[index],(e) => subOnChange(e,index),props.formik)}
                   
                   <div className="col">
                     <button

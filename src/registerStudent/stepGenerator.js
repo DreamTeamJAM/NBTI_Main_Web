@@ -4,8 +4,9 @@ import { decrement, increment } from "redux/stepSlice";
 import { updateStudent, selectStudent } from "redux/studentSlice";
 import { useFormik } from "formik";
 import { inputGeneration } from "Templates/formGeneration";
-//import { validationHandler } from "services/formValidation";
+import { validationHandler } from "services/formValidation";
 import { selectCount } from "redux/stepSlice";
+
 
 const StepGenerator = (props) => {
   const inputs = props.inputMap;
@@ -48,7 +49,7 @@ const StepGenerator = (props) => {
     
     )
  }
-else if(activeStep==5){
+else if(activeStep===5){
   return(
   <>
   <button
@@ -73,14 +74,18 @@ else if(activeStep==5){
 }
   }
 
-  //const validate = (values) => validationHandler(formInfo, inputs);
 
-  const formik = useFormik({
-    initialValues: student,
-    //validate,
-    onSubmit: (values) => {},
-  });
-  const inputHtml = inputGeneration(inputs, formInfo, updateBasicInfo, formik);
+  const validate = (values) =>{
+   return validationHandler(formInfo,inputs);
+  }
+
+const formik = useFormik({
+  initialValues: {...formInfo},
+  validate,
+  onSubmit: (values) => {}});
+  // formik = {...formik, errors : validate()}
+  console.log(formik)
+  const inputHtml =inputGeneration(inputs,formInfo,updateBasicInfo,formik)
   return (
     <>
       <form onSubmit={formik.handleSubmit}>{inputHtml}</form>
