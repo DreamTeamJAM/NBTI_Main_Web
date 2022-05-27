@@ -1,5 +1,6 @@
 import StepGenerator from "registerStudent/stepGenerator";
 import { levelLanguage } from "Utils/levelLanguage";
+import {tongueLvl} from "Utils/Tongue"
 
 export function Step4() {
   const levelOptions = levelLanguage.map((level) => ({
@@ -11,7 +12,9 @@ export function Step4() {
     otherLanguages: {
       type: "array",
       children: {
-        languageName:{ type: "text" },
+        languageName:{ type: "option",
+        options: tongueLvl,
+        validation: "basic", },
         listening: {
           type: "option",
           options: levelOptions,

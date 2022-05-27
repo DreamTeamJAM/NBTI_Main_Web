@@ -1,46 +1,49 @@
-import translate from "i18n/translate";
-export const LanguageOptions = [{
+export const tongueLvl = [{
     value: "English",
-    label: translate("English")
+    label: "English"
   },
   {
     value: "Chinese",
-    label: translate("Chinese")
+    label: "Chinese"
   },
   {
     value: "Hindi",
-    label: translate("Hindi")
+    label: "Hindi"
   },
   {
     value: "Spanish",
-    label: translate("Spanish")
+    label: "Spanish"
+  },
+  {
+    value: "Valencian",
+    label: "Valencian"
   },
   {
     value: "French",
-    label: translate("French")
+    label: "French"
   },
   {
     value: "Arabian",
-    label: translate("Arabian")
+    label: "Arabian"
   },
   {
     value: "Russian",
-    label: translate("Russian")
+    label: "Russian"
   },
   {
     value: "Portuguese",
-    label: translate("Portuguese")
+    label: "Portuguese"
   },
   {
     value: "Bengali",
-    label: translate("Bengali")
+    label: "Bengali"
   },
   {
     value: "German",
-    label: translate("German")
+    label: "German"
   },
   {
     value: "Italian",
-    label: translate("Italian")
+    label: "Italian"
   },
 ];

@@ -19,7 +19,7 @@ export function Step5() {
           options: nationalityOptions,
           validation: "basic",
         },
-        Description: { type: "text" },
+        Description: { type: "textarea" },
       },
     },
   };
