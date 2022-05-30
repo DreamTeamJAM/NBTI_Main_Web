@@ -1,11 +1,10 @@
 import "react-tagsinput/react-tagsinput.css";
-import Select from "react-select";
 import { phonePrefixes } from "Utils/phonePrefixes";
-import { useReducer, useEffect } from "react";
+import { useReducer, useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { validationHandler } from "services/formValidation";
 import {inputGeneration} from "Templates/formGeneration"
-
+import defaultImg from "assets/images/default.jpg";
 export function prettify(text) {
   var result = text.replace(/([A-Z])/g, " $1");
   var finalResult = result.charAt(0).toUpperCase() + result.slice(1);
@@ -153,6 +152,51 @@ export function RadioInput(props) {
       ) : null}
     </>
   );
+}
+
+export function ImageInput(props){
+
+  const [photo, setPhoto] = useState(defaultImg)
+  
+  const onFileChangeHandler = (e) => {
+    e.preventDefault();
+    const file = e.target.files[0]
+    console.log(e.target.files)
+   console.log("file: ",file)
+  
+    
+    if (FileReader && file) {
+      var fr = new FileReader();
+      fr.onload = function () {
+         setPhoto(fr.result);
+         props.onChange({
+          target: {
+            name: props.label,
+            value: fr.result
+          }
+        })
+      }
+      fr.readAsDataURL(file);
+    }
+    
+  }
+  function importData() {
+    let input = document.createElement('input');
+    input.type = 'file';
+    input.onchange = onFileChangeHandler;
+    input.click();
+    
+  }
+
+  return (
+    <>
+      <label>{prettify(props.label)}:</label>
+      <input type="image" className="form-control" alt="student" name="file" onClick={importData} src ={photo}/>
+      <br/>
+      
+         
+    </>
+  )
 }
 
 export function ArrayInput(props) {

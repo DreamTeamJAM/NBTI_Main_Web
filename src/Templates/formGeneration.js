@@ -1,4 +1,4 @@
-import {PhoneInput,ArrayInput, TextInput, RadioInput, OptionInput, AreaInput} from "./inputComponent"
+import {PhoneInput,ArrayInput, ImageInput,TextInput, RadioInput, OptionInput, AreaInput} from "./inputComponent"
 
 
 export function inputGeneration (inputs,values,onChange,formik){
@@ -60,7 +60,19 @@ export function inputGeneration (inputs,values,onChange,formik){
             />
             <br/></>) 
             break;
-
+            case "image":
+            currentInput=(
+              <>
+              <ImageInput
+              label={key}
+              type = {input.type}
+              value={values[key]} 
+              onChange={onChange} 
+              formik={formik}/>
+              <br/>
+              </>
+            )
+            break;
           default:
             currentInput = (<><TextInput
             label={key}

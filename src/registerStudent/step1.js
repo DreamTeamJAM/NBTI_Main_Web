@@ -15,6 +15,7 @@ function Step1(){
 
   const inputs = {
         "name" : {type: "text",validation: "text"},
+        "photo" : {type: "image",validation: "basic"},
         "dni" : {type: "text",validation: "text"},
         "city": {type: "text",validation: "text"},
         "firstSurname": {type: "text",validation: "text"},
