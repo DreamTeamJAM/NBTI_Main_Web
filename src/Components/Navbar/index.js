@@ -8,7 +8,8 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "theme";
 import HorizontalMenu from "./Menu/index";
 import LoginButton from "Components/LoginButton";
-import { LanguageSelect } from "./../LanguageSelect/styles";
+import AuthService from "../../services/auth/auth.service";
+import eventBus from "../../common/EventBus";
 
 /** Navbar Component */
 export default function Navbar({ setLocale }) {
@@ -17,8 +18,10 @@ export default function Navbar({ setLocale }) {
   const menuId = "main-menu";
 
   const [colorChange, setColorChange] = useState(false);
-  const [userId, setUserId] = useState(null);
-  const [isLoggin, setIsLoggin] = useState(false);
+
+  const [showModeratorBoard, setShowModeratorBoard] = useState(false);
+  const [showAdminBoard, setShowAdminBoard] = useState(true);
+  const [currentUser, setCurrentUser] = useState(undefined);
 
   const changeNavbarColor = () => {
     if (window.scrollY >= 60) {
@@ -29,82 +32,65 @@ export default function Navbar({ setLocale }) {
   };
 
   useEffect(() => {
-    setUserId(sessionStorage.getItem("currentUserId"));
-    console.log(`UserId: ${userId}`);
-  }, [userId]);
+    /* const user = AuthService.getCurrentUser();
+    if (user) {
+      setCurrentUser(user);
+      setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
+      setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
+    } */
+  }, []);
+
+  eventBus.on("logout", () => {
+    handleLogout();
+  });
+
+  const handleLogout = () => {
+    AuthService.logout();
+    setCurrentUser(undefined);
+  };
 
   useOnClickOutside(node, () => setOpen(false));
   window.addEventListener("scroll", changeNavbarColor);
 
-  if (isLoggin === false) {
-    return (
-      <ThemeProvider theme={theme}>
-        <Nav
-          navColorChange={
-            colorChange === false ? "none" : "rgb(184,222,240, 1)"
-          }
-          isOnScroll={colorChange}
-        >
-          {/* <div ref={node}>
+  return (
+    <ThemeProvider theme={theme}>
+      <Nav
+        navColorChange={colorChange === false ? "none" : "#F3F3F3"}
+        isOnScroll={colorChange}
+      >
+        {/* <div ref={node}>
             <FocusLock disabled={!open}>
               <Burger open={open} setOpen={setOpen} aria-controls={menuId} />
               <Menu open={open} setOpen={setOpen} id={menuId} />
             </FocusLock>
           </div> */}
-          <HorizontalMenu setLocale={setLocale} />
+        <HorizontalMenu setLocale={setLocale} />
+        {showAdminBoard && (
           <ButtonContainer>
             <LoginButton
               to={`/login`}
-              bgcolor="#b8def0"
+              bgcolor="#F3F3F3"
               color="#181eb3"
               txcolor="white"
               hoverbgcolor="#181eb3"
-              hovercolor="#b8def0"
+              hovercolor="#F3F3F3"
             >
               Login
             </LoginButton>
             <LoginButton
-              to={`/register`}
+              to={`/`}
               bgcolor="#181eb3"
               color="white"
               txcolor="white"
-              hoverbgcolor="#b8def0"
+              hoverbgcolor="#F3F3F3"
               hovercolor="#181eb3"
+              onClick={() => eventBus.dispatch('logout')}
             >
-              Register
+              Logout
             </LoginButton>
           </ButtonContainer>
-        </Nav>
-      </ThemeProvider>
-    );
-  } else {
-    return (
-      <ButtonContainer>
-        <LoginButton
-          to={`/`}
-          bgcolor="#b8def0"
-          color="#181eb3"
-          txcolor="white"
-          hoverbgcolor="#181eb3"
-          hovercolor="#b8def0"
-        >
-          IconoUsuario
-        </LoginButton>
-        <LoginButton
-          to={`/`}
-          bgcolor="#181eb3"
-          color="white"
-          txcolor="white"
-          hoverbgcolor="#b8def0"
-          hovercolor="#181eb3"
-          onClick={() => {
-            sessionStorage.removeItem("currentUserId");
-            setUserId(null);
-          }}
-        >
-          Logout
-        </LoginButton>
-      </ButtonContainer>
-    );
-  }
+        )}
+      </Nav>
+    </ThemeProvider>
+  );
 }
