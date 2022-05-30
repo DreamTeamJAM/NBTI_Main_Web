@@ -45,3 +45,12 @@ export const putUser = async (user, body) => {
   });
   return response.data;
 };
+
+export const loginTest = async (user) => {
+  return await axios.post(`http://localhost:8080/api/auth/signin`, {
+    auth: {
+      username: user.username,
+      password: user.password,
+    },
+  }).then(res => res.data);
+}

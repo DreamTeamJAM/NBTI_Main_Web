@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Container } from "GlobalStyles";
-import { logIn } from "services/api/userApi";
+import { loginTest, logIn } from "services/api/userApi";
 function Login() {
   const [userName, setUserName] = useState("");
   const [passWord, setPassWord] = useState("");
@@ -10,6 +10,7 @@ function Login() {
     logIn({ username: userName, password: passWord })
       .then((data) => {
         sessionStorage.setItem("currenUserId", data);
+        sessionStorage.setItem("isLogin", true);
         console.log(`LoginCorre cto, userId: ${data}`);
       })
       .catch((err) => console.log(`Error: ${err}`));
