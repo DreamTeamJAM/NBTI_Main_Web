@@ -2,9 +2,11 @@ import "react-tagsinput/react-tagsinput.css";
 import Select from "react-select";
 import { phonePrefixes } from "Utils/phonePrefixes";
 import { useReducer, useEffect } from "react";
-import { Formik, Field, Form, ErrorMessage, FieldArray } from "formik";
+import { useFormik } from "formik";
+import { validationHandler } from "services/formValidation";
+import {inputGeneration} from "Templates/formGeneration"
 
-function prettify(text) {
+export function prettify(text) {
   var result = text.replace(/([A-Z])/g, " $1");
   var finalResult = result.charAt(0).toUpperCase() + result.slice(1);
   return finalResult;
@@ -18,6 +20,7 @@ export function TextInput(props) {
     <>
       <label>{prettify(props.label)}:</label>
       <input
+       {...props.formik.getFieldProps(props.label)}
         type={finalType}
         value={props.value}
         name={props.label}
@@ -48,7 +51,7 @@ export function PhoneInput(props) {
 
   const prefixOptions = phonePrefixes.map((p) => {
     return {
-      value: p.dial_code,
+      value: "("+p.dial_code+")",
       label: "(" + p.code + ") " + p.dial_code,
     };
   });
@@ -60,7 +63,6 @@ export function PhoneInput(props) {
         value: phoneState.fullPhone,
       },
     });
-    console.log("prefix", phoneState);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phoneState]);
 
@@ -78,6 +80,7 @@ export function PhoneInput(props) {
         ))}
       </select>
       <input
+      {...props.formik.getFieldProps(props.label)}
         type="text"
         value={phoneState.phone}
         name={props.label}
@@ -111,7 +114,7 @@ export function AreaInput(props) {
       <textarea
         type="text"
         name={props.label}
-        //   {...formik.getFieldProps("comunicationSkills")}
+        {...props.formik.getFieldProps(props.label)}
         value={props.value}
         onChange={props.onChange}
       />
@@ -128,6 +131,7 @@ export function RadioInput(props) {
     return (
       <div>
         <input
+         {...props.formik.getFieldProps(props.label)}
           type="radio"
           id={opt}
           name={props.label}
@@ -135,7 +139,7 @@ export function RadioInput(props) {
           onChange={props.onChange}
           checked={opt === props.value}
         />
-        <label for={opt}>{prettify(opt)}</label>
+        <label htmlFor={opt}>{prettify(opt)}</label>
       </div>
     );
   });
@@ -152,66 +156,72 @@ export function RadioInput(props) {
 }
 
 export function ArrayInput(props) {
-  const values = props.values;
-  console.log("values", values[props.label]);
+  let values = [...props.values];
+  const inputList = props.inputList
+  const formik = [];
+ for (let i = 0; i <10; i++){
+  const validate = () => validationHandler(values[i],inputList)
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  formik.push(useFormik({
+    initialValues: {...values[i]},
+    validate,
+    onSubmit: (values) => {}}));
+ };
+
+  let emptyChild = {}
+  for (const [key, input] of Object.entries(inputList)) {
+    emptyChild[key] = "";
+  }
+  const subOnChange = (e,index) =>{
+    const {name, value} = e.target;
+    values[index] = {...values[index], [name] : value}
+    props.onChange({target:{
+      name: props.label,
+      value: values
+    }})
+  }
+
+
+  const formArray = values.map((element, index) => {
+   
+    return (<div className="row" key={index}>
+      {inputGeneration(inputList,props.values[index],(e) => subOnChange(e,index),formik[index])}
+      
+      <div className="col">
+        <button
+          type="button"
+          className="secondary"
+          onClick={() =>{
+            values.splice(index,1)
+            props.onChange({target: {
+            name: props.label,
+            value: [...values]
+          }}) }}
+        >
+          X
+        </button>
+      </div>
+    </div>
+  )})
+
+
   return (
     <>
       <h1>{prettify(props.label)}</h1>
-      <FieldArray name={props.label}>
-        {({ remove, push }) => (
           <div>
-            {values[props.label].length > 0 &&
-              values[props.label].map((element, index) => (
-                <div className="row" key={index}>
-                  <div className="col">
-                    <label htmlFor={`${props.label}.${index}.title`}>
-                      Title
-                    </label>
-                    <Field
-                      name={`${props.label}.${index}.title`}
-                      type="text"
-                    />
-                    <ErrorMessage
-                      name={`${props.label}.${index}.title`}
-                      component="div"
-                      className="field-error"
-                    />
-                  </div>
-                  <div className="col">
-                    <label htmlFor={`workExperience.${index}.startDate`}>
-                      Start Date
-                    </label>
-                    <Field
-                      name={`workExperience.${index}.startDate`}
-                      type="date"
-                    />
-                    <ErrorMessage
-                      name={`workExperience.${index}.startDate`}
-                      component="div"
-                      className="field-error"
-                    />
-                  </div>
-                  <div className="col">
-                    <button
-                      type="button"
-                      className="secondary"
-                      onClick={() => remove(index)}
-                    >
-                      X
-                    </button>
-                  </div>
-                </div>
-              ))}
+            {formArray}
             <button
               type="button"
               className="secondary"
-              onClick={() => push({ title: "", startDate: "" })}
+              onClick={() => {values.length < 10 &&
+                 props.onChange({target: {
+                name: props.label,
+                value: [...props.values,emptyChild]
+              }}) }}
             >
-              Add Friend
+              Add {prettify(props.label)}
             </button>
           </div>
-        )}
-      </FieldArray>
     </>
   );
 }

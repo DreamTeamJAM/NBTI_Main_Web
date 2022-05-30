@@ -1,17 +1,17 @@
-import {PhoneInput, TextInput, RadioInput, OptionInput, AreaInput} from "./inputComponent"
+import {PhoneInput,ArrayInput, TextInput, RadioInput, OptionInput, AreaInput} from "./inputComponent"
 
 
-export function inputGeneration (inputs,basicInfo,updateBasicInfo,formik,){
+export function inputGeneration (inputs,values,onChange,formik){
     const inputHtml = []
-
+  console.log(formik)
     for (const [key, input] of Object.entries(inputs)) {
       let currentInput;
       switch (input.type) {
         case "radio":
           currentInput =(<><RadioInput
           label={key} 
-          value = {basicInfo[key]}
-          onChange={updateBasicInfo} 
+          value = {values[key]}
+          onChange={onChange} 
           options = {input.options}
            formik={formik}
           ></RadioInput>
@@ -21,8 +21,8 @@ export function inputGeneration (inputs,basicInfo,updateBasicInfo,formik,){
           case "option":
             currentInput =(<><OptionInput
               label={key} 
-              value = {basicInfo[key]}
-              onChange={updateBasicInfo} 
+              value = {values[key]}
+              onChange={onChange} 
               options = {input.options}
                formik={formik}
               ></OptionInput>
@@ -32,8 +32,8 @@ export function inputGeneration (inputs,basicInfo,updateBasicInfo,formik,){
             currentInput = (<><AreaInput
               label={key}
               type = {input.type}
-              value={basicInfo[key]} 
-              onChange={updateBasicInfo} 
+              value={values[key]} 
+              onChange={onChange} 
               formik={formik}/>
               <br/></>) 
             break;
@@ -43,9 +43,21 @@ export function inputGeneration (inputs,basicInfo,updateBasicInfo,formik,){
             <PhoneInput
             label={key}
             type = {input.type}
-            value={basicInfo[key]} 
-            onChange={updateBasicInfo} 
+            value={values[key]} 
+            onChange={onChange} 
             formik={formik}/>
+            <br/></>) 
+            break;
+            case "array":
+            currentInput = (
+            <>
+            <ArrayInput
+            label={key}
+            inputList = {input.children}
+            values={values[key]} 
+            onChange={onChange}
+            formik={formik}
+            />
             <br/></>) 
             break;
 
@@ -53,8 +65,8 @@ export function inputGeneration (inputs,basicInfo,updateBasicInfo,formik,){
             currentInput = (<><TextInput
             label={key}
             type = {input.type}
-            value={basicInfo[key]} 
-            onChange={updateBasicInfo} 
+            value={values[key]} 
+            onChange={onChange} 
             formik={formik}/>
             <br/></>) 
             break;

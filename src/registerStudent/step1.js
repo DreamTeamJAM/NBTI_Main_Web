@@ -1,12 +1,8 @@
 import React from "react";
-import { useFormik } from "formik";
-import { useSelector, useDispatch } from 'react-redux';
-import {increment} from 'redux/stepSlice';
-import {updateStudent, selectStudent} from "redux/studentSlice"
-import { defaultFieldValidation, basicFieldValidation, numberFieldValidation } from "services/formValidation";
+import StepGenerator from "registerStudent/stepGenerator";
 import {drivingLicense} from "Utils/drivingLicenses"
 import { languages } from "Utils/languages";
-import {inputGeneration} from "Templates/formGeneration"
+
 function Step1(){
   const nationalityOptions = languages.map((language) => ({
     value: language.name_en,
@@ -18,71 +14,34 @@ function Step1(){
   }));
 
   const inputs = {
-        "name" : {type: "text"},
-        "dni" : {type: "text"},
-        "city": {type: "text"},
-        "firstSurname": {type: "text"},
-        "secondSurname": {type: "text"},
+        "name" : {type: "text",validation: "text"},
+        "dni" : {type: "text",validation: "text"},
+        "city": {type: "text",validation: "text"},
+        "firstSurname": {type: "text",validation: "text"},
+        "secondSurname": {type: "text",validation: "text"},
         "nationality":{type: "option",
                       options : nationalityOptions,
                       validation : "basic"},
         "phone": {type: "phone",
                   validation: "number"},
-        "birthDate": {type:"date"},
+        "birthDate": {type:"date", validation: "basic"},
         "gender": {type:"radio",
-                  options : ["male", "female", "other"]},
-        "email" : {type:"email"},
-        "address": {type: "text"},
-        "aboutMe": {type: "textarea"},
-        "digitalSkills" : {type: "textarea"},
-        "comunicationSkills" : {type: "textarea"},
+                  options : ["Male", "Female", "Other"],
+                  validation: "basic"},
+        "email" : {type:"email", validation: "email"},
+        "address": {type: "text",validation: "text"},
+        "aboutMe": {type: "textarea",validation: "text"},
+        "digitalSkills" : {type: "textarea",validation: "text"},
+        "comunicationSkills" : {type: "textarea",validation: "text"},
         "drivingLicense" : {type: "option",
-                        options : drivingOptions},
-        "hobbies" : {type: "textarea"},
+                        options : drivingOptions,
+                      validation: "basic"},
+        "hobbies" : {type: "textarea",validation: "text"},
 }
-  const dispatch = useDispatch();
-  const student = useSelector(selectStudent)
-  const [basicInfo, setBasicInfo] = React.useState(student);
-  const updateBasicInfo = (e) => {
-      const { name, value } = e.target;
-      setBasicInfo(prevState => ({
-          ...prevState,
-          [name]: value
-      }));
-  };
-
-  
-  const validate = (values) => {
-    const errors = {};
-    
-
-    Array.from(["landlord","address","region","postalCode"]).forEach((s) => defaultFieldValidation(values,errors,s))
-    Array.from(["email", "city"]).forEach((s) => basicFieldValidation(values,errors,s));
-    Array.from(["telephone", "rentPerMonth","deposit"]).forEach((s) => numberFieldValidation(values,errors,s));
-    
-    return errors;
-  };
-  
-    const formik = useFormik({
-        initialValues: basicInfo,
-        validate,
-        onSubmit: (values) => {}});
-
-      const inputHtml =inputGeneration(inputs,basicInfo,updateBasicInfo,formik)
-    
-    return (
-    <>
-        <form onSubmit={formik.handleSubmit}>
-
-            {inputHtml}
-              
-              </form>
-              <button type="submit" onClick={() => {
-              dispatch(increment())
-              dispatch(updateStudent(basicInfo))
-          }} >Next</button>
-              </>
-              
-    )
+return (
+  <>
+    <StepGenerator inputMap={inputs} />
+  </>
+);
 } 
 export default Step1;
