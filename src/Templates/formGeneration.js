@@ -1,4 +1,4 @@
-import {PhoneInput,ArrayInput, ImageInput,TextInput, RadioInput, OptionInput, AreaInput} from "./inputComponent"
+import {PhoneInput,TagInput,ArrayInput, ImageInput,TextInput, RadioInput, OptionInput, AreaInput} from "./inputComponent"
 
 
 export function inputGeneration (inputs,values,onChange,formik){
@@ -7,6 +7,18 @@ export function inputGeneration (inputs,values,onChange,formik){
     for (const [key, input] of Object.entries(inputs)) {
       let currentInput;
       switch (input.type) {
+        case "tags":
+          currentInput=(
+            <>
+            <TagInput
+            label={key} 
+            value = {values[key]}
+            onChange={onChange} 
+            whitelist= {input.whitelist}
+            />
+            </>
+          )
+        break;
         case "radio":
           currentInput =(<><RadioInput
           label={key} 

@@ -14,7 +14,8 @@ import Footer from "./Components/Footer";
 import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/register";
 import LoginAuth from "./Components/userManagement/login.component";
-
+import '@yaireo/tagify/src/tagify.scss'
+import "@yaireo/tagify/dist/tagify.css";
 
 function App() {
   const [locale, setLocale] = useState(
