@@ -7,8 +7,10 @@ export function Step4() {
     value: level,
     label: level,
   }));
+  const langWhitelist = tongueLvl.map((element, index)=> element.value)
   const inputs = {
-    motherTongues: { type: "text" },
+    motherTongues: { type: "tags",
+                    whitelist: langWhitelist },
     otherLanguages: {
       type: "array",
       children: {

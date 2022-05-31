@@ -5,6 +5,8 @@ import { useFormik } from "formik";
 import { validationHandler } from "services/formValidation";
 import {inputGeneration} from "Templates/formGeneration"
 import defaultImg from "assets/images/default.jpg";
+import Tags from '@yaireo/tagify/dist/react.tagify'
+
 export function prettify(text) {
   var result = text.replace(/([A-Z])/g, " $1");
   var finalResult = result.charAt(0).toUpperCase() + result.slice(1);
@@ -152,6 +154,39 @@ export function RadioInput(props) {
       ) : null}
     </>
   );
+}
+
+export function TagInput(props){
+
+
+    return (<>
+    <label>{prettify(props.label)}:</label>
+
+      <Tags
+      settings={{
+        enforceWhitelist : true,
+        whitelist : props.whitelist
+      }}
+      onChange={(e)=>{
+        const valueArray = e.detail.tagify.value;
+        const tags = valueArray.reduce((acc, value,index) =>{
+          if (index === 0){
+            return acc +value.value
+          } else return acc + ", " + value.value
+        },"")
+
+        props.onChange({
+          target:{
+            name : props.label,
+            value: tags
+          }
+        })
+      }}
+      //{props.value[props.label]}
+      value={props.value}
+      ></Tags></>
+    )
+
 }
 
 export function ImageInput(props){
