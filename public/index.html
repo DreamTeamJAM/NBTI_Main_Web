@@ -12,6 +12,33 @@
 
     <title>NBTI - NATIONAL BUSINESS TRAINING INSTITUTE</title>
   </head>
+  <script>
+    window.interdeal = {
+      sitekey: "33c46e773463c3c3105b513198f24d1e",
+      Position: "Left",
+      Menulang: "ES",
+      domains: {
+        js: "https://cdn.equalweb.com/",
+        acc: "https://access.equalweb.com/",
+      },
+      btnStyle: {
+        vPosition: ["80%", null],
+        scale: ["0.6", "0.6"],
+        color: { main: "#181eb3", second: "" },
+        icon: { type: 11, shape: "semicircle", outline: false },
+      },
+    };
+    (function (doc, head, body) {
+      var coreCall = doc.createElement("script");
+      coreCall.src = "https://cdn.equalweb.com/core/4.0.4/accessibility.js";
+      coreCall.defer = true;
+      coreCall.integrity =
+        "sha512-LDvqiv8qYdF1MIqxiGZrvcDsmN6cZy0u0l23Dj7TVXmkVSNyzjtkcll8uCb8EGdwDVHjvisVYsAWuwTf6Mpu8g==";
+      coreCall.crossOrigin = "anonymous";
+      coreCall.setAttribute("data-cfasync", true);
+      body ? body.appendChild(coreCall) : head.appendChild(coreCall);
+    })(document, document.head, document.body);
+  </script>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>

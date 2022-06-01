@@ -6,6 +6,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #F3F3F3;
   overflow-x: hidden;
+  transition: all .2 ease-in-out;
 }
 
 code {

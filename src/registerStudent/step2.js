@@ -1,5 +1,11 @@
 import StepGenerator from "registerStudent/stepGenerator";
 import { languages } from "Utils/languages";
+import {
+  StudentContainer,
+  ContainerStudent,
+  Margin,
+  ArrayContainer
+} from "registerStudent/styles";
 
 export function Step2() {
   const nationalityOptions = languages.map((language) => ({
@@ -27,7 +33,9 @@ export function Step2() {
   }
   return (
     <>
-      <StepGenerator inputMap={inputs} />
+    
+      <StepGenerator isInput={false} inputMap={inputs} />
+      
     </>
   );
 }
