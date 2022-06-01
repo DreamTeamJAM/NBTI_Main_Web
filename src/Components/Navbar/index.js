@@ -10,6 +10,9 @@ import HorizontalMenu from "./Menu/index";
 import LoginButton from "Components/LoginButton";
 import AuthService from "../../services/auth/auth.service";
 import eventBus from "../../common/EventBus";
+import AuthVerify from "./../../common/auth-verify";
+import ProfileIcon from "./ProfileIcon/index";
+import ButtonWithDropDownCmp from "./ProfileIcon/buttonDropDownCmp";
 
 /** Navbar Component */
 export default function Navbar({ setLocale }) {
@@ -32,12 +35,14 @@ export default function Navbar({ setLocale }) {
   };
 
   useEffect(() => {
-    /* const user = AuthService.getCurrentUser();
+    const user = AuthService.getCurrentUser();
     if (user) {
       setCurrentUser(user);
-      setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
-      setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
-    } */
+      user.then((user) => {
+        setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
+        setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
+      });
+    }
   }, []);
 
   eventBus.on("logout", () => {
@@ -52,6 +57,56 @@ export default function Navbar({ setLocale }) {
   useOnClickOutside(node, () => setOpen(false));
   window.addEventListener("scroll", changeNavbarColor);
 
+  const handleChangeButtons = () => {
+    if (currentUser === undefined) {
+      console.log("No user");
+      return (
+        <ButtonContainer>
+          <LoginButton
+            to={`/login`}
+            bgcolor="#F3F3F3"
+            color="#181eb3"
+            txcolor="white"
+            hoverbgcolor="#181eb3"
+            hovercolor="#F3F3F3"
+          >
+            Login
+          </LoginButton>
+          <LoginButton
+            to={`/register`}
+            bgcolor="#181eb3"
+            color="white"
+            txcolor="white"
+            hoverbgcolor="#F3F3F3"
+            hovercolor="#181eb3"
+            onClick={() => eventBus.dispatch("logout")}
+          >
+            Register
+          </LoginButton>
+          <AuthVerify logOut={handleLogout} />
+        </ButtonContainer>
+      );
+    } else {
+      console.log("User");
+      return (
+        <ButtonContainer>
+          <ButtonWithDropDownCmp />
+          <LoginButton
+            to={`/`}
+            bgcolor="#181eb3"
+            color="white"
+            txcolor="white"
+            hoverbgcolor="#F3F3F3"
+            hovercolor="#181eb3"
+            onClick={() => eventBus.dispatch("logout")}
+          >
+            Logout
+          </LoginButton>
+        </ButtonContainer>
+      );
+    }
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Nav
@@ -65,31 +120,7 @@ export default function Navbar({ setLocale }) {
             </FocusLock>
           </div> */}
         <HorizontalMenu setLocale={setLocale} />
-        {showAdminBoard && (
-          <ButtonContainer>
-            <LoginButton
-              to={`/login`}
-              bgcolor="#F3F3F3"
-              color="#181eb3"
-              txcolor="white"
-              hoverbgcolor="#181eb3"
-              hovercolor="#F3F3F3"
-            >
-              Login
-            </LoginButton>
-            <LoginButton
-              to={`/`}
-              bgcolor="#181eb3"
-              color="white"
-              txcolor="white"
-              hoverbgcolor="#F3F3F3"
-              hovercolor="#181eb3"
-              onClick={() => eventBus.dispatch('logout')}
-            >
-              Logout
-            </LoginButton>
-          </ButtonContainer>
-        )}
+        {handleChangeButtons()}
       </Nav>
     </ThemeProvider>
   );

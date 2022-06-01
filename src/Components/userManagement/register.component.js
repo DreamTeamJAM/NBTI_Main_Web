@@ -4,6 +4,7 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
 import AuthService from "../../services/auth/auth.service";
+import { Container } from "./../../GlobalStyles";
 
 const required = (value) => {
   if (!value) {
@@ -14,7 +15,7 @@ const required = (value) => {
     );
   }
 };
-const email = (value) => {
+const vuemail = (value) => {
   if (!isEmail(value)) {
     return (
       <div className="alert alert-danger" role="alert">
@@ -42,7 +43,7 @@ const vpassword = (value) => {
   }
 };
 
-export default function Reguster() {
+export default function Register() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -71,7 +72,7 @@ export default function Reguster() {
   };
 
   return (
-    <div className="col-md-12">
+    <Container>
       <div className="card card-container">
         <img
           src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
@@ -85,7 +86,6 @@ export default function Reguster() {
                 <label htmlFor="username">Username</label>
                 <Input
                   type="text"
-                  className="form-control"
                   name="username"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
@@ -96,18 +96,16 @@ export default function Reguster() {
                 <label htmlFor="email">Email</label>
                 <Input
                   type="text"
-                  className="form-control"
                   name="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  validations={[required, email]}
+                  validations={[required, vusername]}
                 />
               </div>
               <div className="form-group">
                 <label htmlFor="password">Password</label>
                 <Input
                   type="password"
-                  className="form-control"
                   name="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -134,6 +132,6 @@ export default function Reguster() {
           <CheckButton style={{ display: "none" }} />
         </Form>
       </div>
-    </div>
+    </Container>
   );
 }

@@ -11,7 +11,6 @@ export const Nav = styled.nav`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  overflow: hidden;
   position: fixed;
   z-index: 100;
   transition: all 0.5s ease-in-out;
