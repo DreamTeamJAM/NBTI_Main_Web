@@ -1,102 +1,132 @@
-import {PhoneInput,TagInput,ArrayInput, ImageInput,TextInput, RadioInput, OptionInput, AreaInput} from "./inputComponent"
+import {
+  PhoneInput,
+  ArrayInput,
+  ImageInput,
+  TextInput,
+  RadioInput,
+  OptionInput,
+  AreaInput,
+  TagInput,
+} from "./inputComponent";
 
-
-export function inputGeneration (inputs,values,onChange,formik){
-    const inputHtml = []
-  console.log(formik)
-    for (const [key, input] of Object.entries(inputs)) {
-      let currentInput;
-      switch (input.type) {
-        case "tags":
+export function inputGeneration(inputs, values, onChange, formik) {
+  const inputHtml = [];
+  console.log(formik);
+  for (const [key, input] of Object.entries(inputs)) {
+    let currentInput;
+    switch (input.type) {
+      case "tags":
           currentInput=(
-            <>
+            <div>
             <TagInput
             label={key} 
             value = {values[key]}
             onChange={onChange} 
             whitelist= {input.whitelist}
             />
-            </>
+            </div>
           )
         break;
-        case "radio":
-          currentInput =(<><RadioInput
-          label={key} 
-          value = {values[key]}
-          onChange={onChange} 
-          options = {input.options}
-           formik={formik}
-          ></RadioInput>
-          <br/></>
-          );
-          break;
-          case "option":
-            currentInput =(<><OptionInput
-              label={key} 
-              value = {values[key]}
-              onChange={onChange} 
-              options = {input.options}
-               formik={formik}
-              ></OptionInput>
-              <br/></>);
-              break;
-          case "textarea":
-            currentInput = (<><AreaInput
+      case "radio":
+        currentInput = (
+          <div>
+            <RadioInput
               label={key}
-              type = {input.type}
-              value={values[key]} 
-              onChange={onChange} 
-              formik={formik}/>
-              <br/></>) 
-            break;
-          case "phone":
-            currentInput = (
-            <>
-            <PhoneInput
-            label={key}
-            type = {input.type}
-            value={values[key]} 
-            onChange={onChange} 
-            formik={formik}/>
-            <br/></>) 
-            break;
-            case "array":
-            currentInput = (
-            <>
-            <ArrayInput
-            label={key}
-            inputList = {input.children}
-            values={values[key]} 
-            onChange={onChange}
-            formik={formik}
+              value={values[key]}
+              onChange={onChange}
+              options={input.options}
+              formik={formik}
+            ></RadioInput>
+            <br />
+          </div>
+        );
+        break;
+      case "option":
+        currentInput = (
+          <div>
+            <OptionInput
+              label={key}
+              value={values[key]}
+              onChange={onChange}
+              options={input.options}
+              formik={formik}
+            ></OptionInput>
+            <br />
+          </div>
+        );
+        break;
+      case "textarea":
+        currentInput = (
+          <div>
+            <AreaInput
+              label={key}
+              type={input.type}
+              value={values[key]}
+              onChange={onChange}
+              formik={formik}
             />
-            <br/></>) 
-            break;
-            case "image":
-            currentInput=(
-              <>
-              <ImageInput
+            <br />
+          </div>
+        );
+        break;
+      case "phone":
+        currentInput = (
+          <div>
+            <PhoneInput
               label={key}
-              type = {input.type}
-              value={values[key]} 
-              onChange={onChange} 
-              formik={formik}/>
-              <br/>
-              </>
-            )
-            break;
-          default:
-            currentInput = (<><TextInput
-            label={key}
-            type = {input.type}
-            value={values[key]} 
-            onChange={onChange} 
-            formik={formik}/>
-            <br/></>) 
-            break;
-      }
-      inputHtml.push(currentInput)
+              type={input.type}
+              value={values[key]}
+              onChange={onChange}
+              formik={formik}
+            />
+            <br />
+          </div>
+        );
+        break;
+      case "array":
+        currentInput = (
+          <>
+            <ArrayInput
+              label={key}
+              inputList={input.children}
+              values={values[key]}
+              onChange={onChange}
+              formik={formik}
+            />
+            <br />
+          </>
+        );
+        break;
+      case "image":
+        currentInput = (
+          <div>
+            <ImageInput
+              label={key}
+              type={input.type}
+              value={values[key]}
+              onChange={onChange}
+              formik={formik}
+            />
+            <br />
+          </div>
+        );
+        break;
+      default:
+        currentInput = (
+          <div>
+            <TextInput
+              label={key}
+              type={input.type}
+              value={values[key]}
+              onChange={onChange}
+              formik={formik}
+            />
+            <br />
+          </div>
+        );
+        break;
     }
-    return inputHtml;
-    
+    inputHtml.push(currentInput);
+  }
+  return inputHtml;
 }

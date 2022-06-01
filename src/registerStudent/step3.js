@@ -26,7 +26,7 @@ export function Step3() {
   };
   return (
     <>
-      <StepGenerator inputMap={inputs} />
+      <StepGenerator isInput={false} inputMap={inputs} />
     </>
   );
 }
