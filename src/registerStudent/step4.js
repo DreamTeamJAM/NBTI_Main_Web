@@ -1,20 +1,24 @@
 import StepGenerator from "registerStudent/stepGenerator";
 import { levelLanguage } from "Utils/levelLanguage";
-import {tongueLvl} from "Utils/Tongue"
+import { tongueLvl } from "Utils/Tongue";
+import { AccountDiv, FormStep, FormButton, AccountDivEdited } from "registerStudent/styles";
 
 export function Step4() {
   const levelOptions = levelLanguage.map((level) => ({
     value: level,
     label: level,
   }));
+  const langWhitelist = tongueLvl.map((element, index) => element.value);
   const inputs = {
-    motherTongues: { type: "text" },
+    motherTongues: { type: "tags", whitelist: langWhitelist },
     otherLanguages: {
       type: "array",
       children: {
-        languageName:{ type: "option",
-        options: tongueLvl,
-        validation: "basic", },
+        languageName: {
+          type: "option",
+          options: tongueLvl,
+          validation: "basic",
+        },
         listening: {
           type: "option",
           options: levelOptions,
@@ -37,7 +41,8 @@ export function Step4() {
   };
   return (
     <>
-      <StepGenerator inputMap={inputs} />
+      <h1>Language Skills</h1>
+      <StepGenerator isInput={true} inputMap={inputs} />
     </>
   );
 }

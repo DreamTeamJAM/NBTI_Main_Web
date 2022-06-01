@@ -1,10 +1,24 @@
 import "react-tagsinput/react-tagsinput.css";
-import Select from "react-select";
 import { phonePrefixes } from "Utils/phonePrefixes";
-import { useReducer, useEffect } from "react";
+import { useReducer, useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { validationHandler } from "services/formValidation";
-import {inputGeneration} from "Templates/formGeneration"
+import { inputGeneration } from "Templates/formGeneration";
+import defaultImg from "assets/images/default.jpg";
+import Tags from "@yaireo/tagify/dist/react.tagify";
+import { LabelForm } from "GlobalStyles";
+import {
+  ArrayContainer,
+  ArrayDiv,
+  SelectStudent,
+  PhotoInput,
+  InputForm,
+  TextArea,
+  ButtonX,
+  ButtonAdd,
+  TagsDiv,
+  InputRadio
+} from "registerStudent/styles";
 
 export function prettify(text) {
   var result = text.replace(/([A-Z])/g, " $1");
@@ -17,19 +31,21 @@ export function TextInput(props) {
   if (props.type === undefined) finalType = "text";
   else finalType = props.type;
   return (
-    <>
-      <label>{prettify(props.label)}:</label>
-      <input
-       {...props.formik.getFieldProps(props.label)}
+    <div>
+      <LabelForm>{prettify(props.label)}:</LabelForm>
+      <br />
+      <InputForm
+        {...props.formik.getFieldProps(props.label)}
         type={finalType}
         value={props.value}
         name={props.label}
+        placeholder={"Enter " + prettify(props.label)}
         onChange={props.onChange}
       />
       {props.formik.touched[props.label] && props.formik.errors[props.label] ? (
         <p>{props.formik.errors[props.label]}</p>
       ) : null}
-    </>
+    </div>
   );
 }
 
@@ -51,7 +67,7 @@ export function PhoneInput(props) {
 
   const prefixOptions = phonePrefixes.map((p) => {
     return {
-      value: "("+p.dial_code+")",
+      value: "(" + p.dial_code + ")",
       label: "(" + p.code + ") " + p.dial_code,
     };
   });
@@ -67,9 +83,10 @@ export function PhoneInput(props) {
   }, [phoneState]);
 
   return (
-    <>
-      <label>{prettify(props.label)}:</label>
-      <select
+    <div>
+      <LabelForm>{prettify(props.label)}:</LabelForm>
+      <br />
+      <SelectStudent
         value={phoneState.prefix}
         onChange={(e) => {
           phoneDispatch({ type: "prefix", value: e.target.value });
@@ -78,9 +95,9 @@ export function PhoneInput(props) {
         {prefixOptions.map((opt, index) => (
           <option key={index} value={opt.value} label={opt.value} />
         ))}
-      </select>
-      <input
-      {...props.formik.getFieldProps(props.label)}
+      </SelectStudent>
+      <InputForm
+        {...props.formik.getFieldProps(props.label)}
         type="text"
         value={phoneState.phone}
         name={props.label}
@@ -91,27 +108,33 @@ export function PhoneInput(props) {
       {props.formik.touched[props.label] && props.formik.errors[props.label] ? (
         <p>{props.formik.errors[props.label]}</p>
       ) : null}
-    </>
+    </div>
   );
 }
 
 export function OptionInput(props) {
   return (
-    <select name={props.label} value={props.value} onChange={props.onChange}>
-      <option label={`Select ${prettify(props.label)}`} />
-      {props.options.map((opt, index) => (
-        <option key={index} value={opt.value} label={opt.value} />
-      ))}
-    </select>
+    <div>
+      <SelectStudent
+        name={props.label}
+        value={props.value}
+        onChange={props.onChange}
+      >
+        <option label={`Select ${prettify(props.label)}`} />
+        {props.options.map((opt, index) => (
+          <option key={index} value={opt.value} label={opt.value} />
+        ))}
+      </SelectStudent>
+    </div>
   );
 }
 
 export function AreaInput(props) {
   return (
-    <>
-      <label>{prettify(props.label)}:</label>
+    <div>
+      <LabelForm>{prettify(props.label)}:</LabelForm>
       <br />
-      <textarea
+      <TextArea
         type="text"
         name={props.label}
         {...props.formik.getFieldProps(props.label)}
@@ -121,7 +144,7 @@ export function AreaInput(props) {
       {props.formik.touched[props.label] && props.formik.errors[props.label] ? (
         <p>{props.formik.errors[props.label]}</p>
       ) : null}
-    </>
+    </div>
   );
 }
 
@@ -130,8 +153,8 @@ export function RadioInput(props) {
   const listRadios = options.map((opt) => {
     return (
       <div>
-        <input
-         {...props.formik.getFieldProps(props.label)}
+        <InputRadio
+          {...props.formik.getFieldProps(props.label)}
           type="radio"
           id={opt}
           name={props.label}
@@ -139,89 +162,188 @@ export function RadioInput(props) {
           onChange={props.onChange}
           checked={opt === props.value}
         />
-        <label htmlFor={opt}>{prettify(opt)}</label>
+        <LabelForm htmlFor={opt}>{prettify(opt)}</LabelForm>
       </div>
     );
   });
   return (
-    <>
-      <label>{prettify(props.label)}:</label>
+    <div>
+      <LabelForm>{prettify(props.label)}:</LabelForm>
 
       {listRadios}
       {props.formik.touched[props.label] && props.formik.errors[props.label] ? (
         <p>{props.formik.errors[props.label]}</p>
       ) : null}
-    </>
+    </div>
+  );
+}
+
+export function TagInput(props) {
+  return (
+    <TagsDiv>
+      <LabelForm>{prettify(props.label)}:</LabelForm>
+      <br />
+      <Tags
+        settings={{
+          enforceWhitelist: true,
+          whitelist: props.whitelist,
+        }}
+        onChange={(e) => {
+          const valueArray = e.detail.tagify.value;
+          const tags = valueArray.reduce((acc, value, index) => {
+            if (index === 0) {
+              return acc + value.value;
+            } else return acc + ", " + value.value;
+          }, "");
+
+          props.onChange({
+            target: {
+              name: props.label,
+              value: tags,
+            },
+          });
+        }}
+        //{props.value[props.label]}
+        value={props.value}
+      ></Tags>
+    </TagsDiv>
+  );
+}
+
+export function ImageInput(props) {
+  const [photo, setPhoto] = useState(defaultImg);
+
+  const onFileChangeHandler = (e) => {
+    e.preventDefault();
+    const file = e.target.files[0];
+    console.log(e.target.files);
+    console.log("file: ", file);
+
+    if (FileReader && file) {
+      var fr = new FileReader();
+      fr.onload = function () {
+        setPhoto(fr.result);
+        props.onChange({
+          target: {
+            name: props.label,
+            value: fr.result,
+          },
+        });
+      };
+      fr.readAsDataURL(file);
+    }
+  };
+  function importData() {
+    let input = document.createElement("input");
+    input.type = "file";
+    input.onchange = onFileChangeHandler;
+    input.click();
+  }
+
+  return (
+    <div>
+      <LabelForm>{prettify(props.label)}:</LabelForm>
+      <br />
+      <PhotoInput
+        type="image"
+        className="form-control"
+        alt="student"
+        name="file"
+        onClick={importData}
+        src={photo}
+      />
+      <br />
+    </div>
   );
 }
 
 export function ArrayInput(props) {
   let values = [...props.values];
-  const inputList = props.inputList
+  const inputList = props.inputList;
   const formik = [];
- for (let i = 0; i <10; i++){
-  const validate = () => validationHandler(values[i],inputList)
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  formik.push(useFormik({
-    initialValues: {...values[i]},
-    validate,
-    onSubmit: (values) => {}}));
- };
+  for (let i = 0; i < 10; i++) {
+    const validate = () => validationHandler(values[i], inputList);
 
-  let emptyChild = {}
+    formik.push(
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      useFormik({
+        initialValues: { ...values[i] },
+        validate,
+        onSubmit: (values) => {},
+      })
+    );
+  }
+
+  let emptyChild = {};
   for (const [key, input] of Object.entries(inputList)) {
     emptyChild[key] = "";
   }
-  const subOnChange = (e,index) =>{
-    const {name, value} = e.target;
-    values[index] = {...values[index], [name] : value}
-    props.onChange({target:{
-      name: props.label,
-      value: values
-    }})
-  }
-
+  const subOnChange = (e, index) => {
+    const { name, value } = e.target;
+    values[index] = { ...values[index], [name]: value };
+    props.onChange({
+      target: {
+        name: props.label,
+        value: values,
+      },
+    });
+  };
 
   const formArray = values.map((element, index) => {
-   
-    return (<div className="row" key={index}>
-      {inputGeneration(inputList,props.values[index],(e) => subOnChange(e,index),formik[index])}
-      
-      <div className="col">
-        <button
-          type="button"
-          className="secondary"
-          onClick={() =>{
-            values.splice(index,1)
-            props.onChange({target: {
-            name: props.label,
-            value: [...values]
-          }}) }}
-        >
-          X
-        </button>
-      </div>
-    </div>
-  )})
+    return (
+      <>
+        <ArrayDiv className="col" key={index}>
+          {inputGeneration(
+            inputList,
+            props.values[index],
+            (e) => subOnChange(e, index),
+            formik[index]
+          )}
 
-
-  return (
-    <>
-      <h1>{prettify(props.label)}</h1>
-          <div>
-            {formArray}
-            <button
+          <div className="col">
+            <ButtonX
               type="button"
               className="secondary"
-              onClick={() => {values.length < 10 &&
-                 props.onChange({target: {
-                name: props.label,
-                value: [...props.values,emptyChild]
-              }}) }}
+              onClick={() => {
+                values.splice(index, 1);
+                props.onChange({
+                  target: {
+                    name: props.label,
+                    value: [...values],
+                  },
+                });
+              }}
             >
-              Add {prettify(props.label)}
-            </button>
+              X
+            </ButtonX>
           </div>
-    </>
+        </ArrayDiv>
+      </>
+    );
+  });
+
+  return (
+    <ArrayContainer>
+      <h1>{prettify(props.label)}</h1>
+      <div>
+        {formArray}
+
+        <ButtonAdd
+          type="button"
+          className="secondary"
+          onClick={() => {
+            values.length < 10 &&
+              props.onChange({
+                target: {
+                  name: props.label,
+                  value: [...props.values, emptyChild],
+                },
+              });
+          }}
+        >
+          Add {prettify(props.label)}
+        </ButtonAdd>
+      </div>
+    </ArrayContainer>
   );
 }

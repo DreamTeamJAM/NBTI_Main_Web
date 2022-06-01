@@ -3,7 +3,7 @@ import React, {
     useEffect,
     useState
 } from "react";
-import { Stepper, Step, StepLabel, Button } from "@material-ui/core";
+import { Stepper, Step, StepLabel } from "@material-ui/core";
 import Step0 from "./step0";
 import Step1 from "./step1";
 import Step2 from "./step2";
@@ -15,6 +15,7 @@ import {
   selectCount,
 } from 'redux/stepSlice';
 import PdfButton from "Pages/Exit/pdf_button"
+import {DefaultStepper,DefaultStep,DivDefault} from "registerStudent/styles"
 
 export function GetSteps() {
     return ["Account Info", "Personal Info", "Work Experience", "Education & Training", "Language Skills", "Volunteering" ];
@@ -26,14 +27,14 @@ export const StepController = () => {
     const activeStep = useSelector(selectCount)
     const dispatch = useDispatch();
     return (
-        <>
-          <Stepper activeStep={activeStep} alternativeLabel>
+        <DivDefault>
+          <DefaultStepper activeStep={activeStep} alternativeLabel>
             {steps.map((label) => (
-              <Step key={label}>
+              <DefaultStep key={label}>
                 <StepLabel>{label}</StepLabel>
-              </Step>
+              </DefaultStep>
             ))}
-          </Stepper>
+          </DefaultStepper>
           {activeStep === 0 ? (    
                 <Step0/>
         ) : activeStep === 1 ? (
@@ -50,7 +51,7 @@ export const StepController = () => {
                  <PdfButton></PdfButton>
         ) : null}
           
-        </>
+        </DivDefault>
       );
 }
 

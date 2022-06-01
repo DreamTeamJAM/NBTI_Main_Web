@@ -17,6 +17,8 @@ import Profile from './Components/userManagement/profile.component';
 import Spinner from './Components/Spinner/index';
 import Register from './Components/userManagement/register.component';
 
+import '@yaireo/tagify/src/tagify.scss'
+import "@yaireo/tagify/dist/tagify.css";
 
 function App() {
   const [locale, setLocale] = useState(
