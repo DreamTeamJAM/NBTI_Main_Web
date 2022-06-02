@@ -1,4 +1,3 @@
-import {useEffect} from 'react';
 import Navbar from "./Components/Navbar";
 import { LOCALES } from "./i18n";
 import { I18Provider } from "./i18n";
@@ -11,7 +10,6 @@ import Hosting from "Pages/Hosting";
 import Encrypt from "Pages/encryptTest";
 import Footer from "./Components/Footer";
 
-import Login from "./Pages/Login/Login";
 import LoginAuth from "./Components/userManagement/login.component";
 import Profile from './Components/userManagement/profile.component';
 import Spinner from './Components/Spinner/index';
