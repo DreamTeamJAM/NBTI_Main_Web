@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Container } from "GlobalStyles";
-import { loginTest, logIn } from "services/api/userApi";
+import auth from "services/auth/auth.service";
 function Login() {
   const [userName, setUserName] = useState("");
   const [passWord, setPassWord] = useState("");
 
   const Enter = () => {
     console.log("Entra método login");
-    logIn({ username: userName, password: passWord })
+    auth.login( userName, passWord )
       .then((data) => {
         sessionStorage.setItem("currenUserId", data);
         sessionStorage.setItem("isLogin", true);

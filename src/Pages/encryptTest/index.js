@@ -47,7 +47,7 @@ export default function Encrypt() {
     };
 
    const handleDownload =  async () => {
-      const response = await downloadFile(user,14)
+      const response = await downloadFile(11)
    
     console.log(response.data)
     

@@ -5,7 +5,7 @@ const BASE_HOST = "https://34vznuxt9f.execute-api.eu-west-1.amazonaws.com/beta";
 
 class AuthService {
   async login(username, password) {
-    const res = await axios.post(`http://localhost:8080/api/auth/signin`, {
+    const res = await axios.post(`${BASE_HOST}/auth/signin`, {
       username,
       password,
     });
@@ -20,7 +20,7 @@ class AuthService {
   }
 
   async register(username, email, password, roles = ["user"]) {
-    return axios.post("http://localhost:8080/api/auth/signup", {
+    return axios.post(`${BASE_HOST}/auth/signup`, {
       username,
       email,
       password,
