@@ -103,6 +103,7 @@ export const FormStep = styled.form`
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  min-height:70vh;
 `;
 
 export const InputForm = styled.input`
