@@ -31,7 +31,7 @@ export default function LoginAuth() {
     AuthService.login(username, password).then(
       () => {
         navigate("/spinner");
-        window.location.reload();
+        /* window.location.reload(); */
       },
       (err) => {
         const resMessage =

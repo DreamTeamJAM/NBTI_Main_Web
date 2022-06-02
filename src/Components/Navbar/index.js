@@ -90,7 +90,7 @@ export default function Navbar({ setLocale }) {
       console.log("User");
       return (
         <ButtonContainer>
-          <ButtonWithDropDownCmp />
+          <ButtonWithDropDownCmp onClick={() => eventBus.dispatch("logout")} />
           <LoginButton
             to={`/`}
             bgcolor="#181eb3"

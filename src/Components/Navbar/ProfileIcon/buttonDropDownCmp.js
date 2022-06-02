@@ -4,34 +4,38 @@ import { DropDownCard } from "./dropDownCard";
 import { FaUserCircle } from "react-icons/fa";
 import { BiLogOut } from "react-icons/bi";
 
-const sampleData = [
-  {
-    title: "Profile",
-    link: "/profile",
-    icon: (
-      <FaUserCircle
-        style={{ marginBottom: "-4px", marginRight: "10px" }}
-        size={"20px"}
-      />
-    ),
-  },
-  {
-    title: "Logout",
-    link: "/",
-    icon: (
-      <BiLogOut
-        style={{ marginBottom: "-4px", marginRight: "10px" }}
-        size={"20px"}
-      />
-    ),
-  },
-];
-
-const ButtonWithDropDownCmp = () => {
+const ButtonWithDropDownCmp = ({onClick}) => {
   const [open, setOpen] = React.useState(false);
   const drop = React.useRef(null);
+
+  const sampleData = [
+    {
+      title: "Profile",
+      link: "/profile",
+      icon: (
+        <FaUserCircle
+          style={{ marginBottom: "-4px", marginRight: "10px" }}
+          size={"20px"}
+        />
+      ),
+      onClick: onClick
+    },
+    {
+      title: "Logout",
+      link: "/",
+      icon: (
+        <BiLogOut
+          style={{ marginBottom: "-4px", marginRight: "10px" }}
+          size={"20px"}
+        />
+      ),
+      onClick: ''
+    },
+  ];
+
+
   const handleClick = (e) => {
-    if (!e.target.closest(`#${drop.current.className}`) && open) {
+    if (!e.target.closest(`#${drop.current.id}`) && open) {
       setOpen(false);
     }
   };

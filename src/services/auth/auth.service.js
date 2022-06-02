@@ -5,14 +5,11 @@ const BASE_HOST = "https://34vznuxt9f.execute-api.eu-west-1.amazonaws.com/beta";
 
 class AuthService {
   async login(username, password) {
-    const res = await axios.post(`http://localhost:8080/api/auth/signin`, {
+    return await axios.post(`http://localhost:8080/api/auth/signin`, {
       username,
       password,
-    });
-    if (res.data.accessToken) {
-      localStorage.setItem("user", JSON.stringify(res.data));
-    }
-    return res.data;
+    }).then((res) => console.log(`res: ${res.status}`));
+    
   }
 
   async logout() {
