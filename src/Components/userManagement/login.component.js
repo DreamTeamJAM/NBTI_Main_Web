@@ -4,6 +4,7 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import AuthService from "../../services/auth/auth.service";
 import { useNavigate } from "react-router-dom";
+import { Container } from './../../GlobalStyles';
 
 const required = (value) => {
   if (!value) {
@@ -25,12 +26,11 @@ export default function LoginAuth() {
     e.preventDefault();
     setMessage("");
     setLoading(true);
+    console.log("Entra método handleLogin");
 
     AuthService.login(username, password).then(
       () => {
-        /* const { token } = res.data;
-          AuthService.setToken(token); */
-        navigate("/");
+        navigate("/spinner");
         window.location.reload();
       },
       (err) => {
@@ -45,16 +45,14 @@ export default function LoginAuth() {
   };
 
   return (
-    <div className="col-md-12">
+    <Container>
       <div className="card card-container">
         <img
           src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
           alt="profile-img"
           className="profile-img-card"
         />
-        <Form
-          onSubmit={handleLogin}
-        >
+        <Form onSubmit={handleLogin}>
           <div className="form-group">
             <label htmlFor="username">Username</label>
             <Input
@@ -78,10 +76,7 @@ export default function LoginAuth() {
             />
           </div>
           <div className="form-group">
-            <button
-              className="btn btn-primary btn-block"
-              disabled={loading}
-            >
+            <button className="btn btn-primary btn-block" disabled={loading}>
               {loading && (
                 <span className="spinner-border spinner-border-sm"></span>
               )}
@@ -95,11 +90,9 @@ export default function LoginAuth() {
               </div>
             </div>
           )}
-          <CheckButton
-            style={{ display: "none" }}
-          />
+          <CheckButton style={{ display: "none" }} />
         </Form>
       </div>
-    </div>
+    </Container>
   );
 }

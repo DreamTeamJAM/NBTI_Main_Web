@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+import React from "react";
 
 const parseJwt = (token) => {
   try {
@@ -9,21 +8,15 @@ const parseJwt = (token) => {
   }
 };
 
-class AuthVerify extends Component {
-    constructor(props) {
-      super(props);
-      props.history.listen(() => {
-        const user = JSON.parse(localStorage.getItem("user"));
-        if (user) {
-          const decodedJwt = parseJwt(user.accessToken);
-          if (decodedJwt.exp * 1000 < Date.now()) {
-            props.logOut();
-          }
-        }
-      });
+const AuthVerify = () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      const decodedJwt = parseJwt(user.accessToken);
+      if (decodedJwt.exp * 1000 < Date.now()) {
+        return false
+      }
     }
-    render() {
-      return <div></div>;
-    }
-  }
-  export default AuthVerify;
+
+  return true;
+};
+export default AuthVerify;
