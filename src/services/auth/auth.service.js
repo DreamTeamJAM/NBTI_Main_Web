@@ -8,11 +8,8 @@ class AuthService {
     const res = await axios.post(`${BASE_HOST}/auth/signin`, {
       username,
       password,
-    });
-    if (res.data.accessToken) {
-      localStorage.setItem("user", JSON.stringify(res.data));
-    }
-    return res.data;
+    }).then((res) => console.log(`res: ${res.status}`));
+    
   }
 
   async logout() {

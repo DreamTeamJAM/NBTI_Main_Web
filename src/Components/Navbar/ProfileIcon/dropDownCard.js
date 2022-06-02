@@ -9,7 +9,10 @@ export const DropDownCard = ({ data = [], setOpen }) => {
         {data.map((item, i) => (
           <>
             <li>
-              <StyledLink to={item.link} key={i} onClick={() => setOpen(false)}>
+              <StyledLink to={item.link} key={i} onClick={() => {
+                setOpen(false);
+                item.onClick();
+              }}>
                 {item.icon}
                 <span>{item.title}</span>
               </StyledLink>
