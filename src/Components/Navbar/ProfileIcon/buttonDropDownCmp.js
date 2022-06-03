@@ -18,7 +18,7 @@ const ButtonWithDropDownCmp = ({onClick}) => {
           size={"20px"}
         />
       ),
-      onClick: onClick
+      onClick: ''
     },
     {
       title: "Logout",
@@ -29,7 +29,7 @@ const ButtonWithDropDownCmp = ({onClick}) => {
           size={"20px"}
         />
       ),
-      onClick: ''
+      onClick: onClick
     },
   ];
 

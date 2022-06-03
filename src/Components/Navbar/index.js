@@ -13,6 +13,7 @@ import eventBus from "../../common/EventBus";
 import AuthVerify from "./../../common/auth-verify";
 import ProfileIcon from "./ProfileIcon/index";
 import ButtonWithDropDownCmp from "./ProfileIcon/buttonDropDownCmp";
+import LanguageSelect from 'Components/LanguageSelect';
 
 /** Navbar Component */
 export default function Navbar({ setLocale }) {
@@ -25,6 +26,7 @@ export default function Navbar({ setLocale }) {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
   const [showAdminBoard, setShowAdminBoard] = useState(true);
   const [currentUser, setCurrentUser] = useState(undefined);
+  const [isLogin, setIsLogin] = useState(false);
 
   const changeNavbarColor = () => {
     if (window.scrollY >= 60) {
@@ -35,14 +37,15 @@ export default function Navbar({ setLocale }) {
   };
 
   useEffect(() => {
-    const user = AuthService.getCurrentUser();
-    if (user) {
-      setCurrentUser(user);
-      user.then((user) => {
-        setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
-        setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
-      });
-    }
+    const user = AuthService.getCurrentUser().then((res) => {
+      if (res) {
+        setCurrentUser(res);
+        setIsLogin(true);
+      } else {
+        setIsLogin(false);
+      }
+    });
+    console.log(`comprobarUsuario: ${user}`);
   }, []);
 
   eventBus.on("logout", () => {
@@ -52,13 +55,14 @@ export default function Navbar({ setLocale }) {
   const handleLogout = () => {
     AuthService.logout();
     setCurrentUser(undefined);
+    setIsLogin(false);
   };
 
   useOnClickOutside(node, () => setOpen(false));
   window.addEventListener("scroll", changeNavbarColor);
 
   const handleChangeButtons = () => {
-    if (currentUser === undefined) {
+    if (!isLogin) {
       console.log("No user");
       return (
         <ButtonContainer>
@@ -86,22 +90,12 @@ export default function Navbar({ setLocale }) {
           <AuthVerify logOut={handleLogout} />
         </ButtonContainer>
       );
-    } else {
+    } else if (isLogin) {
       console.log("User");
       return (
         <ButtonContainer>
           <ButtonWithDropDownCmp onClick={() => eventBus.dispatch("logout")} />
-          <LoginButton
-            to={`/`}
-            bgcolor="#181eb3"
-            color="white"
-            txcolor="white"
-            hoverbgcolor="#F3F3F3"
-            hovercolor="#181eb3"
-            onClick={() => eventBus.dispatch("logout")}
-          >
-            Logout
-          </LoginButton>
+          <LanguageSelect setLocale={setLocale} />
         </ButtonContainer>
       );
     }
