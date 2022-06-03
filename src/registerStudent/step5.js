@@ -25,7 +25,7 @@ export function Step5() {
   };
   return (
     <>
-      <StepGenerator isInput={false} inputMap={inputs} />
+      <StepGenerator isInput={true} inputMap={inputs} />
     </>
   );
 }

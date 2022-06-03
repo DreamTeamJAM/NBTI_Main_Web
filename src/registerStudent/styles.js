@@ -3,12 +3,9 @@ import { Stepper, Step, StepLabel } from "@material-ui/core";
 import { Container } from "GlobalStyles";
 
 export const DefaultStepper = styled(Stepper)`
-  background-color: red;
-  width: auto;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+ 
 `;
 export const DefaultStep = styled(Step)`
-  background-color: whitesmoke;
   height: 5em;
 `;
 export const DefaultStepLabel = styled(StepLabel)``;
@@ -33,6 +30,7 @@ export const Margin = styled.div`
 `;
 export const ContainerButton = styled.div`
   margin: 0;
+  margin-top:-1.5em;
   padding: 0;
   display: flex;
 
@@ -40,7 +38,7 @@ export const ContainerButton = styled.div`
   width: 46.6vw;
 `;
 export const ArrayContainer = styled.div`
-  margin-top: 0;
+  margin-top: -1em;
   margin-bottom: 0;
   padding: 0;
   width: 80vw;
@@ -93,12 +91,15 @@ export const AccountDiv = styled.div`
 
 export const AccountDivEdited = styled.div`
   display: grid;
+  margin-left:4em;
+  margin-right:-4em;
   justify-content: center;
   align-items: center;
   grid-template-columns: 1fr 1fr;
 `;
 
 export const FormStep = styled.form`
+  margin-top: -1.5em;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -185,4 +186,7 @@ export const TagsDiv = styled.div`
   margin-right: 27em;
 
   height: auto;
+`;
+export const H1=styled.h1`
+margin-top: -0.2em;
 `;

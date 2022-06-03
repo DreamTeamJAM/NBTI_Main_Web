@@ -7,6 +7,7 @@ import {
   FormStep,
   FormButton,
   AccountDivEdited,
+  H1
 } from "registerStudent/styles";
 
 function Step1() {
@@ -51,10 +52,10 @@ function Step1() {
     hobbies: { type: "textarea", validation: "text" },
   };
   return (
-    <div>
-      <h1>Personal Info</h1>
+    <>
+      <H1>Personal Info</H1>
       <StepGenerator isInput={false} inputMap={inputs} />
-    </div>
+    </>
   );
 }
 export default Step1;
