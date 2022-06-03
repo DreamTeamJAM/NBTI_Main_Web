@@ -5,11 +5,12 @@ const BASE_HOST = "https://34vznuxt9f.execute-api.eu-west-1.amazonaws.com/beta";
 
 class AuthService {
   async login(username, password) {
-    const res = await axios.post(`${BASE_HOST}/auth/signin`, {
-      username,
-      password,
-    }).then((res) => console.log(`res: ${res.status}`));
-    
+    return await axios
+      .post(`${BASE_HOST}/auth/signin`, {
+        username,
+        password,
+      })
+      .then((res) => localStorage.setItem("user", JSON.stringify(res.data)));
   }
 
   async logout() {
@@ -21,12 +22,17 @@ class AuthService {
       username,
       email,
       password,
-      roles
+      roles,
     });
   }
 
   async getCurrentUser() {
-    return JSON.parse(localStorage.getItem("user"));
+    const user = JSON.parse(localStorage.getItem("user"));
+    console.log(`user2: ${user}`);
+    if (user !== null) {
+      return user;
+    }
+    return null;
   }
 }
 
