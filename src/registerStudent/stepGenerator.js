@@ -75,6 +75,7 @@ const StepGenerator = (props) => {
             onClick={() => {
               dispatch(increment());
               dispatch(updateStudent(formInfo));
+              window.scrollTo({top: 0, behavior: 'smooth'})
             }}
           >
             Submit
