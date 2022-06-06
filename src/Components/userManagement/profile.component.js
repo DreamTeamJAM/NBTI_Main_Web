@@ -4,7 +4,6 @@ import { Container } from "./../../GlobalStyles";
 
 export default function Profile() {
   const [currentUser, setCurrentUser] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     AuthService.getCurrentUser().then((user) => setCurrentUser(user));

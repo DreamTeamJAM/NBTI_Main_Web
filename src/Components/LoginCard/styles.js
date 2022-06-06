@@ -1,21 +1,22 @@
 import styled from "styled-components";
 
 export const Card = styled.div`
-  width: 190px;
-  padding: 1.9rem 1.2rem;
+  width: 220px;
+  height: 300px;
   text-align: center;
-  background: rgba(24, 30, 179, 0.45);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border-radius: 0px;
+  background-color: #fff;
+  padding: 1.9rem 2rem;
   backdrop-filter: blur(8.5px);
+  transition: all 0.5s ease-in-out;
   -webkit-backdrop-filter: blur(8.5px);
-  border-radius: 10px;
-  border-radius: 16px;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
 
-  h4 {
-    margin-bottom: 1rem;
+  h3 {
+    margin-bottom: 2rem;
     font-size: 1.5em;
     font-weight: 500;
-    color: #f5f5f5;
+    color: #000;
   }
 
   button {
@@ -25,28 +26,28 @@ export const Card = styled.div`
     font-weight: bold;
     font-size: 0.8em;
     text-transform: uppercase;
-    padding: 0.6em 1.2em;
-    background-color: #ffeba7;
-    color: #5e6681;
+    padding: 0.8em 1.4em;
+    letter-spacing: 3px;
+    background-color: #000;
+    color: #fff;
     box-shadow: 0 8px 24px 0 rgb(255 235 167 / 20%);
     transition: all 0.3s ease-in-out;
   }
 
   button:hover {
-    background-color: #5e6681;
-    color: #ffeba7;
+    background-color: rgba(0, 0, 0, 0.8);
     box-shadow: 0 8px 24px 0 rgb(16 39 112 / 20%);
   }
 
   a {
-    color: #f5f5f5;
+    color: #000;
     display: block;
     font-size: 0.75em;
     transition: color 0.3s ease-out;
   }
 
   a:hover {
-    color: #ffeba7;
+    color: rgba(0, 0, 0, 0.8);
   }
 `;
 
@@ -56,14 +57,16 @@ export const CardField = styled.div`
   align-items: center;
   justify-content: center;
   gap: 0.5em;
-  background-color: #1f2029;
-  border-radius: 4px;
+  background-color: #fff;
   padding: 0.5em 1em;
+  border: 1px solid black;
+  padding: 0.6em 1.1em;
+  margin-bottom: 0.5em;
 
   svg {
     height: 1em;
     width: 1em;
-    fill: #ffeba7;
+    fill: #000;
   }
 
   input {
@@ -71,7 +74,7 @@ export const CardField = styled.div`
     border: none;
     outline: none;
     width: 100%;
-    color: #d3d3d3;
+    color: #000;
   }
 
   input:focus::placeholder {
