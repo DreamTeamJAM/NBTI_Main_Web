@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Card, CardField } from "./styles";
-import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
-import CheckButton from "react-validation/build/button";
+import { InputForm } from "GlobalStyles"
 import AuthService from "../../services/auth/auth.service";
 import { useNavigate } from "react-router-dom";
+import Spinner2 from './../Spinnerv2/index';
 
 const required = (value) => {
   if (!value) {
@@ -20,7 +19,7 @@ export default function LoginCard() {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
   const handleLogin = (e) => {
@@ -31,10 +30,12 @@ export default function LoginCard() {
 
     AuthService.login(username, password).then(
       () => {
-        navigate("/spinner");
+        setLoading(false);
+        navigate("/");
         window.location.reload();
       },
       (err) => {
+        setLoading(false);
         console.log(`Error: ${err}`);
       }
     );
@@ -42,7 +43,7 @@ export default function LoginCard() {
 
   return (
     <Card>
-      <h4 className="title">Log In!</h4>
+      <h3 className="title">Log In!</h3>
       <form onSubmit={handleLogin}>
         <CardField>
           <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
@@ -74,6 +75,7 @@ export default function LoginCard() {
           />
         </CardField>
         <button type="submit">Login</button>
+        <div>{isLoading ? <Spinner2 /> : ''}</div>
         <a href="www.google.es">Forgot your password?</a>
       </form>
     </Card>
