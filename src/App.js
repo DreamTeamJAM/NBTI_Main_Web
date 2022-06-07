@@ -33,12 +33,11 @@ function App() {
       {/* ROUTES */}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/students" element={<CvPage />} />
         <Route path="/enterprise" element={<Enterprise />} />
         <Route path="/hosting" element={<Hosting />} />
         <Route path="/encrypt" element={<Encrypt />} />
         <Route path="/login" element={<LoginAuth />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/register" element={<CvPage />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/spinner" element={<Spinner />} />
         <Route path="*" element={<h1>Error 404</h1>} />

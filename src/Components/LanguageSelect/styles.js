@@ -7,19 +7,22 @@ export const LanguageSelect = styled.select`
   -moz-padding-end: 20px;
   -webkit-padding-start: 2px;
   -moz-padding-start: 2px;
-  background-color: #fff;
-  background-position: center right;
-  background-repeat: no-repeat;
-  border: 1px solid #aaa;
-  border-radius: 2px;
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
+  background: none;
+  border: none;
   color: #000;
   font-size: inherit;
-  margin-left: 1em;
+  margin-left: 0.5em;
   overflow: hidden;
   padding: 8px 3px 8px 3px;
   text-overflow: ellipsis;
   white-space: nowrap;
   outline: none;
 
+  option {
+    color: #000;
+    font-size: inherit;
+    padding: 8px 3px 8px 3px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 `;

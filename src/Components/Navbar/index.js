@@ -1,4 +1,4 @@
-import { Nav, ButtonContainer } from "./styles";
+import { Nav, ButtonContainer, LoginStyled } from "./styles";
 import { useRef } from "react";
 import { useState, useEffect } from "react";
 import { useOnClickOutside } from "hooks/BurgerMenu.hooks";
@@ -13,7 +13,8 @@ import eventBus from "../../common/EventBus";
 import AuthVerify from "./../../common/auth-verify";
 import ProfileIcon from "./ProfileIcon/index";
 import ButtonWithDropDownCmp from "./ProfileIcon/buttonDropDownCmp";
-import LanguageSelect from 'Components/LanguageSelect';
+import LanguageSelect from "Components/LanguageSelect";
+import translate from "i18n/translate";
 
 /** Navbar Component */
 export default function Navbar({ setLocale }) {
@@ -66,27 +67,21 @@ export default function Navbar({ setLocale }) {
       console.log("No user");
       return (
         <ButtonContainer>
-          <LoginButton
-            to={`/login`}
-            bgcolor="#F3F3F3"
-            color="#181eb3"
-            txcolor="white"
-            hoverbgcolor="#181eb3"
-            hovercolor="#F3F3F3"
-          >
-            Login
-          </LoginButton>
+          <LoginStyled to={`/login`}>
+            {translate("login")}
+          </LoginStyled>
           <LoginButton
             to={`/register`}
             bgcolor="#181eb3"
             color="white"
             txcolor="white"
-            hoverbgcolor="#F3F3F3"
-            hovercolor="#181eb3"
+            hoverbgcolor="#131898"
+            hovercolor="white"
             onClick={() => eventBus.dispatch("logout")}
           >
-            Register
+            {translate("register")}
           </LoginButton>
+          <LanguageSelect setLocale={setLocale} />
           <AuthVerify logOut={handleLogout} />
         </ButtonContainer>
       );
