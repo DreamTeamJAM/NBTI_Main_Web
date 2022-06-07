@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import AuthService from "../../services/auth/auth.service";
-import { getStudentById } from "services/api/studentApi";
+import { getStudentByUserId } from "services/api/studentApi";
 import { Container } from "./../../GlobalStyles";
 import { downloadFile } from "services/api/fileApi";
 import {DivSuperior, DivInferior} from "./pages/Components"
@@ -29,14 +29,15 @@ export default function Profile() {
 
   useEffect(() => {
     AuthService.getCurrentUser().then((user) => setCurrentUser(user));
-    console.log("Student: ", getStudentById(21));
-    getStudentById(21).then((res) => {
+   }, []);
+  useEffect(() => {
+    getStudentByUserId(currentUser.id).then((res) => {
       setStudentValues(res.data);
       downloadFile(res.data.photoId).then((file) => {
         setImg(file.data);
       });
     });
-  }, []);
+  },[currentUser] );
  pdfMake.vfs = pdfFonts.pdfMake.vfs;
     function make() {
      pdfMake.createPdf(docDefinition({ ...StudentValues, photo:"data:image/png;base64, "+img })).download();
