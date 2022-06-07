@@ -8,7 +8,7 @@ const ButtonWithDropDownCmp = ({onClick}) => {
   const [open, setOpen] = React.useState(false);
   const drop = React.useRef(null);
 
-  const sampleData = [
+  const data = [
     {
       title: "Profile",
       link: "/profile",
@@ -50,7 +50,7 @@ const ButtonWithDropDownCmp = ({onClick}) => {
   return (
     <div className="dropdown" ref={drop}>
       <ProfileIcon onClick={() => setOpen(!open)} />
-      {open && <DropDownCard data={sampleData} setOpen={setOpen} />}
+      {open && <DropDownCard data={data} setOpen={setOpen} />}
     </div>
   );
 };

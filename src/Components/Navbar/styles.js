@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from 'react-router-dom';
 
 /** Navbar Styles */
 export const Nav = styled.nav`
@@ -54,3 +55,13 @@ export const ButtonContainer = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+export const LoginStyled = styled(Link)`
+  text-decoration: none;
+  color: #000;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    color: #181eb3;
+  }
+`

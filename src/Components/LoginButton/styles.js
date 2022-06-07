@@ -10,8 +10,9 @@ export const StyledLogLink = styled(Link)`
   border-radius: 0.3em;
   background: ${(props) => props.bgcolor};
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  letter-spacing: 0.5px;
   overflow: hidden;
-  padding: 0.55em 1.5em;
+  padding: 0.45em 0.65em;
   text-decoration: none;
   color: ${(props) => props.color};
   cursor: pointer;

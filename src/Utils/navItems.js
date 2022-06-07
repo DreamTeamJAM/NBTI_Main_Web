@@ -7,16 +7,11 @@ export const NavItems = [
   },
   {
     id: 2,
-    text: "student",
-    link: "/students",
-  },
-  {
-    id: 3,
     text: "enterprise",
     link: "/enterprise",
   },
   {
-    id: 4,
+    id: 3,
     text: "hosting",
     link: "/hosting",
   },

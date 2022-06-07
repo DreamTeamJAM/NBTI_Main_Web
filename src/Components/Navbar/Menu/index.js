@@ -3,7 +3,7 @@ import { NavTitleImg, Item, ItemContainer, MenuContainer } from "./styles";
 import { NavItems } from "Utils/navItems";
 import translate from "i18n/translate";
 
-function HorizontalMenu({ setLocale }) {
+function HorizontalMenu() {
   return (
     <MenuContainer>
       <NavTitleImg src={NbtiLogo} alt="NBTI Logo" />
