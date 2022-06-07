@@ -21,9 +21,10 @@ import {
 } from "registerStudent/styles";
 
 export function prettify(text) {
-  var result = text.replace(/([A-Z])/g, " $1");
-  var finalResult = result.charAt(0).toUpperCase() + result.slice(1);
-  return finalResult;
+  if(text!=undefined){
+    var result = text.replace(/([A-Z])/g, " $1");
+    var finalResult = result.charAt(0).toUpperCase() + result.slice(1);
+    return finalResult;}
 }
 
 export function TextInput(props) {

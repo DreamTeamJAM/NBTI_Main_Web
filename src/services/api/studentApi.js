@@ -13,11 +13,11 @@ export const getAllStudents = async () => {
 }
 
 export const getStudentById = async ( id) => {
-
+console.log(authHeader())
     const response = await axios.get(`${BASE_HOST}/${id}`, {
         headers: authHeader()
     });
-    return response.data
+    return response
 }
 
 export const postStudent = async ( body) => {
