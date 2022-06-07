@@ -49,18 +49,19 @@ export const StyledLink = styled(Link)`
 `;
 
 export const UserButton = styled.button`
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  object-fit: cover;
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-  transition: all 0.3s ease-in-out;
-  background-image: url(${image});
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-
   &:hover {
     filter: brightness(90%);
   }
+`;
+export const Img = styled.img`
+border-radius: 50%;
+width: 40px;
+height: 40px;
+object-fit: cover;
+box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+transition: all 0.3s ease-in-out;
+background-position: center;
+background-size: cover;
+background-repeat: no-repeat;
+
 `;
