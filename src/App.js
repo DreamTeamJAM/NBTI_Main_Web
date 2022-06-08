@@ -11,11 +11,13 @@ import Encrypt from "Pages/encryptTest";
 import Footer from "./Components/Footer";
 
 import LoginAuth from "./Components/userManagement/login.component";
-import Profile from './Components/userManagement/profile.component';
-import Spinner from './Components/Spinner/index';
+import Profile from "./Components/userManagement/profile.component";
+import Spinner from "./Components/Spinner/index";
 
-import '@yaireo/tagify/src/tagify.scss'
+import "@yaireo/tagify/src/tagify.scss";
 import "@yaireo/tagify/dist/tagify.css";
+import Cookies from './Components/Cookies/styles';
+
 
 function App() {
   const [locale, setLocale] = useState(
@@ -42,6 +44,7 @@ function App() {
         <Route path="*" element={<h1>Error 404</h1>} />
       </Routes>
       <Footer />
+      <Cookies />
     </I18Provider>
   );
 }
