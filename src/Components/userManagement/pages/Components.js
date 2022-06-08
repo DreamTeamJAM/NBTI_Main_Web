@@ -189,21 +189,6 @@ export function DivInferior(props) {
       <DivW></DivW>
       <DivD>
         <DivM>
-          <p>
-            <strong>Id:</strong> {currentUser.id}
-          </p>
-          <p>
-            <strong>Email:</strong> {currentUser.email}
-          </p>
-          <strong>Authorities:</strong>
-          <ul>
-            {currentUser.roles &&
-              currentUser.roles.map((role, index) => (
-                <li key={index}>{role}</li>
-              ))}
-          </ul>
-        </DivM>
-        <DivM>
           <H2>About Me:</H2>
           <Header>{props.student.aboutMe}</Header>
         </DivM>

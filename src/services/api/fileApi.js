@@ -12,7 +12,6 @@ export const uploadFile = async ( body) => {
             "Content-Type": "multipart/form-data",
         }
     });
-    alert("File uploaded successfully.")
     return response.data
 }
 
