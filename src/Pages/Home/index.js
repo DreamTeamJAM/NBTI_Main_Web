@@ -1,10 +1,10 @@
 import ImageSlider from "Components/CarsouselSimple";
-import image1 from "../../assets/images/w1.png";
-import image2 from "../../assets/images/mountain.jpg";
-import image3 from "../../assets/images/ewee-wallpaper.jpg";
-import image4 from "../../assets/images/it-wallpaper.jpg";
-import image5 from "../../assets/images/ewee-wallpaper.jpg";
-import image6 from "../../assets/images/chefs-wallpaper.jpg";
+import image1 from "../../assets/images/admin-wallpaper.png";
+import image2 from "../../assets/images/it2-wallpaper.png";
+import image3 from "../../assets/images/ewee-wallpaper.png";
+import image4 from "../../assets/images/it-wallpaper.png";
+import image5 from "../../assets/images/ewee-wallpaper.png";
+import image6 from "../../assets/images/chefs-wallpaper.png";
 import LearnMoreButton from "./../../Components/LearnMoreButton/index";
 import { HomeContainer } from './styles';
 import Brochure from './../../Components/Brochure/index';
