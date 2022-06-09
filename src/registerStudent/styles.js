@@ -190,3 +190,6 @@ export const TagsDiv = styled.div`
 export const H1=styled.h1`
 margin-top: -0.2em;
 `;
+export const Div=styled.div`
+height:40vh;
+`;

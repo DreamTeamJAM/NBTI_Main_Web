@@ -1,7 +1,7 @@
 import StepGenerator from "registerStudent/stepGenerator";
 import { languages } from "Utils/languages";
 
-export function Step5() {
+export function Step5(props) {
   const nationalityOptions = languages.map((language) => ({
     value: language.name_en,
     label: language.name_en,
@@ -25,7 +25,7 @@ export function Step5() {
   };
   return (
     <>
-      <StepGenerator isInput={true} inputMap={inputs} />
+      <StepGenerator isInput={true} inputMap={inputs} loading={props.loading} />
     </>
   );
 }

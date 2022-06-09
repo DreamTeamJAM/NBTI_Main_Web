@@ -49,7 +49,7 @@ async function Id(props) {
 }
 
 const handleLogin = async (user, student) => {
-  await AuthService.register(user.username, user.email, user.password);
+  await AuthService.register(user.username, student.email, user.password);
   await AuthService.login(user.username, user.password);
   await AuthService.getCurrentUser().then(async (res) => {
     const photoId = await Id(student.photo);
@@ -59,6 +59,9 @@ const handleLogin = async (user, student) => {
   });
   console.log("res:", AuthService.getCurrentUser());
 };
+function Reload(){
+window.location.reload();
+}
 
 const StepGenerator = (props) => {
   const inputs = props.inputMap;
@@ -118,11 +121,11 @@ const StepGenerator = (props) => {
           <br />
           <FormButton
             type="submit"
-            onClick={() => {
-              dispatch(increment());
+            onClick={async() => {
+              props.loading(true)
               dispatch(updateStudent(formInfo));
-              handleLogin(user, formInfo);
-              window.scrollTo({ top: 0, behavior: "smooth" });
+              await handleLogin(user, formInfo);
+              Reload();
             }}
           >
             Submit
