@@ -1,5 +1,5 @@
 import Navbar from "./Components/Navbar";
-import { LOCALES } from "./i18n";
+import { LOCALES } from "./i18n/locale";
 import { I18Provider } from "./i18n";
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
@@ -11,16 +11,17 @@ import Encrypt from "Pages/encryptTest";
 import Footer from "./Components/Footer";
 
 import LoginAuth from "./Components/userManagement/login.component";
-import Profile from './Components/userManagement/profile.component';
-import Spinner from './Components/Spinner/index';
-import Register from './Components/userManagement/register.component';
+import Profile from "./Components/userManagement/profile.component";
+import Spinner from "./Components/Spinner/index";
 
-import '@yaireo/tagify/src/tagify.scss'
+import "@yaireo/tagify/src/tagify.scss";
 import "@yaireo/tagify/dist/tagify.css";
+import Cookies from './Components/Cookies';
+
 
 function App() {
   const [locale, setLocale] = useState(
-    sessionStorage.getItem("language") === "es"
+    localStorage.getItem("language") === "es"
       ? LOCALES.SPANISH
       : LOCALES.ENGLISH
   );
@@ -43,6 +44,7 @@ function App() {
         <Route path="*" element={<h1>Error 404</h1>} />
       </Routes>
       <Footer />
+      <Cookies />
     </I18Provider>
   );
 }

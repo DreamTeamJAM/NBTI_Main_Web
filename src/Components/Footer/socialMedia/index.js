@@ -7,24 +7,26 @@ function FooterSocialMediaList({ title }) {
     <div>
       <Ul>
         <FooterTitle> {translate(title)} </FooterTitle>
-        <Li>
-          <a
-            href="https://www.instagram.com/nbti.eu/?hl=es"
-            rel="noreferrer"
-            target="_blank"
-          >
-            <Instagram />
-          </a>
-        </Li>
-        <Li>
-          <a
-            href="https://www.facebook.com/www.nbti.ie/"
-            rel="noreferrer"
-            target="_blank"
-          >
-            <Facebook />
-          </a>
-        </Li>
+        <div>
+          <Li>
+            <a
+              href="https://www.instagram.com/nbti.eu/?hl=es"
+              rel="noreferrer"
+              target="_blank"
+            >
+              <Instagram />
+            </a>
+          </Li>
+          <Li>
+            <a
+              href="https://www.facebook.com/www.nbti.ie/"
+              rel="noreferrer"
+              target="_blank"
+            >
+              <Facebook />
+            </a>
+          </Li>
+        </div>
       </Ul>
     </div>
   );

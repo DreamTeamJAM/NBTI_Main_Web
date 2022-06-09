@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import { theme } from "theme";
 
 /** Navbar Styles */
 export const Nav = styled.nav`
@@ -17,6 +18,18 @@ export const Nav = styled.nav`
   transition: all 0.5s ease-in-out;
   box-shadow: ${(props) =>
     props.isOnScroll ? "0px 0px 10px rgba(0, 0, 0, 0.1)" : "none"};
+`;
+
+export const MenuDisplay = styled.div`
+  display: none;
+
+  @media ${theme.lg} {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5em;
+    width: 100vw;
+  }
 `;
 
 export const NavErasmusImg = styled.img`
@@ -63,5 +76,12 @@ export const LoginStyled = styled(Link)`
 
   &:hover {
     color: #181eb3;
+  }
+`;
+
+export const UserDiv = styled.div`
+
+@media ${theme.sm} {
+    display: none;
   }
 `

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { theme } from "theme";
 
 export const NavTitleImg = styled.img`
   width: 6em;
@@ -8,16 +9,16 @@ export const NavTitleImg = styled.img`
 
 export const Item = styled(Link)`
   margin: 10px;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   text-decoration: none;
   color: #000;
   transition: 300ms all ease-in-out;
   padding: 10px;
-  border-bottom: 1px solid rgba(0,0,0,0);
+  border-bottom: 1px solid rgba(0, 0, 0, 0);
 
   :hover {
-    color: rgba(0,0,0,0.8);
-    border-bottom: 1px solid rgba(0,0,0,0.8);
+    color: rgba(0, 0, 0, 0.8);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.8);
   }
 `;
 
@@ -31,4 +32,8 @@ export const MenuContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media ${theme.lg} {
+    display: none;
+  }
 `;

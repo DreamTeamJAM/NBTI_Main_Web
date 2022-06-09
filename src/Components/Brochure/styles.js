@@ -1,15 +1,20 @@
 import styled from "styled-components";
 import { Container } from "GlobalStyles";
+import { theme } from 'theme';
 
 
 export const BrochureContainer = styled(Container)`
   margin: 0;
   padding: 2.5em;
   width: 100vw;
-  height: 80vh;
+  height: auto;
   background-color: #fff;
   justify-content: flex-start;
   align-items: center;
+
+  @media ${theme.sm} {
+    width: 80vw;
+  }
 `;
 
 export const BrochureSectionTitle = styled.h1`
@@ -17,6 +22,11 @@ export const BrochureSectionTitle = styled.h1`
   font-size: 2.4rem;
   border: 2px solid black;
   padding: 0.4em;
+
+  @media ${theme.sm} {
+    font-size: 2rem;
+    width: 80vw;
+  }
 `;
 
 export const BrochureContent = styled.div`
@@ -33,10 +43,24 @@ export const BrochureContent = styled.div`
     font-weight: 400;
     font-size: 1.2em;
     width: 30vw;
+
+    @media ${theme.sm} {
+      width: 70vw;
+    }
   }
 
   img {
     filter: drop-shadow(0 8px 3px rgba(0, 0, 0, 0.4));
+    
+    @media ${theme.sm} {
+      width: 20em;
+    }
+
+  }
+
+  @media ${theme.sm} {
+    flex-direction: column;
+    align-items: center;
   }
 `;
 
