@@ -1,4 +1,10 @@
-import { Nav, ButtonContainer, LoginStyled } from "./styles";
+import {
+  Nav,
+  ButtonContainer,
+  LoginStyled,
+  MenuDisplay,
+  UserDiv,
+} from "./styles";
 import { useRef } from "react";
 import { useState, useEffect } from "react";
 import { useOnClickOutside } from "hooks/BurgerMenu.hooks";
@@ -11,10 +17,11 @@ import LoginButton from "Components/LoginButton";
 import AuthService from "../../services/auth/auth.service";
 import eventBus from "../../common/EventBus";
 import AuthVerify from "./../../common/auth-verify";
-import ProfileIcon from "./ProfileIcon/index";
 import ButtonWithDropDownCmp from "./ProfileIcon/buttonDropDownCmp";
 import LanguageSelect from "Components/LanguageSelect";
 import translate from "i18n/translate";
+import NbtiLogo from "assets/images/nbti-nobg.png";
+import { NavTitleImg } from "./Menu/styles";
 
 /** Navbar Component */
 export default function Navbar({ setLocale }) {
@@ -23,9 +30,6 @@ export default function Navbar({ setLocale }) {
   const menuId = "main-menu";
 
   const [colorChange, setColorChange] = useState(false);
-
-  const [showModeratorBoard, setShowModeratorBoard] = useState(false);
-  const [showAdminBoard, setShowAdminBoard] = useState(true);
   const [currentUser, setCurrentUser] = useState(undefined);
   const [isLogin, setIsLogin] = useState(false);
 
@@ -67,9 +71,7 @@ export default function Navbar({ setLocale }) {
       console.log("No user");
       return (
         <ButtonContainer>
-          <LoginStyled to={`/login`}>
-            {translate("login")}
-          </LoginStyled>
+          <LoginStyled to={`/login`}>{translate("login")}</LoginStyled>
           <LoginButton
             to={`/register`}
             bgcolor="#181eb3"
@@ -102,14 +104,16 @@ export default function Navbar({ setLocale }) {
         navColorChange={colorChange === false ? "none" : "#F3F3F3"}
         isOnScroll={colorChange}
       >
-        {/* <div ref={node}>
-            <FocusLock disabled={!open}>
-              <Burger open={open} setOpen={setOpen} aria-controls={menuId} />
-              <Menu open={open} setOpen={setOpen} id={menuId} />
-            </FocusLock>
-          </div> */}
+        <MenuDisplay ref={node}>
+          <NavTitleImg src={NbtiLogo} alt="NBTI Logo" />
+          <FocusLock disabled={!open}>
+            <Burger open={open} setOpen={setOpen} aria-controls={menuId} />
+            <Menu open={open} setOpen={setOpen} id={menuId} />
+          </FocusLock>
+        </MenuDisplay>
+
         <HorizontalMenu setLocale={setLocale} />
-        {handleChangeButtons()}
+        <UserDiv>{handleChangeButtons()}</UserDiv>
       </Nav>
     </ThemeProvider>
   );

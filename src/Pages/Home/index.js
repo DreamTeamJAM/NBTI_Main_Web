@@ -6,11 +6,10 @@ import image4 from "../../assets/images/it-wallpaper.png";
 import image5 from "../../assets/images/ewee-wallpaper.png";
 import image6 from "../../assets/images/chefs-wallpaper.png";
 import LearnMoreButton from "./../../Components/LearnMoreButton/index";
-import { HomeContainer } from './styles';
-import Brochure from './../../Components/Brochure/index';
+import { HomeContainer } from "./styles";
+import Brochure from "./../../Components/Brochure/index";
 
 export default function Home() {
-
   return (
     <HomeContainer>
       <ImageSlider images={[image1, image2, image3, image4, image5, image6]}>
@@ -21,7 +20,6 @@ export default function Home() {
             alignItems: "flex-end",
             justifyContent: "center",
             color: "#000",
-
           }}
         >
           <h1>
@@ -37,9 +35,9 @@ export default function Home() {
             <br /> So please, take a look around our website and don't be shy -
             if you need more info, please let us know!
           </p>
-        <div>
-          <LearnMoreButton />
-        </div>
+          <div style={{background: 'none', margin: '1em -1em 1em 0'}}>
+            <LearnMoreButton />
+          </div>
         </div>
       </ImageSlider>
       <Brochure />

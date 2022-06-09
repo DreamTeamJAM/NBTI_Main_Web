@@ -28,7 +28,7 @@ const Indicator = ({ currentSlide, amountSlides, nextSlide }) => {
 function ImageSlider({
   images = [],
   autoPlay = true,
-  autoPlayTime = 300000,
+  autoPlayTime = 6000,
   children,
   ...props
 }) {
@@ -64,7 +64,9 @@ function ImageSlider({
         amountSlides={images.length}
         nextSlide={nextSlide}
       />
-      <ChildrenWrapper>{children}</ChildrenWrapper>
+      <ChildrenWrapper>
+        <div>{children}</div>
+      </ChildrenWrapper>
     </Wrapper>
   );
 }
