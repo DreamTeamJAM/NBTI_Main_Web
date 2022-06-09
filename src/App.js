@@ -16,7 +16,7 @@ import Spinner from "./Components/Spinner/index";
 
 import "@yaireo/tagify/src/tagify.scss";
 import "@yaireo/tagify/dist/tagify.css";
-import Cookies from './Components/Cookies/styles';
+import Cookies from './Components/Cookies';
 
 
 function App() {

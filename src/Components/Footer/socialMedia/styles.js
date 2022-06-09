@@ -1,9 +1,19 @@
 import styled from "styled-components";
 import { FaFacebookSquare } from "react-icons/fa";
 import { AiFillInstagram } from "react-icons/ai";
+import { theme } from "theme";
 
 export const Ul = styled.ul`
   list-style: none;
+
+  @media ${theme.sm} {
+    div {
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: row;
+
+    }
+  }
 `;
 
 export const Li = styled.li`
@@ -39,5 +49,9 @@ export const Facebook = styled(FaFacebookSquare)`
 
   &:hover {
     color: #d9d9d9;
+  }
+
+  @media ${theme.sm} {
+    margin-left: 1em;
   }
 `;

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { theme } from "theme";
 
 export const Wrapper = styled.div`
   height: 100vh;
@@ -16,6 +17,10 @@ export const Slide = styled.div`
   background-position: top;
   background-size: cover;
   transition: 750ms all ease-in-out;
+
+  @media ${theme.sm} {
+    background-position: right;
+  }
 `;
 
 export const ChildrenWrapper = styled.div`
@@ -26,8 +31,7 @@ export const ChildrenWrapper = styled.div`
   width: 500px;
   color: white;
   text-align: justify;
-  display: flex;
-
+  
 
   h1 {
     font-size: 4rem;
@@ -49,15 +53,36 @@ export const ChildrenWrapper = styled.div`
     font-size: 1.2em;
     text-align: justify;
     line-height: 1.8em;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     font-weight: 400;
     margin-top: -1em;
   }
 
-  div {
-    
-  }
+  @media ${theme.sm} {
+    left: 55%;
+    right: 50%;
+    top: 22em;
+    width: 100vw;
 
+    h1 {
+      max-width: 90vw;
+      font-size: 2.3rem;
+      text-align: center;
+    }
+
+    div {
+      background-color: rgba(255, 255, 255, 0.7);
+      width: 90vw;
+    }
+
+    p {
+      width: 80vw;
+      font-size: 1em;
+      padding: 1em;
+      
+    }
+  }
 `;
 
 export const Gradient = styled.div`

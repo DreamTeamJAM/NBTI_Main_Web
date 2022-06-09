@@ -11,4 +11,6 @@ export const Maindiv = styled.div`
 
 export const HomeContainer = styled(Container)`
     margin: 0;
+    overflow-x: hidden;
+    
 `
