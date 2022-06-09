@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { StudentContext } from "context/ProviderContxt";
 import AuthService from "../../services/auth/auth.service";
 import { getStudentByUserId } from "services/api/studentApi";
 import { Container } from "./../../GlobalStyles";
 import { downloadFile } from "services/api/fileApi";
-import {DivSuperior, DivInferior} from "./pages/Components"
+import { DivSuperior, DivInferior } from "./pages/Components";
 import {
   DivGrid,
   ContainerProfile,
@@ -12,46 +13,49 @@ import {
   DivDown,
   Button,
   ButtonNav,
+  DivSpin,
 } from "./style";
+import Spinner2 from "Components/Spinnerv2/index";
 import { prettify } from "Templates/inputComponent";
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import { docDefinition } from "Templates/Pass_content";
 
 export default function Profile() {
-  
-  const [currentUser, setCurrentUser] = useState("");
-  const [StudentValues, setStudentValues] = useState({});
-  const [img, setImg] = useState();
   const [activeStep, setActiveStep] = useState(0);
   const cero = () => setActiveStep((prev) => (prev = 0));
   const uno = () => setActiveStep((prev) => (prev = 1));
+  const student = useContext(StudentContext);
 
-  useEffect(() => {
-    AuthService.getCurrentUser().then((user) => setCurrentUser(user));
-   }, []);
-  useEffect(() => {
-    getStudentByUserId(currentUser.id).then((res) => {
-      setStudentValues(res.data);
-      downloadFile(res.data.photoId).then((file) => {
-        setImg(file.data);
-      });
-    });
-  },[currentUser] );
- pdfMake.vfs = pdfFonts.pdfMake.vfs;
-    function make() {
-     pdfMake.createPdf(docDefinition({ ...StudentValues, photo:"data:image/png;base64, "+img })).download();
+  pdfMake.vfs = pdfFonts.pdfMake.vfs;
+  function make() {
+    pdfMake
+      .createPdf(
+        docDefinition({
+          ...student.data,
+          photo: "data:image/png;base64, " + student.data.photo,
+        })
+      )
+      .download();
   }
-   
-  return (
+
+  return student.loading ? (
+    <Container>
+      <DivSpin>
+        {" "}
+        <Spinner2 />{" "}
+      </DivSpin>
+    </Container>
+  ) : (
     <Container>
       <ContainerProfile>
-        <h1>
-          <strong>{prettify(currentUser.username)}</strong> Profile
-        </h1>
+        <h1>Profile</h1>
         <DivGrid>
           <Div>
-            <DivSuperior student={StudentValues} imagen={img}></DivSuperior>
+            <DivSuperior
+              student={student.data}
+              imagen={student.data.photo}
+            ></DivSuperior>
           </Div>
 
           <div>
@@ -64,7 +68,7 @@ export default function Profile() {
             <DivDown>
               {activeStep === 0 ? (
                 <>
-                  <DivInferior student={StudentValues}></DivInferior>
+                  <DivInferior student={student.data}></DivInferior>
                 </>
               ) : activeStep === 1 ? (
                 <>

@@ -63,5 +63,4 @@ transition: all 0.3s ease-in-out;
 background-position: center;
 background-size: cover;
 background-repeat: no-repeat;
-
 `;
