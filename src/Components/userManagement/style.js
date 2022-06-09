@@ -60,6 +60,9 @@ box-shadow: 2.5px 2.5px 5px rgba(0, 0, 0, 0.2);
 export const DivW = styled.div`
   background-color: rgba(255, 245, 245);
 `;
+export const DivSpin=styled.div`
+height:40vh;
+`;
 /////////////////////////////////////////////////////
 export const IMG = styled.img`
   width: 8vw;
