@@ -29,11 +29,9 @@ export const Margin = styled.div`
   margin-top: 1em;
 `;
 export const ContainerButton = styled.div`
-  margin: 0;
-  margin-top:-1.5em;
+  margin-top: 1em;
   padding: 0;
   display: flex;
-
   justify-content: space-between;
   width: 46.6vw;
 `;
@@ -56,6 +54,7 @@ export const ArrayDiv = styled.div`
   grid-gap: 10px;
   flex-direction: column;
   align-items: center;
+  margin-bottom:1em;
 `;
 export const SelectStudent = styled.select`
   padding: 0.6rem 1rem;
@@ -91,11 +90,12 @@ export const AccountDiv = styled.div`
 
 export const AccountDivEdited = styled.div`
   display: grid;
-  margin-left:4em;
-  margin-right:-4em;
+  margin-left: 0.5em;
+  margin-right: 1em;
+  width:auto;
   justify-content: center;
   align-items: center;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 0.9fr 0.8fr;
 `;
 
 export const FormStep = styled.form`
@@ -132,6 +132,8 @@ export const TextArea = styled.textarea`
   height: auto;
   margin-left: 0.5em;
   margin-right: 0.5em;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 `;
 export const FormButton = styled.button`
   padding: 0.6rem 1rem;
