@@ -2,10 +2,14 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { decrement, increment } from "redux/stepSlice";
 import { updateStudent, selectStudent } from "redux/studentSlice";
+import {selectUser} from "redux/Slice";
 import { useFormik } from "formik";
 import { inputGeneration } from "Templates/formGeneration";
 import { validationHandler } from "services/formValidation";
 import { selectCount } from "redux/stepSlice";
+import AuthService from "services/auth/auth.service";
+import { postStudent } from "services/api/studentApi";
+import { uploadFile, downloadFile } from "services/api/fileApi";
 // import {FormButton} from "GlobalStyles";
 import { ContainerButton } from "registerStudent/styles";
 import {
@@ -15,12 +19,57 @@ import {
   AccountDivEdited,
 } from "registerStudent/styles";
 
+function GenerateStudent(res, photoId, dniBackId, dniFrontId, student) {
+  let st = {
+    ...student,
+    id: undefined,
+    userId: res.id,
+    photoId: photoId,
+    dniFrontId: dniFrontId,
+    dnibackId: dniBackId,
+  };
+  delete st.photo;
+  delete st.dniFront;
+  delete st.dniBack;
+  console.log(st);
+  postStudent(st);
+}
+
+async function Id(props) {
+  const photoString = props.split(",");
+  const byteString = photoString[1];
+  const ia = new Uint8Array(byteString.length);
+  for (let i = 0; i < byteString.length; i++) ia[i] = byteString.charCodeAt(i);
+
+  const photoBlob = new Blob([ia]);
+  console.log("photo", photoBlob);
+  let formData = new FormData();
+  formData.append("file", photoBlob);
+  return await uploadFile(formData);
+}
+
+const handleLogin = async (user, student) => {
+  await AuthService.register(user.username, student.email, user.password);
+  await AuthService.login(user.username, user.password);
+  await AuthService.getCurrentUser().then(async (res) => {
+    const photoId = await Id(student.photo);
+    const dniBack =await Id(student.dniFront);
+    const dniFront =await Id(student.dniBack);
+    GenerateStudent(res, photoId, dniBack, dniFront, student);
+  });
+  console.log("res:", AuthService.getCurrentUser());
+};
+function Reload(){
+window.location.reload();
+}
+
 const StepGenerator = (props) => {
   const inputs = props.inputMap;
   const dispatch = useDispatch();
   const student = useSelector(selectStudent);
   const [formInfo, setFormInfo] = React.useState(student);
   const activeStep = useSelector(selectCount);
+  const user =useSelector(selectUser)
 
   const updateBasicInfo = (e) => {
     const { name, value } = e.target;
@@ -38,7 +87,7 @@ const StepGenerator = (props) => {
             onClick={() => {
               dispatch(decrement());
               dispatch(updateStudent(formInfo));
-              window.scrollTo({top: 0, behavior: 'smooth'})
+              window.scrollTo({ top: 0, behavior: "smooth" });
             }}
           >
             Back
@@ -49,7 +98,7 @@ const StepGenerator = (props) => {
             onClick={() => {
               dispatch(increment());
               dispatch(updateStudent(formInfo));
-              window.scrollTo({top: 0, behavior: 'smooth'})
+              window.scrollTo({ top: 0, behavior: "smooth" });
             }}
           >
             Next
@@ -64,7 +113,7 @@ const StepGenerator = (props) => {
             onClick={() => {
               dispatch(decrement());
               dispatch(updateStudent(formInfo));
-              window.scrollTo({top: 0, behavior: 'smooth'})
+              window.scrollTo({ top: 0, behavior: "smooth" });
             }}
           >
             Back
@@ -72,10 +121,11 @@ const StepGenerator = (props) => {
           <br />
           <FormButton
             type="submit"
-            onClick={() => {
-              dispatch(increment());
+            onClick={async() => {
+              props.loading(true)
               dispatch(updateStudent(formInfo));
-              window.scrollTo({top: 0, behavior: 'smooth'})
+              await handleLogin(user, formInfo);
+              Reload();
             }}
           >
             Submit

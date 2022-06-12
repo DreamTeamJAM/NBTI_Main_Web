@@ -22,11 +22,8 @@ function Step1() {
 
   const inputs = {
     name: { type: "text", validation: "text" },
-    photo: { type: "image", validation: "basic" },
     dni: { type: "text", validation: "text" },
-    dniFront: { type: "image", validation: "basic" },
     city: { type: "text", validation: "text" },
-    dniBack: { type: "image", validation: "basic" },
     firstSurname: { type: "text", validation: "text" },
     secondSurname: { type: "text", validation: "text" },
     nationality: {
@@ -52,6 +49,9 @@ function Step1() {
       validation: "basic",
     },
     hobbies: { type: "textarea", validation: "text" },
+    photo: { type: "image", validation: "basic" },
+    dniFront: { type: "image", validation: "basic" },
+    dniBack: { type: "image", validation: "basic" },
   };
   return (
     <>

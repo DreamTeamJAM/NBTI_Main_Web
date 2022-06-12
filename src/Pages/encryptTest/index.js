@@ -34,7 +34,7 @@ export default function Encrypt() {
         formData.append('file', e.target.files[0]);
 
         console.log(formData)
-        uploadFile(user, formData)
+        uploadFile( formData)
         // fetch('http://localhost:8080/api/upload', {
         //     method: 'post',
         //     body: formData
@@ -47,7 +47,7 @@ export default function Encrypt() {
     };
 
    const handleDownload =  async () => {
-      const response = await downloadFile(11)
+      const response = await downloadFile(64)
    
     console.log(response.data)
     

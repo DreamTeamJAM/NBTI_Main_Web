@@ -12,7 +12,7 @@ export const ContainerProfile = styled(Container)`
   justify-content: center;
   align-items: center;
   background-color: rgba(176, 196, 222);
-  box-shadow: 2.5px 2.5px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.2);
   h1 {
     font-size: 2.5em;
     text-align: start;
@@ -60,10 +60,13 @@ box-shadow: 2.5px 2.5px 5px rgba(0, 0, 0, 0.2);
 export const DivW = styled.div`
   background-color: rgba(255, 245, 245);
 `;
+export const DivSpin=styled.div`
+height:40vh;
+`;
 /////////////////////////////////////////////////////
 export const IMG = styled.img`
   width: 8vw;
-  height: 16vh;
+  /* height: 16vh; */
   border-radius: 50%;
   object-fit: cover;
 `;
