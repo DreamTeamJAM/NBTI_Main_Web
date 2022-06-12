@@ -50,7 +50,6 @@ export default function Navbar({ setLocale }) {
         setIsLogin(false);
       }
     });
-    console.log(`comprobarUsuario: ${user}`);
   }, []);
 
   eventBus.on("logout", () => {
@@ -68,7 +67,6 @@ export default function Navbar({ setLocale }) {
 
   const handleChangeButtons = () => {
     if (!isLogin) {
-      console.log("No user");
       return (
         <ButtonContainer>
           <LoginStyled to={`/login`}>{translate("login")}</LoginStyled>
@@ -88,7 +86,6 @@ export default function Navbar({ setLocale }) {
         </ButtonContainer>
       );
     } else if (isLogin) {
-      console.log("User");
       return (
         <ButtonContainer>
           <ButtonWithDropDownCmp onClick={() => eventBus.dispatch("logout")} />

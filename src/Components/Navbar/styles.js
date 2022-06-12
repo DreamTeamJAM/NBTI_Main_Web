@@ -80,8 +80,7 @@ export const LoginStyled = styled(Link)`
 `;
 
 export const UserDiv = styled.div`
-
-@media ${theme.sm} {
+  @media ${theme.lg} {
     display: none;
   }
-`
+`;

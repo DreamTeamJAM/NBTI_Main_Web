@@ -10,10 +10,6 @@ export const SponsorContainer = styled.div`
   height: 150px;
   margin-top: 3em;
 
-  @media ${theme.sm} {
-    margin-top: 6em;
-  }
-
   div {
     border-top: 1px solid rgba(255, 255, 255, 0.4);
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
@@ -27,10 +23,18 @@ export const SponsorContainer = styled.div`
     justify-content: center;
     align-content: center;
 
-    @media ${theme.sm} {
+  }
+
+  @media ${(props) => props.theme.md} {
+    margin-top: 6em;
+
+    div {
       height: auto;
-      grid-template-columns: 1fr 1fr ;
+      grid-template-columns: 1fr 1fr;
     }
+  }
+
+  @media ${(props) => props.theme.lg} {
   }
 `;
 
