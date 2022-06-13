@@ -9,22 +9,21 @@ import {
 import BrochureImg from "assets/images/Brochure.png";
 import DownloadButton from "./../DownloadButton/index";
 import { Link } from "react-router-dom";
+import translate from "i18n/translate";
 
 function Brochure() {
   return (
     <BrochureContainer>
       <div data-aos="fade-up">
         <BrochureSectionTitle>
-          NEED SOME INFO TO TAKE AWAY?
+         {translate("infoTakeawayTitle")}
         </BrochureSectionTitle>
       </div>
       <BrochureContent>
         <div data-aos="fade-right">
           <LeftContent>
             <p>
-              We've put some of the information found here in a handy printable
-              PDF brochure for you, in case you'd like to refer to it again, or
-              even better, share it with your friends or colleagues.
+             {translate("takeawayBlurb")}
             </p>
             <hr />
             <DownloadButtonContent>
