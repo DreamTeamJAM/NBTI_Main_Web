@@ -49,6 +49,12 @@ export const DivDown = styled.div`
   grid-template-columns: 1fr 0.1fr 3fr 0.1fr 1fr;
   box-shadow: 2.5px 2.5px 5px rgba(0, 0, 0, 0.2);
 `;
+export const DivDown2 = styled.div`
+  width:auto;
+  display:flex;
+  justify-content:center;
+  height:auto;
+`;
 export const DivD = styled.div`
   height: auto;
   margin:1em;
@@ -112,4 +118,8 @@ export const U = styled.u`
 `;
 export const Header = styled.header`
   margin-top: -1em;
+`;
+export const Iframe = styled.iframe`
+  width:95%;
+  height:120vh;
 `;
