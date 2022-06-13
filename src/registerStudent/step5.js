@@ -10,16 +10,19 @@ export function Step5(props) {
   const inputs = {
     volunteering: {
       type: "array",
+      validation: "array",
       children: {
-        title: { type: "text" },
-        startDate: { type: "date" },
-        endDate: { type: "date" },
+        title: { type: "text" , validation: "text"},
+        startDate: { type: "date" ,
+                validation: "basic"  },
+        endDate: { type: "date",
+                validation: "basic" },
         country: {
           type: "option",
           options: nationalityOptions,
           validation: "basic",
         },
-        Description: { type: "textarea" },
+        Description: { type: "textarea",  validation: "text" },
       },
     },
   };
