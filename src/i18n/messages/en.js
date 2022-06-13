@@ -86,5 +86,12 @@ export const eng = {
         'legalAdvise':'Legal Advise',
         'privacyPolicies':'Privacy Policies',
         'cookiesPolicies':'Cookies Policies',
+        'carouselBlurb1' :  "We specialise in assisting students from around the EU in finding work placements in Ireland, and we love what we do!",
+        'carouselBlurb2' : "All the small details are taken care of by us so you just need to enjoy and learn.",
+        'carouselBlurb3' : ' Lives can be changed and great talent developed and we want you to be part of it!',
+        'carouselBlurb4' : 'So please, take a look around our website and don\'t be shy - if you need more info, please let us know!',
+        'learnMore' : 'Learn More',
+        'infoTakeawayTitle' : ' NEED SOME INFO TO TAKE AWAY?',
+        'takeawayBlurb' : 'We\'ve put some of the information found here in a handy printable PDF brochure for you, in case you\'d like to refer to it again, or even better, share it with your friends or colleagues.'
     }
 }

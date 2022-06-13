@@ -41,7 +41,9 @@ export function TextInput(props) {
         value={props.value}
         name={props.label}
         placeholder={"Enter " + prettify(props.label)}
-        onChange={props.onChange}
+        onChange={(e)=>{
+         props.formik.handleChange(e)
+          props.onChange(e)}}
       />
       {props.formik.touched[props.label] && props.formik.errors[props.label] ? (
         <p>{props.formik.errors[props.label]}</p>
@@ -74,12 +76,14 @@ export function PhoneInput(props) {
   });
 
   useEffect(() => {
-    props.onChange({
+    const phoneChange = {
       target: {
         name: props.label,
         value: phoneState.fullPhone,
       },
-    });
+    }
+    props.formik.handleChange(phoneChange)
+    props.onChange(phoneChange);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phoneState]);
 
@@ -119,13 +123,19 @@ export function OptionInput(props) {
       <SelectStudent
         name={props.label}
         value={props.value}
-        onChange={props.onChange}
+        onChange={(e)=>{
+          props.formik.handleChange(e)
+          props.onChange(e)}}
       >
         <option label={`Select ${prettify(props.label)}`} />
         {props.options.map((opt, index) => (
           <option key={index} value={opt.value} label={opt.value} />
         ))}
       </SelectStudent>
+      <br/>
+      {props.formik.touched[props.label] && props.formik.errors[props.label] ? (
+        <p>{props.formik.errors[props.label]}</p>
+      ) : null}
     </div>
   );
 }
@@ -140,7 +150,9 @@ export function AreaInput(props) {
         name={props.label}
         {...props.formik.getFieldProps(props.label)}
         value={props.value}
-        onChange={props.onChange}
+        onChange={(e)=>{
+          props.formik.handleChange(e)
+          props.onChange(e)}}
       />
       {props.formik.touched[props.label] && props.formik.errors[props.label] ? (
         <p>{props.formik.errors[props.label]}</p>
@@ -160,7 +172,9 @@ export function RadioInput(props) {
           id={opt}
           name={props.label}
           value={opt}
-          onChange={props.onChange}
+          onChange={(e)=>{
+            props.formik.handleChange(e)
+            props.onChange(e)}}
           checked={opt === props.value}
         />
         <LabelForm htmlFor={opt}>{prettify(opt)}</LabelForm>
@@ -196,23 +210,29 @@ export function TagInput(props) {
               return acc + value.value;
             } else return acc + ", " + value.value;
           }, "");
-
-          props.onChange({
+          const tagChange = {
             target: {
               name: props.label,
               value: tags,
             },
-          });
+          }
+          props.formik.handleChange(tagChange)
+          props.onChange(tagChange);
         }}
         //{props.value[props.label]}
         value={props.value}
       ></Tags>
+      
+       {props.formik.touched[props.label] && props.formik.errors[props.label] ? (
+        <p>{props.formik.errors[props.label]}</p>
+      ) : null}
     </TagsDiv>
   );
 }
 
 export function ImageInput(props) {
-  const [photo, setPhoto] = useState(defaultImg);
+  const defImg = props.value !== "" ? props.value : defaultImg
+  const [photo, setPhoto] = useState(defImg);
 
   const onFileChangeHandler = (e) => {
     e.preventDefault();
@@ -224,12 +244,14 @@ export function ImageInput(props) {
       var fr = new FileReader();
       fr.onload = function () {
         setPhoto(fr.result);
-        props.onChange({
+        const imageChange = {
           target: {
             name: props.label,
             value: fr.result,
           },
-        });
+        }
+        props.formik.handleChange(imageChange)
+        props.onChange(imageChange);
       };
       fr.readAsDataURL(file);
     }
@@ -254,6 +276,9 @@ export function ImageInput(props) {
         src={photo}
       />
       <br />
+      {props.formik.touched[props.label] && props.formik.errors[props.label] ? (
+        <p>{props.formik.errors[props.label]}</p>
+      ) : null}
     </div>
   );
 }
@@ -263,7 +288,7 @@ export function ArrayInput(props) {
   const inputList = props.inputList;
   const formik = [];
   for (let i = 0; i < 10; i++) {
-    const validate = () => validationHandler(values[i], inputList);
+    const validate = (values) => validationHandler(values, inputList);
 
     formik.push(
       // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -282,12 +307,15 @@ export function ArrayInput(props) {
   const subOnChange = (e, index) => {
     const { name, value } = e.target;
     values[index] = { ...values[index], [name]: value };
-    props.onChange({
+    const workChange = {
       target: {
         name: props.label,
         value: values,
       },
-    });
+    };
+    props.onChange(workChange);
+    props.formik.handleChange(workChange)
+    // props.formik.setErrors({...props.formik.errors, [props.label]: ...formik[index].errors})
   };
 
   const formArray = values.map((element, index) => {
@@ -307,12 +335,14 @@ export function ArrayInput(props) {
               className="secondary"
               onClick={() => {
                 values.splice(index, 1);
-                props.onChange({
+                const workChange = {
                   target: {
                     name: props.label,
                     value: [...values],
                   },
-                });
+                }
+                props.formik.handleChange(workChange)
+                props.onChange(workChange);
               }}
             >
               X
@@ -344,6 +374,10 @@ export function ArrayInput(props) {
         >
           Add {prettify(props.label)}
         </ButtonAdd>
+        <br />
+      {props.formik.touched[props.label] && props.formik.errors[props.label] ? (
+        <p>{props.formik.errors[props.label]}</p>
+      ) : null}
       </div>
     </ArrayContainer>
   );

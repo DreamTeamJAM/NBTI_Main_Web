@@ -9,18 +9,20 @@ export function Step3() {
   const inputs = {
     education: {
       type: "array",
+      validation: "array",
+      min: 1,
       children: {
-        title: { type: "text" },
-        startDate: { type: "date" },
-        endDate: { type: "date" },
+        title: { type: "text", validation: "text" },
+        startDate: { type: "date", validation: "basic" },
+        endDate: { type: "date", validation: "basic"  },
         country: {
           type: "option",
           options: nationalityOptions,
           validation: "basic",
         },
-        city: { type: "text" },
-        center: { type: "text" },
-        fieldsOfStudy: { type: "textarea" },
+        city: { type: "text", validation: "text" },
+        center: { type: "text", validation: "text" },
+        fieldsOfStudy: { type: "textarea", validation: "text" },
       },
     },
   };

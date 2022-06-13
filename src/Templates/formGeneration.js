@@ -11,7 +11,6 @@ import {
 
 export function inputGeneration(inputs, values, onChange, formik) {
   const inputHtml = [];
-  console.log(formik);
   for (const [key, input] of Object.entries(inputs)) {
     let currentInput;
     switch (input.type) {
@@ -23,6 +22,7 @@ export function inputGeneration(inputs, values, onChange, formik) {
             value = {values[key]}
             onChange={onChange} 
             whitelist= {input.whitelist}
+            formik={formik}
             />
             </div>
           )

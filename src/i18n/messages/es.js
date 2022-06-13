@@ -86,5 +86,12 @@ export const esp = {
         'legalAdvise': 'Aviso Legal',
         'privacyPolicies': 'Políticas de Privacidad',
         'cookiesPolicies': 'Políticas de Cookies',
+        'carouselBlurb1' :  "Nos especializamos en asistir a estudiantes de toda la UE en encontrar sitios de prácticas, y nos encanta!",
+        'carouselBlurb2' : "Nos encargamos de todos los detalles para que puedan disfrutar y aprender de la experiencia.",
+        'carouselBlurb3' : 'Una gran oprtunidad de desarrollar grandes talentos y cambiar tu vida, y queremos ser parte de ello!',
+        'carouselBlurb4' : 'Así que por favor, explora nuestra Web y no dudes en contactar con nosotros!',
+        'learnMore' : 'Saber Mas',
+        'infoTakeawayTitle' : ' INFORMACIÓN PARA LLEVAR?',
+        'takeawayBlurb' : 'Aquí tienes recogida la información general que puedes encontrar en la página, en un cómodo folleto. por si revisarla, o aún mejor, enseñarsela a compañeros o amigos'
     }
 }
