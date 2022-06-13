@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { theme } from "theme";
 
 export const SponsorContainer = styled.div`
   display: flex;
@@ -18,14 +17,13 @@ export const SponsorContainer = styled.div`
     margin: 0;
     padding: 0;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 0px 0px;
     justify-content: center;
     align-content: center;
-
   }
 
-  @media ${(props) => props.theme.md} {
+  @media only screen and (max-width: 768px) {
     margin-top: 6em;
 
     div {
@@ -33,8 +31,9 @@ export const SponsorContainer = styled.div`
       grid-template-columns: 1fr 1fr;
     }
   }
-
-  @media ${(props) => props.theme.lg} {
+  
+  @media only screen and (max-width: 1024px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 `;
 

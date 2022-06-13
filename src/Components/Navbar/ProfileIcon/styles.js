@@ -48,19 +48,28 @@ export const StyledLink = styled(Link)`
   }
 `;
 
-export const UserButton = styled.button`
+export const UserButton = styled.button` 
+  display: flex;
   &:hover {
     filter: brightness(90%);
   }
 `;
 export const Img = styled.img`
-border-radius: 50%;
-width: 40px;
-height: 40px;
-object-fit: cover;
-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-transition: all 0.3s ease-in-out;
-background-position: center;
-background-size: cover;
-background-repeat: no-repeat;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease-in-out;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-left: 25px;
+
+  @media ${({ theme }) => theme.lg} {
+
+    margin-top: 4em;
+    width: 80px;
+    height: 80px;
+  }
 `;

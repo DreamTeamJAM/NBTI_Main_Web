@@ -86,6 +86,8 @@ export const eng = {
         'legalAdvise':'Legal Advise',
         'privacyPolicies':'Privacy Policies',
         'cookiesPolicies':'Cookies Policies',
+        'Profile':'Profile',
+        'logout':'Logout',
         'carouselBlurb1' :  "We specialise in assisting students from around the EU in finding work placements in Ireland, and we love what we do!",
         'carouselBlurb2' : "All the small details are taken care of by us so you just need to enjoy and learn.",
         'carouselBlurb3' : ' Lives can be changed and great talent developed and we want you to be part of it!',

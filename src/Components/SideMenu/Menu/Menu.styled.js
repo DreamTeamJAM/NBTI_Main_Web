@@ -4,12 +4,11 @@ import styled from "styled-components";
 export const StyledMenu = styled.nav`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   background: ${({ theme }) => theme.darkBlue};
   transform: ${({ open }) => (open ? "translateX(0)" : "translateX(-100%)")};
   height: 100vh;
   text-align: left;
-  padding: 2rem;
   position: absolute;
   top: 0;
   left: 0;
@@ -18,7 +17,11 @@ export const StyledMenu = styled.nav`
   box-shadow: ${({ open }) =>
     open ? "50px 0px 0px 100vw rgba(0,0,0,0.3)" : "none"};
 
-  @media (max-width: ${({ theme }) => theme.mobile}) {
+  & hr {
+    width: 100vw;
+  }
+
+  @media ${({ theme }) => theme.sm} {
     width: 100%;
   }
 `;
@@ -27,6 +30,7 @@ export const StyledLink = styled(Link)`
   color: white;
   transition: all 0.3s ease-in-out;
   text-decoration: none;
+  margin-left: 25px;
 `;
 
 export const StyledButton = styled.button`
@@ -70,4 +74,16 @@ export const StyledButton = styled.button`
   :active:before {
     background: #b9b9b9;
   }
+`;
+
+export const StyledButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1em;
+  margin-bottom: 1.5em;
+  padding: 1em;
+  transition: all 0.5s;
+  cursor: pointer;
+  border-bottom: 1px solid white;
 `;

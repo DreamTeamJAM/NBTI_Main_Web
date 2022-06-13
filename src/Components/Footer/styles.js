@@ -39,11 +39,11 @@ export const FooterMainContainer = styled.div`
     width: 62vw;
     grid-template-columns: 1fr;
   }
-
   @media ${(props) => props.theme.lg} {
     width: auto;
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
+
 `;
 
 export const FooterHelper = styled.div`

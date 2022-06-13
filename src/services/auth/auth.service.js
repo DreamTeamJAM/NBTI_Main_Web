@@ -1,4 +1,3 @@
-import React from "react";
 import axios from "axios";
 
 const BASE_HOST = "https://34vznuxt9f.execute-api.eu-west-1.amazonaws.com/beta";
@@ -15,6 +14,7 @@ class AuthService {
 
   async logout() {
     localStorage.removeItem("user");
+    window.location.reload();
   }
 
   async register(username, email, password, roles = ["user"]) {

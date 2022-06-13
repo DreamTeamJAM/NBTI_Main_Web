@@ -42,7 +42,7 @@ export default function Navbar({ setLocale }) {
   };
 
   useEffect(() => {
-    const user = AuthService.getCurrentUser().then((res) => {
+    AuthService.getCurrentUser().then((res) => {
       if (res) {
         setCurrentUser(res);
         setIsLogin(true);
@@ -77,7 +77,6 @@ export default function Navbar({ setLocale }) {
             txcolor="white"
             hoverbgcolor="#131898"
             hovercolor="white"
-            onClick={() => eventBus.dispatch("logout")}
           >
             {translate("register")}
           </LoginButton>
@@ -102,14 +101,22 @@ export default function Navbar({ setLocale }) {
         isOnScroll={colorChange}
       >
         <MenuDisplay ref={node}>
+          <div>
           <NavTitleImg src={NbtiLogo} alt="NBTI Logo" />
+          <LanguageSelect setLocale={setLocale} />
+          </div>
           <FocusLock disabled={!open}>
             <Burger open={open} setOpen={setOpen} aria-controls={menuId} />
-            <Menu open={open} setOpen={setOpen} id={menuId} />
+            <Menu
+              setLocale={setLocale}
+              open={open}
+              setOpen={setOpen}
+              id={menuId}
+            />
           </FocusLock>
         </MenuDisplay>
 
-        <HorizontalMenu setLocale={setLocale} />
+        <HorizontalMenu />
         <UserDiv>{handleChangeButtons()}</UserDiv>
       </Nav>
     </ThemeProvider>

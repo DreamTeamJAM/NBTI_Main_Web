@@ -27,8 +27,15 @@ export const MenuDisplay = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-direction: row;
     padding: 0.5em;
     width: 100vw;
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+    }
   }
 `;
 
