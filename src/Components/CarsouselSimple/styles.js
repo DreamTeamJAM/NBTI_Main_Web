@@ -21,6 +21,10 @@ export const Slide = styled.div`
   @media ${theme.sm} {
     background-position: right;
   }
+
+  @media ${theme.lg} {
+    background-position: right;
+  }
 `;
 
 export const ChildrenWrapper = styled.div`
@@ -31,7 +35,7 @@ export const ChildrenWrapper = styled.div`
   width: 500px;
   color: white;
   text-align: justify;
-  
+  display: flex;
 
   h1 {
     font-size: 4rem;
@@ -59,7 +63,31 @@ export const ChildrenWrapper = styled.div`
     margin-top: -1em;
   }
 
-  @media ${theme.sm} {
+  @media ${(props) => props.theme.lg} {
+    left: 60%;
+    right: 50%;
+    top: 33em;
+    width: 100vw;
+
+    h1 {
+      max-width: 90vw;
+      font-size: 4rem;
+      text-align: center;
+    }
+
+    div {
+      background-color: rgba(255, 255, 255, 0.7);
+      width: 80vw;
+    }
+
+    p {
+      width: 70vw;
+      font-size: 1.4em;
+      padding: 1em 2em 0 0;
+    }
+  }
+
+  @media ${(props) => props.theme.md} {
     left: 55%;
     right: 50%;
     top: 22em;
@@ -80,7 +108,6 @@ export const ChildrenWrapper = styled.div`
       width: 80vw;
       font-size: 1em;
       padding: 1em;
-      
     }
   }
 `;
