@@ -15,11 +15,12 @@ export function Step2() {
   const inputs={
     workExperience:{
       type:"array",
+      validation: "array",
       children:{
         "title": {type:"text",
           "validation":"text"},
-      "startDate":{type:"date"},
-      "endDate":{type:"date"},
+      "startDate":{type:"date",validation : "basic"},
+      "endDate":{type:"date",validation : "basic"},
       "country":{type: "option",
                         options : nationalityOptions,
                         validation : "basic"},

@@ -21,6 +21,20 @@ export function numberFieldValidation(valuesObj, errorObj, field) {
   }
 }
 
+export function phoneFieldValidation(valuesObj, errorObj, field) {
+  const value = valuesObj[field];
+  const [pref, phone] = value.split(" ");
+  console.log("phone", phone)
+  if (!phone) {
+    errorObj[field] = "Required";
+  } else if (isNaN(phone) || phone < 0) {
+    errorObj[field] = "Must be a valid number"
+  }
+  if (!pref) {
+    errorObj[field] = "select a prefix";
+  }
+}
+
 export function PasswordFieldValidation(valuesObj, errorObj, pass, pass1) {
 
   let res;
@@ -30,17 +44,12 @@ export function PasswordFieldValidation(valuesObj, errorObj, pass, pass1) {
   } else if (valuesObj[pass].length < 6) {
     errorObj[pass] = "Too Short";
   }
-  if (valuesObj[pass] != valuesObj[pass1]) {
+  if (valuesObj[pass] !== valuesObj[pass1]) {
     errorObj[pass] = "Must be the same word";
     res = false
     console.log(valuesObj)
     console.log(res)
-  } else if (valuesObj[pass] == valuesObj[pass1]) {
-    errorObj[pass] = "same word";
-    res = true
-    console.log(res)
-
-  }
+  } 
 }
 
 export function emailFieldValidation(values, errors, field) {
@@ -50,6 +59,24 @@ export function emailFieldValidation(values, errors, field) {
   } else if (!regex.test(values[field])) {
     errors[field] = "Invalid email format";
   }
+}
+
+export function arrayFieldValidation(values,errors,arrayField,children, minForms){
+  const arrayErrors = values[arrayField].map((value, index)=>{
+      return validationHandler(value,children)
+  })
+  console.log("arrErr",arrayErrors)
+    for (const err of arrayErrors){
+        if (Object.keys(err).length !== 0){
+           errors[arrayField] =arrayErrors;
+           break;
+        }
+    }
+    if ( values[arrayField] < minForms ) {
+      errors[arrayField] = "At Least " + minForms;
+    }
+   
+  
 }
 
 export function validationHandler(values, inputMap) {
@@ -65,6 +92,13 @@ export function validationHandler(values, inputMap) {
           break;
         case "email":
           emailFieldValidation(values, errors, key);
+          break;
+          case "phone":
+          phoneFieldValidation(values,errors,key)
+          break;
+          case "array":
+            let min = inputMap[key].hasOwnProperty("min") ? inputMap[key].min : 0 ; 
+          arrayFieldValidation(values,errors,key,inputMap[key].children, min )
           break;
         default:
           defaultFieldValidation(values, errors, key);

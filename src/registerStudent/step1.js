@@ -31,7 +31,7 @@ function Step1() {
       options: nationalityOptions,
       validation: "basic",
     },
-    phone: { type: "phone", validation: "number" },
+    phone: { type: "phone", validation: "phone" },
     birthDate: { type: "date", validation: "basic" },
     gender: {
       type: "radio",

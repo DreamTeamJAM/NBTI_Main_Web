@@ -24,6 +24,7 @@ function Step0() {
   const [basicInfo, setBasicInfo] = React.useState(user);
   console.log(user);
   const updateBasicInfo = (e) => {
+    formik.handleChange(e);
     const { name, value } = e.target;
     setBasicInfo((prevState) => ({
       ...prevState,
@@ -33,8 +34,8 @@ function Step0() {
   const validate = (values) => {
     const errors = {};
 
-    defaultFieldValidation(basicInfo, errors, "username");
-    PasswordFieldValidation(basicInfo, errors, "password", "confirm_passWord");
+    defaultFieldValidation(values, errors, "username");
+    PasswordFieldValidation(values, errors, "password", "confirm_passWord");
 
     return errors;
   };
@@ -44,6 +45,7 @@ function Step0() {
       password: basicInfo.password,
       confirm_passWord: basicInfo.confirm_passWord,
     },
+    initialErrors:{neverFilled: true},
     validate,
     onSubmit: (values) => {},
   });
@@ -106,7 +108,10 @@ function Step0() {
         <br />
         <FormButton
           type="submit"
+          disabled={ Object.keys(formik.errors).length !== 0
+          }
           onClick={() => {
+            formik.validateForm()
             dispatch(increment());
             dispatch(
               updateUser({

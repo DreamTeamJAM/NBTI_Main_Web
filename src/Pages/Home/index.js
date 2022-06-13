@@ -8,6 +8,7 @@ import image6 from "../../assets/images/chefs-wallpaper.png";
 import LearnMoreButton from "./../../Components/LearnMoreButton/index";
 import { HomeContainer, ButtonDiv } from "./styles";
 import Brochure from "./../../Components/Brochure/index";
+import translate from "i18n/translate";
 
 export default function Home() {
   return (
@@ -26,14 +27,13 @@ export default function Home() {
             <span>National Business Training Institute</span>
           </h1>
           <p>
-            We specialise in assisting students form around the EU in finding
-            work placements in Ireland, and we love what we do! <br /> All the
-            small details are taken care of by us so you just need to enjoy and
-            learn. <br />
-            Lives can be changed and great talent developed and we want you to
-            be part of it!
-            <br /> So please, take a look around our website and don't be shy -
-            if you need more info, please let us know!
+           {translate("carouselBlurb1")}
+            <br /> 
+            {translate("carouselBlurb2")}
+             <br />
+             {translate("carouselBlurb3")}
+            <br />
+            {translate("carouselBlurb4")} 
           </p>
           <ButtonDiv style={{background: 'none'}}>
             <LearnMoreButton />
