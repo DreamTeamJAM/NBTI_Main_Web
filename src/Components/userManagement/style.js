@@ -123,3 +123,7 @@ export const Iframe = styled.iframe`
   width:95%;
   height:120vh;
 `;
+export const Imagen = styled.img`
+  width: 1vw;
+height: 2vh;
+`;

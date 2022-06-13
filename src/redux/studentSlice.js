@@ -59,7 +59,7 @@ export const studentSlice = createSlice({
       startDate: "",
       endDate: "",
       country: "",
-      Description: "",
+      description: "",
     },],
   },
   reducers: {
