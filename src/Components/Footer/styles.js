@@ -19,11 +19,10 @@ export const FooterContainer = styled.footer`
     margin-top: -3em !important;
   }
 
-  @media ${theme.sm} {
-    width: 61vw;
+  @media ${(props) => props.theme.lg} {
+    width: 82.5vw;
   }
-
-  @media ${theme.md} {
+  @media ${(props) => props.theme.md} {
     width: auto;
   }
 `;
@@ -36,10 +35,15 @@ export const FooterMainContainer = styled.div`
   margin-left: 0em;
   overflow-x: hidden;
 
-  @media ${theme.sm} {
+  @media ${(props) => props.theme.md} {
     width: 62vw;
     grid-template-columns: 1fr;
   }
+  @media ${(props) => props.theme.lg} {
+    width: auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
 `;
 
 export const FooterHelper = styled.div`
@@ -54,7 +58,10 @@ export const CopyContainer = styled.div`
   flex-direction: column;
   margin-top: 2.5em;
 
-  @media ${theme.sm} {
+  @media ${(props) => props.theme.lg} {
+  }
+
+  @media ${(props) => props.theme.md} {
     margin-top: 6em;
   }
 `;

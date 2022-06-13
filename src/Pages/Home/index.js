@@ -6,7 +6,7 @@ import image4 from "../../assets/images/it-wallpaper.png";
 import image5 from "../../assets/images/ewee-wallpaper.png";
 import image6 from "../../assets/images/chefs-wallpaper.png";
 import LearnMoreButton from "./../../Components/LearnMoreButton/index";
-import { HomeContainer } from "./styles";
+import { HomeContainer, ButtonDiv } from "./styles";
 import Brochure from "./../../Components/Brochure/index";
 import translate from "i18n/translate";
 
@@ -35,9 +35,9 @@ export default function Home() {
             <br />
             {translate("carouselBlurb4")} 
           </p>
-          <div style={{background: 'none', margin: '1em -1em 1em 0'}}>
+          <ButtonDiv style={{background: 'none'}}>
             <LearnMoreButton />
-          </div>
+          </ButtonDiv>
         </div>
       </ImageSlider>
       <Brochure />
