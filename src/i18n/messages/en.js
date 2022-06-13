@@ -86,5 +86,7 @@ export const eng = {
         'legalAdvise':'Legal Advise',
         'privacyPolicies':'Privacy Policies',
         'cookiesPolicies':'Cookies Policies',
+        'Profile':'Profile',
+        'logout':'Logout',
     }
 }

@@ -86,5 +86,7 @@ export const esp = {
         'legalAdvise': 'Aviso Legal',
         'privacyPolicies': 'Políticas de Privacidad',
         'cookiesPolicies': 'Políticas de Cookies',
+        'profile': 'Perfil',
+        'logout': 'Cerrar Sesión',
     }
 }
