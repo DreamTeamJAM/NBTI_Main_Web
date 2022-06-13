@@ -14,6 +14,8 @@ import {
   Button,
   ButtonNav,
   DivSpin,
+  Iframe,
+  DivDown2
 } from "./style";
 import Spinner2 from "Components/Spinnerv2/index";
 import { prettify } from "Templates/inputComponent";
@@ -28,17 +30,28 @@ export default function Profile() {
   const student = useContext(StudentContext);
 
   pdfMake.vfs = pdfFonts.pdfMake.vfs;
-  function make() {
-    pdfMake
-      .createPdf(
-        docDefinition({
-          ...student.data,
-          photo: "data:image/png;base64, " + student.data.photo,
-        })
-      )
-      .download();
-  }
+  const [urlImage, setUrlImage] = useState("");
 
+  useEffect(() => {
+    
+      try {
+        const pdfDocGenerator = pdfMake.createPdf(
+          docDefinition({
+            ...student.data,
+            photo: "data:image/png;base64, " + student.data.photo,
+          })
+        );
+        pdfDocGenerator.getDataUrl((dataUrl) => {
+          console.log("imagennnnnn", dataUrl);
+    
+          setUrlImage(dataUrl);
+        });
+      } catch(err) {
+        console.log('err', err)
+        setUrlImage('')
+      }
+    
+}, [student]);
   return student.loading ? (
     <Container>
       <DivSpin>
@@ -65,27 +78,17 @@ export default function Profile() {
               <ButtonNav onClick={uno}>Pdf</ButtonNav>
             </Nav>
 
-            <DivDown>
+            
               {activeStep === 0 ? (
-                <>
+                <DivDown>
                   <DivInferior student={student.data}></DivInferior>
-                </>
+                  </DivDown>
               ) : activeStep === 1 ? (
-                <>
-                  <div></div>
-                  <div>
-                    <Button
-                      onClick={() => {
-                        make();
-                      }}
-                    >
-                      Descargar Pdf
-                    </Button>
-                  </div>
-                  <div></div>
-                </>
+                  <DivDown2>
+                  <Iframe src={urlImage}></Iframe>
+                  </DivDown2>
               ) : null}
-            </DivDown>
+            
           </div>
         </DivGrid>
       </ContainerProfile>
