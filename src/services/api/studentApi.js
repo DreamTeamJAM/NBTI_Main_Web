@@ -41,5 +41,6 @@ export const putStudent = async ( body) => {
     const response = await axios.put(`${BASE_HOST}/student`, body, {
         headers: authHeader()
     });
+    console.log("puttt",response)
     return response.data
 }

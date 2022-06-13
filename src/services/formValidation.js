@@ -65,7 +65,6 @@ export function arrayFieldValidation(values,errors,arrayField,children, minForms
   const arrayErrors = values[arrayField].map((value, index)=>{
       return validationHandler(value,children)
   })
-  console.log("arrErr",arrayErrors)
     for (const err of arrayErrors){
         if (Object.keys(err).length !== 0){
            errors[arrayField] =arrayErrors;

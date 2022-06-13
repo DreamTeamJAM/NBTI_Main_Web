@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import AuthService from "../../../services/auth/auth.service";
-import { IMG, DivUp, DivD, DivM, DivW, H2, U, Header } from "./../style";
-import { getStudentById } from "services/api/studentApi";
-import { downloadFile } from "services/api/fileApi";
+import { IMG, DivUp, DivD, DivM, DivW, H2, U, Header,Imagen } from "./../style";
 import { prettify } from "Templates/inputComponent";
+import { Link } from "react-router-dom";
+import Img from "./edit.png"
+
 
 export function DivSuperior(props) {
-  
-  
-  const img= props.imagen;
-  const student=props.student;
+  const img = props.imagen;
+  const student = props.student;
 
   return (
     <>
@@ -18,11 +17,12 @@ export function DivSuperior(props) {
         <IMG src={`data:image/jpeg;base64, ${img}`}></IMG>
       </DivUp>
       <DivUp>
+      <Link to={{ pathname: `/edit/${1}` }}><button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}><Imagen src={Img}></Imagen></button></Link>
+      
         <p>
           <U>Name: </U>
           <strong>
-            {prettify(student.name)}{" "}
-            {prettify(student.firstSurname)}{" "}
+            {prettify(student.name)} {prettify(student.firstSurname)}{" "}
             {prettify(student.secondSurname)}
           </strong>
         </p>
@@ -57,22 +57,18 @@ export function DivSuperior(props) {
 }
 
 export function DivInferior(props) {
- 
   const [currentUser, setCurrentUser] = useState("");
-  const [WorkArray,setWorkArray]=useState([]);
+  const [WorkArray, setWorkArray] = useState([]);
   const [EducationArray, setEducationArray] = useState([]);
   const [otherLanguagesArray, setotherLanguagesArray] = useState([]);
   const [volunteeringArray, setvolunteeringArray] = useState([]);
 
-
-
-  useEffect(() => { 
+  useEffect(() => {
     AuthService.getCurrentUser().then((user) => setCurrentUser(user));
-   // console.log("Student: ", getStudentById(21));
-    
-      
-      if(Object.keys(props.student).length !== 0){
-        setWorkArray(
+    // console.log("Student: ", getStudentById(21));
+
+    if (Object.keys(props.student).length !== 0) {
+      setWorkArray(
         props.student.workExperience.map((value, index) => {
           return (
             <>
@@ -98,7 +94,7 @@ export function DivInferior(props) {
             </>
           );
         })
-        )
+      );
 
       setEducationArray(
         props.student.education.map((value, index) => {
@@ -181,8 +177,11 @@ export function DivInferior(props) {
   return (
     <>
       <DivD>
+        <Link to={{ pathname: `/edit/${2}` }}><button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}><Imagen src={Img}></Imagen></button></Link>
+
         <H2>Work Experience:</H2>
         <Header>{WorkArray}</Header>
+        <Link to={{ pathname: `/edit/${5}` }}><button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}><Imagen src={Img}></Imagen></button></Link>
         <H2>Volunteering:</H2>
         <Header>{volunteeringArray}</Header>
       </DivD>
@@ -207,8 +206,10 @@ export function DivInferior(props) {
       </DivD>
       <DivW></DivW>
       <DivD>
+      <Link to={{ pathname: `/edit/${3}` }}><button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}><Imagen src={Img}></Imagen></button></Link>
         <H2>Education:</H2>
         <Header>{EducationArray}</Header>
+        <Link to={{ pathname: `/edit/${4}` }}><button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}><Imagen src={Img}></Imagen></button></Link>
         <H2>Other Languages:</H2>
         <Header>{otherLanguagesArray}</Header>
       </DivD>
