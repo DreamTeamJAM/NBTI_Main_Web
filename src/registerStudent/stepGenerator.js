@@ -9,7 +9,7 @@ import { validationHandler } from "services/formValidation";
 import { selectCount } from "redux/stepSlice";
 import AuthService from "services/auth/auth.service";
 import { postStudent } from "services/api/studentApi";
-import { uploadFile, downloadFile } from "services/api/fileApi";
+import { uploadFile} from "services/api/fileApi";
 // import {FormButton} from "GlobalStyles";
 import { ContainerButton } from "registerStudent/styles";
 import {
