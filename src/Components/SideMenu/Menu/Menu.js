@@ -96,9 +96,7 @@ const Menu = ({ open, setOpen, ...props }) => {
   return (
     <>
       <StyledMenu open={open} aria-hidden={!isHidden} {...props}>
-        <div>
-          <ProfileIcon onClick={() => console.log("jolamundo")} />
-        </div>
+        
         {handleChangeButtons()}
 
         {NavItems.map((item) => {

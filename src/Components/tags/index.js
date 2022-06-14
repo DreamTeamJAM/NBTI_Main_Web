@@ -9,7 +9,6 @@ import {phonePrefixes} from "Utils/phonePrefixes"
     const [Tags, setTags] = useState({ tags: [] });
   
     const handleChange = (tags) => {
-      console.log(tags);
       setTags(tags);
     };
    // useEffect(() => {
@@ -30,7 +29,6 @@ import {phonePrefixes} from "Utils/phonePrefixes"
               classNamePrefix="select"
               isSearchable={false}
               onChange={(tags) => {
-                console.log("language Tags", tags);
                 setFieldValue("tags", tags);
               }}
             />
@@ -44,7 +42,6 @@ import {phonePrefixes} from "Utils/phonePrefixes"
     const [Tags, setTags] = useState({ tags: [] });
   
     const handleChange = (tags) => {
-      console.log(tags);
       setTags(tags);
     };
    // useEffect(() => {
@@ -73,7 +70,6 @@ import {phonePrefixes} from "Utils/phonePrefixes"
               classNamePrefix="select"
               isSearchable={true}
               onChange={(tags) => {
-                console.log("language Tags", tags);
                 setFieldValue("tags", tags);
               }}
             />

@@ -10,7 +10,6 @@ export default function ProfileIcon({ onClick }) {
   
   useEffect(() => {
     if (student.data !== undefined) setImg(student.data.photo);
-    console.log("st", student);
   }, [student]);
 
   return (
@@ -18,7 +17,7 @@ export default function ProfileIcon({ onClick }) {
       <Img src={student.loading ?
      image
     :
-    `data:image/png;base64, ${img}`}></Img>
+    `${img}`}></Img>
     </UserButton>
     
   );

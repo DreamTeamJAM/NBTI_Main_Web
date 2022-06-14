@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import image from "./img/icon.jpeg";
 import { Link } from "react-router-dom";
 
 export const DropDownCardStyled = styled.div`

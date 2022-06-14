@@ -14,7 +14,7 @@ export function DivSuperior(props) {
     <>
       <div></div>
       <DivUp>
-        <IMG src={`data:image/jpeg;base64, ${img}`}></IMG>
+        <IMG src={` ${img}`}></IMG>
       </DivUp>
       <DivUp>
       <Link to={{ pathname: `/edit/${1}` }}><button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}><Imagen src={Img}></Imagen></button></Link>
@@ -65,7 +65,6 @@ export function DivInferior(props) {
 
   useEffect(() => {
     AuthService.getCurrentUser().then((user) => setCurrentUser(user));
-    // console.log("Student: ", getStudentById(21));
 
     if (Object.keys(props.student).length !== 0) {
       setWorkArray(
