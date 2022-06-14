@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Container } from "GlobalStyles";
-import { theme } from "theme";
 
 export const BrochureContainer = styled(Container)`
   margin: 0;

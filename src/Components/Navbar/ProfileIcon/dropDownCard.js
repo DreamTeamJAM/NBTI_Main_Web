@@ -2,7 +2,6 @@ import React from "react";
 import { DropDownCardStyled, StyledLink } from "./styles";
 
 export const DropDownCard = ({ data = [], setOpen }) => {
-  console.log(data);
   return (
     <DropDownCardStyled>
       <ul>

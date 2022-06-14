@@ -18,24 +18,23 @@ const ProviderContxt = ({ children }) => {
     let student = { ...studentDto.data };
     if (studentDto.data.photoId != null) {
       let ph = await downloadFile(studentDto.data.photoId);
-      student.photo = ph.data;
+      student.photo = "data:image/png;base64, " +ph.data;
     }
 
     if (studentDto.data.dniFrontId != null) {
       let ph = await downloadFile(studentDto.data.dniFrontId);
-      student.dniFront = ph.data;
+      student.dniFront = "data:image/png;base64, " +ph.data;
     }
 
     if (studentDto.data.dniBackId != null) {
       let ph = await downloadFile(studentDto.data.dniBackId);
-      student.dniBack = ph.data;
+      student.dniBack ="data:image/png;base64, " + ph.data;
     }
 
     delete student.photoId;
     delete student.dniFrontId;
     delete student.dniBackId;
 
-    console.log("eeeeee", student);
     setStudent(student);
     setLoading(false)
   }
@@ -44,7 +43,7 @@ const ProviderContxt = ({ children }) => {
   }, []);
 
   return (
-    <StudentContext.Provider value={{loading,data:student}}>
+    <StudentContext.Provider value={{loading,data:student,setStudent:setStudent}}>
       {children}
     </StudentContext.Provider>
   );

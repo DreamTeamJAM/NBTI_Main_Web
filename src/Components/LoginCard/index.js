@@ -26,8 +26,6 @@ export default function LoginCard() {
     e.preventDefault();
     setMessage("");
     setLoading(true);
-    console.log("Entra método handleLogin");
-
     AuthService.login(username, password).then(
       () => {
         setLoading(false);
@@ -36,7 +34,6 @@ export default function LoginCard() {
       },
       (err) => {
         setLoading(false);
-        console.log(`Error: ${err}`);
       }
     );
   };

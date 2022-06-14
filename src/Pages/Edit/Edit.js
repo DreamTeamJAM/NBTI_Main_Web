@@ -4,8 +4,8 @@ import { useFormik } from "formik";
 import { inputGeneration } from "Templates/formGeneration";
 import { validationHandler } from "services/formValidation";
 import AuthService from "services/auth/auth.service";
-import { putStudent } from "services/api/studentApi";
-import { uploadFile, downloadFile } from "services/api/fileApi";
+import { postStudent } from "services/api/studentApi";
+import { uploadFile } from "services/api/fileApi";
 // import {FormButton} from "GlobalStyles";
 import {
   inputsStep1,
@@ -14,7 +14,7 @@ import {
   inputsStep4,
   inputsStep5,
 } from "Templates/InputModel";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   ContainerButton,
   AccountDiv,
@@ -25,6 +25,8 @@ import {
   FormStep2,
 } from "./style";
 import { Container } from "GlobalStyles";
+import Spinner2 from "Components/Spinnerv2/index";
+import { Div } from "registerStudent/styles";
 
 function GenerateStudent(res, photoId, dniBackId, dniFrontId, student) {
   let st = {
@@ -49,8 +51,7 @@ function GenerateStudent(res, photoId, dniBackId, dniFrontId, student) {
   for (const volun of st.volunteering) {
     delete volun.id;
   }
-  console.log("ddd", st);
-  putStudent(st);
+  postStudent(st);
 }
 
 async function Id(props) {
@@ -60,7 +61,6 @@ async function Id(props) {
   for (let i = 0; i < byteString.length; i++) ia[i] = byteString.charCodeAt(i);
 
   const photoBlob = new Blob([ia]);
-  console.log("photo", photoBlob);
   let formData = new FormData();
   formData.append("file", photoBlob);
   return await uploadFile(formData);
@@ -88,26 +88,18 @@ const Edit = (props) => {
   const location = useLocation();
   const x = location.pathname.charAt(location.pathname.length - 1);
   let isInput = true;
-  if (x == 1) {
+  if (x === 1) {
     isInput = false;
   }
   const inputs = array[x - 1];
 
   const student = useContext(StudentContext);
-  const initFormInfo = {
-    ...student.data,
-    photo: "data:image/png;base64, " + student.data.photo,
-    dniFront: "data:image/png;base64, " + student.data.dniFront,
-    dniBack: "data:image/png;base64, " + student.data.dniBack,
-  };
-  const [formInfo, setFormInfo] = React.useState(initFormInfo);
-  // setFormInfo((prevState) => ({
-  //   ...prevState,
-  //   photo: "data:image/png;base64, "+formInfo.photo,
-  //   dniFront: "data:image/png;base64, "+formInfo.dniFront,
-  //   dniBack: "data:image/png;base64, "+formInfo.dniBack,
-  // }));
-  const [changes, setinfoChanges] = useState({});
+
+  const [isLoading, setLoading] = useState(false);
+
+  const [formInfo, setFormInfo] = React.useState(student.data);
+  let navigate = useNavigate();
+
   const updateBasicInfo = (e) => {
     const { name, value } = e.target;
     setFormInfo((prevState) => ({
@@ -131,8 +123,10 @@ const Edit = (props) => {
         <FormButton
           type="submit"
           onClick={async () => {
-            //   props.loading(true);
+            setLoading(true);
             await handlePut(formInfo);
+            student.setStudent(formInfo);
+            navigate("../profile");
           }}
         >
           Submit
@@ -153,27 +147,39 @@ const Edit = (props) => {
   // formik = {...formik, errors : validate()}
 
   const inputHtml = inputGeneration(inputs, formInfo, updateBasicInfo, formik);
-  if (isInput) {
-    return (
-      <Container>
-        <FormStep onSubmit={formik.handleSubmit}>
-          <AccountDiv>{inputHtml}</AccountDiv>
-          <ContainerButton>
-            <Buttons></Buttons>
-          </ContainerButton>
-        </FormStep>
-      </Container>
-    );
+
+  if (isLoading === false) {
+    if (isInput) {
+      return (
+        <Container>
+          <FormStep onSubmit={formik.handleSubmit}>
+            <AccountDiv>{inputHtml}</AccountDiv>
+            <ContainerButton>
+              <Buttons></Buttons>
+            </ContainerButton>
+          </FormStep>
+        </Container>
+      );
+    } else {
+      return (
+        <Container>
+          <FormStep2 onSubmit={formik.handleSubmit}>
+            <H1>Personal Info</H1>
+            <AccountDivEdited>{inputHtml}</AccountDivEdited>
+            <ContainerButton>
+              <Buttons></Buttons>
+            </ContainerButton>
+          </FormStep2>
+        </Container>
+      );
+    }
   } else {
     return (
       <Container>
-        <FormStep2 onSubmit={formik.handleSubmit}>
-          <H1>Personal Info</H1>
-          <AccountDivEdited>{inputHtml}</AccountDivEdited>
-          <ContainerButton>
-            <Buttons></Buttons>
-          </ContainerButton>
-        </FormStep2>
+        <Div>
+          {" "}
+          <Spinner2 />{" "}
+        </Div>
       </Container>
     );
   }

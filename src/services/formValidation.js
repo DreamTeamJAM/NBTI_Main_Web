@@ -17,18 +17,17 @@ export function numberFieldValidation(valuesObj, errorObj, field) {
   if (!value) {
     errorObj[field] = "Required";
   } else if (isNaN(value) || value < 0) {
-    errorObj[field] = "Must be a valid number"
+    errorObj[field] = "Must be a valid number";
   }
 }
 
 export function phoneFieldValidation(valuesObj, errorObj, field) {
   const value = valuesObj[field];
   const [pref, phone] = value.split(" ");
-  console.log("phone", phone)
   if (!phone) {
     errorObj[field] = "Required";
   } else if (isNaN(phone) || phone < 0) {
-    errorObj[field] = "Must be a valid number"
+    errorObj[field] = "Must be a valid number";
   }
   if (!pref) {
     errorObj[field] = "select a prefix";
@@ -36,7 +35,6 @@ export function phoneFieldValidation(valuesObj, errorObj, field) {
 }
 
 export function PasswordFieldValidation(valuesObj, errorObj, pass, pass1) {
-
   let res;
 
   if (!valuesObj[pass]) {
@@ -46,10 +44,8 @@ export function PasswordFieldValidation(valuesObj, errorObj, pass, pass1) {
   }
   if (valuesObj[pass] !== valuesObj[pass1]) {
     errorObj[pass] = "Must be the same word";
-    res = false
-    console.log(valuesObj)
-    console.log(res)
-  } 
+    res = false;
+  }
 }
 
 export function emailFieldValidation(values, errors, field) {
@@ -61,21 +57,25 @@ export function emailFieldValidation(values, errors, field) {
   }
 }
 
-export function arrayFieldValidation(values,errors,arrayField,children, minForms){
-  const arrayErrors = values[arrayField].map((value, index)=>{
-      return validationHandler(value,children)
-  })
-    for (const err of arrayErrors){
-        if (Object.keys(err).length !== 0){
-           errors[arrayField] =arrayErrors;
-           break;
-        }
+export function arrayFieldValidation(
+  values,
+  errors,
+  arrayField,
+  children,
+  minForms
+) {
+  const arrayErrors = values[arrayField].map((value, index) => {
+    return validationHandler(value, children);
+  });
+  for (const err of arrayErrors) {
+    if (Object.keys(err).length !== 0) {
+      errors[arrayField] = arrayErrors;
+      break;
     }
-    if ( values[arrayField] < minForms ) {
-      errors[arrayField] = "At Least " + minForms;
-    }
-   
-  
+  }
+  if (values[arrayField] < minForms) {
+    errors[arrayField] = "At Least " + minForms;
+  }
 }
 
 export function validationHandler(values, inputMap) {
@@ -92,12 +92,18 @@ export function validationHandler(values, inputMap) {
         case "email":
           emailFieldValidation(values, errors, key);
           break;
-          case "phone":
-          phoneFieldValidation(values,errors,key)
+        case "phone":
+          phoneFieldValidation(values, errors, key);
           break;
-          case "array":
-            let min = inputMap[key].hasOwnProperty("min") ? inputMap[key].min : 0 ; 
-          arrayFieldValidation(values,errors,key,inputMap[key].children, min )
+        case "array":
+          let min = inputMap[key].hasOwnProperty("min") ? inputMap[key].min : 0;
+          arrayFieldValidation(
+            values,
+            errors,
+            key,
+            inputMap[key].children,
+            min
+          );
           break;
         default:
           defaultFieldValidation(values, errors, key);
@@ -111,6 +117,6 @@ export function validationHandler(values, inputMap) {
     //   }
     // }
   }
-  console.log("errors", errors)
+  console.log("errors", errors);
   return errors;
 }

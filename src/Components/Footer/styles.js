@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { theme } from "theme";
 
 export const FooterContainer = styled.footer`
   margin: 0;

@@ -13,7 +13,7 @@ export const getAllStudents = async () => {
 }
 
 export const getStudentById = async ( id) => {
-console.log(authHeader())
+
     const response = await axios.get(`${BASE_HOST}/student/${id}`, {
         headers: authHeader()
     });
@@ -21,7 +21,7 @@ console.log(authHeader())
 }
 
 export const getStudentByUserId = async ( id) => {
-    console.log(authHeader())
+    
         const response = await axios.get(`${BASE_HOST}/users/${id}/student`, {
             headers: authHeader()
         });
@@ -41,6 +41,6 @@ export const putStudent = async ( body) => {
     const response = await axios.put(`${BASE_HOST}/student`, body, {
         headers: authHeader()
     });
-    console.log("puttt",response)
+    
     return response.data
 }
