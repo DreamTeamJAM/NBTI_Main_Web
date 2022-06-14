@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Card, CardField } from "./styles";
-import { InputForm } from "GlobalStyles"
 import AuthService from "../../services/auth/auth.service";
 import { useNavigate } from "react-router-dom";
 import Spinner2 from './../Spinnerv2/index';

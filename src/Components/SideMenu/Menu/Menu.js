@@ -11,7 +11,6 @@ import translate from "i18n/translate";
 import AuthVerify from "./../../../common/auth-verify";
 import eventBus from "./../../../common/EventBus";
 import AuthService from "services/auth/auth.service";
-import ProfileIcon from "./../../Navbar/ProfileIcon/index";
 
 const Menu = ({ open, setOpen, ...props }) => {
   const isHidden = open ? true : false;
