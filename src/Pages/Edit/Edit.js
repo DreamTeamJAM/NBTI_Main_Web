@@ -88,7 +88,7 @@ const Edit = (props) => {
   const location = useLocation();
   const x = location.pathname.charAt(location.pathname.length - 1);
   let isInput = true;
-  if (x === 1) {
+  if (x == 1) {
     isInput = false;
   }
   const inputs = array[x - 1];
@@ -148,7 +148,7 @@ const Edit = (props) => {
 
   const inputHtml = inputGeneration(inputs, formInfo, updateBasicInfo, formik);
 
-  if (isLoading === false) {
+  if (isLoading == false) {
     if (isInput) {
       return (
         <Container>
