@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from "react";
 import AuthService from "../../../services/auth/auth.service";
-import { IMG, DivUp, DivD, DivM, DivW, H2, U, Header,Imagen } from "./../style";
+import {
+  IMG,
+  DivUp,
+  DivD,
+  DivM,
+  DivW,
+  H2,
+  U,
+  Header,
+  Imagen,
+} from "./../style";
 import { prettify } from "Templates/inputComponent";
 import { Link } from "react-router-dom";
-import Img from "./edit.png"
-
+import Img from "./edit.png";
 
 export function DivSuperior(props) {
   const img = props.imagen;
@@ -17,8 +26,14 @@ export function DivSuperior(props) {
         <IMG src={` ${img}`}></IMG>
       </DivUp>
       <DivUp>
-      <Link to={{ pathname: `/edit/${1}` }}><button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}><Imagen src={Img}></Imagen></button></Link>
-      
+        <Link to={{ pathname: `/edit/${1}` }}>
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          >
+            <Imagen src={Img}></Imagen>
+          </button>
+        </Link>
+
         <p>
           <U>Name: </U>
           <strong>
@@ -176,11 +191,23 @@ export function DivInferior(props) {
   return (
     <>
       <DivD>
-        <Link to={{ pathname: `/edit/${2}` }}><button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}><Imagen src={Img}></Imagen></button></Link>
+        <Link to={{ pathname: `/edit/${2}` }}>
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          >
+            <Imagen src={Img}></Imagen>
+          </button>
+        </Link>
 
         <H2>Work Experience:</H2>
         <Header>{WorkArray}</Header>
-        <Link to={{ pathname: `/edit/${5}` }}><button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}><Imagen src={Img}></Imagen></button></Link>
+        <Link to={{ pathname: `/edit/${5}` }}>
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          >
+            <Imagen src={Img}></Imagen>
+          </button>
+        </Link>
         <H2>Volunteering:</H2>
         <Header>{volunteeringArray}</Header>
       </DivD>
@@ -205,10 +232,22 @@ export function DivInferior(props) {
       </DivD>
       <DivW></DivW>
       <DivD>
-      <Link to={{ pathname: `/edit/${3}` }}><button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}><Imagen src={Img}></Imagen></button></Link>
+        <Link to={{ pathname: `/edit/${3}` }}>
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          >
+            <Imagen src={Img}></Imagen>
+          </button>
+        </Link>
         <H2>Education:</H2>
         <Header>{EducationArray}</Header>
-        <Link to={{ pathname: `/edit/${4}` }}><button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}><Imagen src={Img}></Imagen></button></Link>
+        <Link to={{ pathname: `/edit/${4}` }}>
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          >
+            <Imagen src={Img}></Imagen>
+          </button>
+        </Link>
         <H2>Other Languages:</H2>
         <Header>{otherLanguagesArray}</Header>
       </DivD>

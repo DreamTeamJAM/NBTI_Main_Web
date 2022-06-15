@@ -51,8 +51,7 @@ export default function Profile() {
     </Container>
   ) : (
     <Container>
-      <ContainerProfile>
-        <h1>Profile</h1>
+      <ContainerProfile>  
         <DivGrid>
           <Div>
             <DivSuperior

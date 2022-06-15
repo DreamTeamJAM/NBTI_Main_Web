@@ -97,7 +97,7 @@ export const inputsStep2={
   export const inputsStep4 = {
     motherTongues: { type: "tags", whitelist: langWhitelist,  validation: "basic", },
     otherLanguages: {
-      type: "array",
+      type: "array2",
       validation: "array",
       children: {
         languageName: {

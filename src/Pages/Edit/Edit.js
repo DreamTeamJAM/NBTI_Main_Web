@@ -126,7 +126,8 @@ const Edit = (props) => {
             setLoading(true);
             await handlePut(formInfo);
             student.setStudent(formInfo);
-            navigate("../profile");
+            navigate("/profile");
+            window.scrollTo({ top: 0, behavior: "smooth" });
           }}
         >
           Submit
@@ -144,7 +145,6 @@ const Edit = (props) => {
     validate,
     onSubmit: (values) => {},
   });
-  // formik = {...formik, errors : validate()}
 
   const inputHtml = inputGeneration(inputs, formInfo, updateBasicInfo, formik);
 

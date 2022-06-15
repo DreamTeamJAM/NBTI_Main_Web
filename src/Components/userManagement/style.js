@@ -10,13 +10,16 @@ export const ContainerProfile = styled(Container)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgba(176, 196, 222);
-  box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.2);
   h1 {
     font-size: 2.5em;
     text-align: start;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
       Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  }
+
+  @media ${({ theme }) => theme.md} {
+    overflow-x: hidden;
+    width: 100vw;
   }
 `;
 export const DivGrid = styled.div`
@@ -26,8 +29,6 @@ export const DivGrid = styled.div`
   grid-gap: 10px;
   flex-direction: column;
   align-items: center;
-  background-color: rgba(255, 245, 245);
-  box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.2);
 `;
 export const Div = styled.div`
   display: grid;
@@ -37,8 +38,13 @@ export const Div = styled.div`
   grid-gap: 10px;
   flex-direction: column;
   align-items: center;
-  background-color: rgba(255, 245, 245);
   box-shadow: 2.5px 2.5px 5px rgba(0, 0, 0, 0.2);
+
+  @media ${({ theme }) => theme.md} {
+    grid-template-columns: 1fr;
+    height: auto;
+    width: auto;
+  }
 `;
 export const DivUp = styled.div`
   height: auto;
@@ -46,29 +52,28 @@ export const DivUp = styled.div`
 export const DivDown = styled.div`
   display: grid;
   grid-template-columns: 1fr 0.1fr 3fr 0.1fr 1fr;
-  box-shadow: 2.5px 2.5px 5px rgba(0, 0, 0, 0.2);
-  background-color: white;
+  @media ${({ theme }) => theme.md} {
+    grid-template-columns: 1fr;
+    height: auto;
+    width: auto;
+  }
 `;
 export const DivDown2 = styled.div`
-  width:auto;
-  display:flex;
-  justify-content:center;
-  height:auto;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  height: auto;
 `;
 export const DivD = styled.div`
   height: auto;
-  margin:1em;
-  background-color: rgba(255, 245, 245);
+  margin: 1em;
+  padding: 1em;
   box-shadow: 2.5px 2.5px 5px rgba(0, 0, 0, 0.2);
 `;
-export const DivM = styled.div`
-box-shadow: 2.5px 2.5px 5px rgba(0, 0, 0, 0.2);
-`;
-export const DivW = styled.div`
-  background-color: white;
-`;
-export const DivSpin=styled.div`
-height:40vh;
+export const DivM = styled.div``;
+export const DivW = styled.div``;
+export const DivSpin = styled.div`
+  height: 40vh;
 `;
 /////////////////////////////////////////////////////
 export const IMG = styled.img`
@@ -76,9 +81,13 @@ export const IMG = styled.img`
   /* height: 16vh; */
   border-radius: 50%;
   object-fit: cover;
+
+  @media ${({ theme }) => theme.md} {
+    width: 150px;
+    height: 150px;
+  }
 `;
 export const Nav = styled.nav`
-  background-color: rgba(255, 250, 250);
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -111,7 +120,6 @@ export const Button = styled.button`
   }
 `;
 export const H2 = styled.h2`
-  background-color: rgba(255, 245, 245);
   text-decoration: underline;
 `;
 export const U = styled.u`
@@ -121,10 +129,13 @@ export const Header = styled.header`
   margin-top: -1em;
 `;
 export const Iframe = styled.iframe`
-  width:95%;
-  height:120vh;
+  width: 95%;
+  height: 120vh;
 `;
 export const Imagen = styled.img`
   width: 1vw;
-height: 2vh;
+  height: 2vh;
+  @media ${({ theme }) => theme.md} {
+    width: auto;
+  }
 `;

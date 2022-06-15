@@ -9,6 +9,7 @@ import Tags from "@yaireo/tagify/dist/react.tagify";
 import { LabelForm } from "GlobalStyles";
 import {
   ArrayContainer,
+  ArrayContainer2,
   ArrayDiv,
   SelectStudent,
   PhotoInput,
@@ -352,7 +353,10 @@ export function ArrayInput(props) {
   });
 
   return (
-    <ArrayContainer>
+    <>
+      {
+        props.isLang === false ? (
+          <ArrayContainer>
       <h1>{prettify(props.label)}</h1>
       <div>
         {formArray}
@@ -378,5 +382,35 @@ export function ArrayInput(props) {
       ) : null}
       </div>
     </ArrayContainer>
+        ) : (
+          <ArrayContainer2>
+      <h1>{prettify(props.label)}</h1>
+      <div>
+        {formArray}
+
+        <ButtonAdd
+          type="button"
+          className="secondary"
+          onClick={() => {
+            values.length < 10 &&
+              props.onChange({
+                target: {
+                  name: props.label,
+                  value: [...props.values, emptyChild],
+                },
+              });
+          }}
+        >
+          Add {prettify(props.label)}
+        </ButtonAdd>
+        <br />
+      {props.formik.touched[props.label] && props.formik.errors[props.label] ? (
+        <p>{props.formik.errors[props.label]}</p>
+      ) : null}
+      </div>
+    </ArrayContainer2>
+        )
+      }
+    </>
   );
 }

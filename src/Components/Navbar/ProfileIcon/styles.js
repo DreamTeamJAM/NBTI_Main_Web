@@ -52,6 +52,11 @@ export const UserButton = styled.button`
   &:hover {
     filter: brightness(90%);
   }
+
+  @media ${({ theme }) => theme.md} {
+    margin-left: auto;
+    margin-right: auto;
+  }
 `;
 export const Img = styled.img`
   border-radius: 50%;
