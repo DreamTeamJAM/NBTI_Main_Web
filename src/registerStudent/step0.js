@@ -12,6 +12,7 @@ import {
   StudentContainer,
   ContainerStudent,
   Margin,
+  P
 } from "registerStudent/styles";
 
 function Step0() {
@@ -62,7 +63,7 @@ function Step0() {
               onChange={updateBasicInfo}
             />
             {formik.touched.username && formik.errors.username ? (
-              <p>{formik.errors.username}</p>
+              <P>{formik.errors.username}</P>
             ) : null}
             <br />
           </Margin>
@@ -78,7 +79,7 @@ function Step0() {
               onChange={updateBasicInfo}
             />
             {formik.touched.password && formik.errors.password ? (
-              <p>{formik.errors.password}</p>
+              <P>{formik.errors.password}</P>
             ) : null}
             <br />
           </Margin>
@@ -95,7 +96,7 @@ function Step0() {
             />
             {formik.touched.confirm_passWord &&
             formik.errors.confirm_passWord ? (
-              <p>{formik.errors.confirm_passWord}</p>
+              <P>{formik.errors.confirm_passWord}</P>
             ) : null}
             <br />
           </Margin>

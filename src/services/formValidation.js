@@ -117,6 +117,6 @@ export function validationHandler(values, inputMap) {
     //   }
     // }
   }
-  console.log("errors", errors);
+  
   return errors;
 }
