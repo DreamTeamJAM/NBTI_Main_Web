@@ -7,11 +7,7 @@ import {
   defaultFieldValidation,
   PasswordFieldValidation,
 } from "services/formValidation";
-import {
-  InputForm,
-  LabelForm,
-  FormButton,
-} from "GlobalStyles";
+import { InputForm, LabelForm, FormButton } from "GlobalStyles";
 import {
   StudentContainer,
   ContainerStudent,
@@ -44,7 +40,7 @@ function Step0() {
       password: basicInfo.password,
       confirm_passWord: basicInfo.confirm_passWord,
     },
-    initialErrors:{neverFilled: true},
+    initialErrors: { neverFilled: true },
     validate,
     onSubmit: (values) => {},
   });
@@ -74,7 +70,7 @@ function Step0() {
             <LabelForm>Password</LabelForm>
             <br />
             <InputForm
-              type="text"
+              type="password"
               name="password"
               {...formik.getFieldProps("password")}
               value={basicInfo.password}
@@ -90,7 +86,7 @@ function Step0() {
             <LabelForm>Confirm Password</LabelForm>
             <br />
             <InputForm
-              type="text"
+              type="password"
               name="confirm_passWord"
               {...formik.getFieldProps("confirm_passWord")}
               value={basicInfo.confirm_passWord}
@@ -107,10 +103,9 @@ function Step0() {
         <br />
         <FormButton
           type="submit"
-          disabled={ Object.keys(formik.errors).length !== 0
-          }
+          disabled={Object.keys(formik.errors).length !== 0}
           onClick={() => {
-            formik.validateForm()
+            formik.validateForm();
             dispatch(increment());
             dispatch(
               updateUser({

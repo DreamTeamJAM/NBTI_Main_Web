@@ -71,7 +71,6 @@ function Hosting() {
     },
     validate,
     onSubmit: (values) => {
-      console.log("values", values);
       postHosting(values);
     },
   });

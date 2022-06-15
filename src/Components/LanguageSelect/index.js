@@ -7,7 +7,6 @@ function LanguageSelectComponent({ setLocale }) {
   const [language, setLanguage] = React.useState("");
 
   const handleChangeLanguage = (event) => {
-    console.log(event.target.value);
     setLocale(event.target.value === "es" ? LOCALES.SPANISH : LOCALES.ENGLISH);
     localStorage.setItem("language", event.target.value);
   };

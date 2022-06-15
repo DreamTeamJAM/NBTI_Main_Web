@@ -59,7 +59,6 @@ function Enterprise() {
     },
     validate,
     onSubmit: (values) => {
-      console.log("values", values);
       postCompany(values);
     },
   });

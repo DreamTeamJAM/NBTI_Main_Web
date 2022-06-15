@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Card, CardField } from "./styles";
-import { InputForm } from "GlobalStyles"
 import AuthService from "../../services/auth/auth.service";
 import { useNavigate } from "react-router-dom";
 import Spinner2 from './../Spinnerv2/index';
@@ -26,8 +25,6 @@ export default function LoginCard() {
     e.preventDefault();
     setMessage("");
     setLoading(true);
-    console.log("Entra método handleLogin");
-
     AuthService.login(username, password).then(
       () => {
         setLoading(false);
@@ -36,7 +33,6 @@ export default function LoginCard() {
       },
       (err) => {
         setLoading(false);
-        console.log(`Error: ${err}`);
       }
     );
   };

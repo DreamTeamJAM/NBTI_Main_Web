@@ -28,7 +28,7 @@ class AuthService {
 
   async getCurrentUser() {
     const user = JSON.parse(localStorage.getItem("user"));
-    console.log(`user2: ${user}`);
+    
     if (user !== null) {
       return user;
     }

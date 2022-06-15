@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Container } from "GlobalStyles";
-import { Link } from "react-router-dom";
 
 export const ContainerProfile = styled(Container)`
   margin-top: 0;
@@ -48,6 +47,7 @@ export const DivDown = styled.div`
   display: grid;
   grid-template-columns: 1fr 0.1fr 3fr 0.1fr 1fr;
   box-shadow: 2.5px 2.5px 5px rgba(0, 0, 0, 0.2);
+  background-color: white;
 `;
 export const DivDown2 = styled.div`
   width:auto;
@@ -58,13 +58,14 @@ export const DivDown2 = styled.div`
 export const DivD = styled.div`
   height: auto;
   margin:1em;
+  background-color: rgba(255, 245, 245);
   box-shadow: 2.5px 2.5px 5px rgba(0, 0, 0, 0.2);
 `;
 export const DivM = styled.div`
 box-shadow: 2.5px 2.5px 5px rgba(0, 0, 0, 0.2);
 `;
 export const DivW = styled.div`
-  background-color: rgba(255, 245, 245);
+  background-color: white;
 `;
 export const DivSpin=styled.div`
 height:40vh;
@@ -122,4 +123,8 @@ export const Header = styled.header`
 export const Iframe = styled.iframe`
   width:95%;
   height:120vh;
+`;
+export const Imagen = styled.img`
+  width: 1vw;
+height: 2vh;
 `;

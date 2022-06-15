@@ -21,7 +21,7 @@ import {
 } from "registerStudent/styles";
 
 export function prettify(text) {
-  if(text!=undefined){
+  if(text!==undefined){
     var result = text.replace(/([A-Z])/g, " $1");
     var finalResult = result.charAt(0).toUpperCase() + result.slice(1);
     return finalResult;}
@@ -237,8 +237,6 @@ export function ImageInput(props) {
   const onFileChangeHandler = (e) => {
     e.preventDefault();
     const file = e.target.files[0];
-    console.log(e.target.files);
-    console.log("file: ", file);
 
     if (FileReader && file) {
       var fr = new FileReader();

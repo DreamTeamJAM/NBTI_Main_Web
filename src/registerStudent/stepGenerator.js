@@ -2,14 +2,14 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { decrement, increment } from "redux/stepSlice";
 import { updateStudent, selectStudent } from "redux/studentSlice";
-import {selectUser} from "redux/Slice";
+import { selectUser } from "redux/Slice";
 import { useFormik } from "formik";
 import { inputGeneration } from "Templates/formGeneration";
 import { validationHandler } from "services/formValidation";
 import { selectCount } from "redux/stepSlice";
 import AuthService from "services/auth/auth.service";
 import { postStudent } from "services/api/studentApi";
-import { uploadFile, downloadFile } from "services/api/fileApi";
+import { uploadFile} from "services/api/fileApi";
 // import {FormButton} from "GlobalStyles";
 import { ContainerButton } from "registerStudent/styles";
 import {
@@ -31,7 +31,7 @@ function GenerateStudent(res, photoId, dniBackId, dniFrontId, student) {
   delete st.photo;
   delete st.dniFront;
   delete st.dniBack;
-  
+
   postStudent(st);
 }
 
@@ -42,7 +42,7 @@ async function Id(props) {
   for (let i = 0; i < byteString.length; i++) ia[i] = byteString.charCodeAt(i);
 
   const photoBlob = new Blob([ia]);
- 
+
   let formData = new FormData();
   formData.append("file", photoBlob);
   return await uploadFile(formData);
@@ -53,14 +53,13 @@ const handleLogin = async (user, student) => {
   await AuthService.login(user.username, user.password);
   await AuthService.getCurrentUser().then(async (res) => {
     const photoId = await Id(student.photo);
-    const dniBack =await Id(student.dniFront);
-    const dniFront =await Id(student.dniBack);
+    const dniBack = await Id(student.dniFront);
+    const dniFront = await Id(student.dniBack);
     GenerateStudent(res, photoId, dniBack, dniFront, student);
   });
- 
 };
-function Reload(){
-window.location.reload();
+function Reload() {
+  window.location.reload();
 }
 
 const StepGenerator = (props) => {
@@ -69,9 +68,8 @@ const StepGenerator = (props) => {
   const student = useSelector(selectStudent);
   const [formInfo, setFormInfo] = React.useState(student);
   const activeStep = useSelector(selectCount);
-  const user =useSelector(selectUser)
+  const user = useSelector(selectUser);
   const updateBasicInfo = (e) => {
-   
     const { name, value } = e.target;
     setFormInfo((prevState) => ({
       ...prevState,
@@ -95,14 +93,12 @@ const StepGenerator = (props) => {
 
           <FormButton
             type="submit"
-            disabled={ Object.keys(formik.errors).length !== 0
-            }
+            disabled={Object.keys(formik.errors).length !== 0}
             onClick={() => {
-            
-                dispatch(increment());
-                dispatch(updateStudent(formInfo));
-                window.scrollTo({top: 0, behavior: 'smooth'})}
-            }
+              dispatch(increment());
+              dispatch(updateStudent(formInfo));
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
           >
             Next
           </FormButton>
@@ -113,7 +109,6 @@ const StepGenerator = (props) => {
         <>
           <FormButton
             type="submit"
-            
             onClick={() => {
               dispatch(decrement());
               dispatch(updateStudent(formInfo));
@@ -125,10 +120,9 @@ const StepGenerator = (props) => {
           <br />
           <FormButton
             type="submit"
-            disabled={ Object.keys(formik.errors).length !== 0
-            }
-            onClick={async() => {
-              props.loading(true)
+            disabled={Object.keys(formik.errors).length !== 0}
+            onClick={async () => {
+              props.loading(true);
               dispatch(updateStudent(formInfo));
               await handleLogin(user, formInfo);
               Reload();
@@ -147,12 +141,11 @@ const StepGenerator = (props) => {
 
   const formik = useFormik({
     initialValues: { ...formInfo },
-    initialErrors:{neverFilled: true},
+    initialErrors: { neverFilled: true },
     validate,
     onSubmit: (values) => {},
   });
   // formik = {...formik, errors : validate()}
-  console.log("root form: ",formik);
   const inputHtml = inputGeneration(inputs, formInfo, updateBasicInfo, formik);
   if (props.isInput) {
     return (
