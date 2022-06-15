@@ -1,5 +1,5 @@
-import React, { Component, useEffect, useState } from "react";
-import { Stepper, Step, StepLabel } from "@material-ui/core";
+import React, { useEffect, useState } from "react";
+import { StepLabel } from "@material-ui/core";
 import Step0 from "./step0";
 import Step1 from "./step1";
 import Step2 from "./step2";
@@ -8,7 +8,6 @@ import Step4 from "./step4";
 import Step5 from "./step5";
 import { useSelector, useDispatch } from "react-redux";
 import { selectCount } from "redux/stepSlice";
-import PdfButton from "Pages/Exit/pdf_button";
 import {
   DefaultStepper,
   DefaultStep,
