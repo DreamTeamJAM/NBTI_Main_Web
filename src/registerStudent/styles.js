@@ -195,3 +195,9 @@ margin-top: -0.2em;
 export const Div=styled.div`
 height:40vh;
 `;
+export const P =styled.p`
+margin-bottom:-1.3em;
+margin-top:-0.05em;
+font-size:15px;
+color:red;
+`;
