@@ -18,7 +18,7 @@ import {
   ButtonX,
   ButtonAdd,
   TagsDiv,
-  InputRadio
+  InputRadio,P
 } from "registerStudent/styles";
 
 export function prettify(text) {
@@ -47,7 +47,7 @@ export function TextInput(props) {
           props.onChange(e)}}
       />
       {props.formik.touched[props.label] && props.formik.errors[props.label] ? (
-        <p>{props.formik.errors[props.label]}</p>
+        <P>{props.formik.errors[props.label]}</P>
       ) : null}
     </div>
   );
@@ -112,7 +112,7 @@ export function PhoneInput(props) {
         }}
       />
       {props.formik.touched[props.label] && props.formik.errors[props.label] ? (
-        <p>{props.formik.errors[props.label]}</p>
+        <P>{props.formik.errors[props.label]}</P>
       ) : null}
     </div>
   );
@@ -135,7 +135,7 @@ export function OptionInput(props) {
       </SelectStudent>
       <br/>
       {props.formik.touched[props.label] && props.formik.errors[props.label] ? (
-        <p>{props.formik.errors[props.label]}</p>
+        <P>{props.formik.errors[props.label]}</P>
       ) : null}
     </div>
   );
@@ -156,7 +156,7 @@ export function AreaInput(props) {
           props.onChange(e)}}
       />
       {props.formik.touched[props.label] && props.formik.errors[props.label] ? (
-        <p>{props.formik.errors[props.label]}</p>
+        <P>{props.formik.errors[props.label]}</P>
       ) : null}
     </div>
   );
@@ -188,7 +188,7 @@ export function RadioInput(props) {
 
       {listRadios}
       {props.formik.touched[props.label] && props.formik.errors[props.label] ? (
-        <p>{props.formik.errors[props.label]}</p>
+        <P>{props.formik.errors[props.label]}</P>
       ) : null}
     </div>
   );
@@ -225,7 +225,7 @@ export function TagInput(props) {
       ></Tags>
       
        {props.formik.touched[props.label] && props.formik.errors[props.label] ? (
-        <p>{props.formik.errors[props.label]}</p>
+        <P>{props.formik.errors[props.label]}</P>
       ) : null}
     </TagsDiv>
   );
@@ -276,7 +276,7 @@ export function ImageInput(props) {
       />
       <br />
       {props.formik.touched[props.label] && props.formik.errors[props.label] ? (
-        <p>{props.formik.errors[props.label]}</p>
+        <P>{props.formik.errors[props.label]}</P>
       ) : null}
     </div>
   );
@@ -378,7 +378,7 @@ export function ArrayInput(props) {
         </ButtonAdd>
         <br />
       {props.formik.touched[props.label] && props.formik.errors[props.label] ? (
-        <p>{props.formik.errors[props.label]}</p>
+        <P>{props.formik.errors[props.label]}</P>
       ) : null}
       </div>
     </ArrayContainer>

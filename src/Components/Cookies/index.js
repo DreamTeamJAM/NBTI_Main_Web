@@ -28,10 +28,8 @@ export default function Cookies() {
           contentStyle={{ background: "#0B0D17", color: "#fff" }}
           overlay={true}
           onDecline={() => {
-            console.log("Declined");
           }}
           onAccept={() => {
-            console.log("Accepted");
             localStorage.setItem("nbtiCookies", "accepted");
           }}
         >
