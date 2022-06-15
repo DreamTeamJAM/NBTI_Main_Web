@@ -145,9 +145,9 @@ const StepGenerator = (props) => {
     validate,
     onSubmit: (values) => {},
   });
-  // formik = {...formik, errors : validate()}
   const inputHtml = inputGeneration(inputs, formInfo, updateBasicInfo, formik);
   if (props.isInput) {
+    
     return (
       <>
         <FormStep onSubmit={formik.handleSubmit}>

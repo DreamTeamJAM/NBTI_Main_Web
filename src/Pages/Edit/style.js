@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Container } from "GlobalStyles";
 
 export const ContainerButton = styled.div`
   margin-top: 1em;

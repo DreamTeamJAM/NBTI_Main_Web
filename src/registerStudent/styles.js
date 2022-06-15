@@ -49,7 +49,43 @@ export const ArrayContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
+
+  @media ${({ theme }) => theme.md} {
+    width: 100vw;
+  }
+  h1 {
+    @media ${({ theme }) => theme.md} {
+      margin-top: 2em;
+  }
+
+  }
 `;
+
+export const ArrayContainer2 = styled.div`
+  margin-top: -1em;
+  margin-bottom: 0;
+  padding: 0;
+  width: 80vw;
+  height: auto;
+  background-color: #fff;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  @media ${({ theme }) => theme.md} {
+    width: 100vw;
+    margin-left: 15em;
+  }
+  h1 {
+    @media ${({ theme }) => theme.md} {
+      margin-top: 2em;
+  }
+
+  }
+`;
+
 export const ArrayDiv = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -57,6 +93,10 @@ export const ArrayDiv = styled.div`
   flex-direction: column;
   align-items: center;
   margin-bottom: 1em;
+  
+  @media ${({ theme }) => theme.md} {
+    grid-template-columns: 1fr;
+  }
 `;
 export const SelectStudent = styled.select`
   padding: 0.6rem 1rem;
@@ -66,6 +106,10 @@ export const SelectStudent = styled.select`
   height: auto;
   margin-left: 0.5em;
   margin-right: 0.5em;
+
+  @media ${({ theme }) => theme.md} {
+    width: 200px;
+  }
 `;
 export const DivDefault = styled.div`
   margin-top: 0;
@@ -83,6 +127,11 @@ export const DivDefault = styled.div`
 export const PhotoInput = styled.input`
   width: 10vw;
   height: auto;
+
+  @media ${({ theme }) => theme.md} {
+    width: 150px;
+    margin-top: 5px;
+  }
 `;
 export const AccountDiv = styled.div`
   display: grid;
@@ -98,6 +147,12 @@ export const AccountDivEdited = styled.div`
   justify-content: center;
   align-items: center;
   grid-template-columns: 0.9fr 0.8fr;
+
+  @media ${({ theme }) => theme.md} {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding-top: 1em;
+  }
 `;
 
 export const FormStep = styled.form`
@@ -152,6 +207,11 @@ export const FormButton = styled.button`
   &:hover {
     background-color: rgba(23, 22, 29, 0.8);
   }
+
+  @media ${({ theme }) => theme.md} {
+    width: 100px;
+    margin: 0 3px 1em 3px;
+  }
 `;
 export const ButtonX = styled.button`
   padding: 0.6rem 1rem;
@@ -193,6 +253,9 @@ export const TagsDiv = styled.div`
 `;
 export const H1 = styled.h1`
   margin-top: -0.2em;
+  @media ${({ theme }) => theme.md} {
+    margin-top: 1em;
+  }
 `;
 export const Div = styled.div`
   height: 40vh;

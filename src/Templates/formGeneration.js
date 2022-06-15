@@ -85,16 +85,32 @@ export function inputGeneration(inputs, values, onChange, formik) {
         break;
       case "array":
         currentInput = (
-          <>
+          <div>
             <ArrayInput
               label={key}
               inputList={input.children}
               values={values[key]}
               onChange={onChange}
               formik={formik}
+              isLang={false}
             />
             <br />
-          </>
+          </div>
+        );
+        break;
+        case "array2":
+        currentInput = (
+          <div>
+            <ArrayInput
+              label={key}
+              inputList={input.children}
+              values={values[key]}
+              onChange={onChange}
+              formik={formik}
+              isLang={true}
+            />
+            <br />
+          </div>
         );
         break;
       case "image":
