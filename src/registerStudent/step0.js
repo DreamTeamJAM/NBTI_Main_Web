@@ -22,7 +22,6 @@ function Step0() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const [basicInfo, setBasicInfo] = React.useState(user);
-  console.log(user);
   const updateBasicInfo = (e) => {
     formik.handleChange(e);
     const { name, value } = e.target;

@@ -3,7 +3,9 @@ import { Stepper, Step, StepLabel } from "@material-ui/core";
 import { Container } from "GlobalStyles";
 
 export const DefaultStepper = styled(Stepper)`
- 
+  @media ${({ theme }) => theme.md} {
+    display: none !important;
+  }
 `;
 export const DefaultStep = styled(Step)`
   height: 5em;
@@ -54,7 +56,7 @@ export const ArrayDiv = styled.div`
   grid-gap: 10px;
   flex-direction: column;
   align-items: center;
-  margin-bottom:1em;
+  margin-bottom: 1em;
 `;
 export const SelectStudent = styled.select`
   padding: 0.6rem 1rem;
@@ -92,7 +94,7 @@ export const AccountDivEdited = styled.div`
   display: grid;
   margin-left: 0.5em;
   margin-right: 1em;
-  width:auto;
+  width: auto;
   justify-content: center;
   align-items: center;
   grid-template-columns: 0.9fr 0.8fr;
@@ -104,7 +106,7 @@ export const FormStep = styled.form`
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  min-height:70vh;
+  min-height: 70vh;
 `;
 
 export const InputForm = styled.input`
@@ -133,7 +135,7 @@ export const TextArea = styled.textarea`
   margin-left: 0.5em;
   margin-right: 0.5em;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 `;
 export const FormButton = styled.button`
   padding: 0.6rem 1rem;
@@ -189,9 +191,9 @@ export const TagsDiv = styled.div`
 
   height: auto;
 `;
-export const H1=styled.h1`
-margin-top: -0.2em;
+export const H1 = styled.h1`
+  margin-top: -0.2em;
 `;
-export const Div=styled.div`
-height:40vh;
+export const Div = styled.div`
+  height: 40vh;
 `;

@@ -3,10 +3,6 @@ import StepGenerator from "registerStudent/stepGenerator";
 import { drivingLicense } from "Utils/drivingLicenses";
 import { languages } from "Utils/languages";
 import {
-  AccountDiv,
-  FormStep,
-  FormButton,
-  AccountDivEdited,
   H1
 } from "registerStudent/styles";
 
