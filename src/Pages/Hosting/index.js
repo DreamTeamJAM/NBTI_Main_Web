@@ -78,6 +78,15 @@ function Hosting() {
   return (
     <Container>
       <HostingContainer>
+      <FormTitleDiv>
+          <h1>Are you a hosting that wants to work with us?</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
+            eos quia doloremque, quae, quisquam dolorum quisquam. lorem ipsum
+            dolor sit amet consectetur adipisicing elit. Quisquam eos quia
+            doloremque, quae, quisquam dolorum quisquam.
+          </p>
+        </FormTitleDiv>
         {activeStep < 1 ? (
           <ContainerHosting>
             <h1>HOSTING</h1>
@@ -111,7 +120,7 @@ function Hosting() {
               </div>
 
               <div>
-                <LabelForm>{translate("address")}: </LabelForm>
+                <LabelForm>Address: </LabelForm>
                 <br />
                 <InputForm type="text" {...formik.getFieldProps("address")} />
                 {formik.touched.address && formik.errors.address ? (
@@ -191,15 +200,7 @@ function Hosting() {
             <Exit></Exit>
           </div>
         )}
-        <FormTitleDiv>
-          <h1>Are you a company that wants to work with us?</h1>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
-            eos quia doloremque, quae, quisquam dolorum quisquam. lorem ipsum
-            dolor sit amet consectetur adipisicing elit. Quisquam eos quia
-            doloremque, quae, quisquam dolorum quisquam.
-          </p>
-        </FormTitleDiv>
+        
       </HostingContainer>
     </Container>
   );

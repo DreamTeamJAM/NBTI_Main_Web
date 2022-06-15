@@ -34,13 +34,13 @@ export const FooterMainContainer = styled.div`
   margin-left: 0em;
   overflow-x: hidden;
 
-  @media ${(props) => props.theme.md} {
-    width: 62vw;
-    grid-template-columns: 1fr;
-  }
   @media ${(props) => props.theme.lg} {
     width: auto;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  @media ${(props) => props.theme.md} {
+    width: 62vw;
+    grid-template-columns: 1fr;
   }
 
 `;

@@ -62,6 +62,13 @@ export const FormEnterprise = styled.form`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 10px;
+
+  @media ${({ theme }) => theme.md} {
+    grid-template-columns: 1fr;
+    grid-gap: 20px;
+    text-align: left;
+    margin-left: 1em;
+  }
 `;
 export const SelectEnterprise = styled.select`
   padding: 0.6rem 1rem;
@@ -77,10 +84,10 @@ export const FormButton = styled.button`
   border: 1px solid black;
   width: 80%;
   color: #fff;
-  background-color: rgba(23,22,29, 1);
-  transition: all .2s ease-in-out;
+  background-color: rgba(23, 22, 29, 1);
+  transition: all 0.2s ease-in-out;
 
   &:hover {
-    background-color: rgba(23,22,29, 0.8 );
+    background-color: rgba(23, 22, 29, 0.8);
   }
 `;
