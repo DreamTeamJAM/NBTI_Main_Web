@@ -17,10 +17,16 @@ export const AccountDivEdited = styled.div`
   display: grid;
   margin-left: 0.5em;
   margin-right: 1em;
-  width:auto;
+  width: auto;
   justify-content: center;
   align-items: center;
   grid-template-columns: 0.9fr 0.8fr;
+
+  @media ${({ theme }) => theme.md} {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding-top: 1em;
+  }
 `;
 export const FormStep = styled.form`
   margin-top: -1.5em;
@@ -28,7 +34,7 @@ export const FormStep = styled.form`
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  min-height:70vh;
+  min-height: 70vh;
   background-color: white;
 `;
 export const FormButton = styled.button`
@@ -46,9 +52,17 @@ export const FormButton = styled.button`
   &:hover {
     background-color: rgba(23, 22, 29, 0.8);
   }
+
+  @media ${({ theme }) => theme.md} {
+    width: 100px;
+    margin: 0 3px 1em 3px;
+  }
 `;
-export const H1=styled.h1`
-margin-top: -0.2em;
+export const H1 = styled.h1`
+  margin-top: -0.2em;
+  @media ${({ theme }) => theme.md} {
+    margin-top: 1em;
+  }
 `;
 export const Container2 = styled.div`
   display: flex;
@@ -65,7 +79,7 @@ export const FormStep2 = styled.form`
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  min-height:70vh;
+  min-height: 70vh;
   background-color: white;
-  width:80vw;
+  width: 80vw;
 `;
